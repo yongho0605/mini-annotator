@@ -1,7 +1,11 @@
-import App from "./src/app.js";
-import { RootRender } from "./src/utils/rootRender.js";
+import { HTMLRender } from "./src/utils/HTMLRender.js";
 
-const rootDiv = document.getElementById("canvas");
-const app = App();
+const headerNode = document.getElementById("header");
+const toolBarNode = document.getElementById("toolBar");
+const canvasNode = document.getElementById("canvas");
+const scopeDisplayNode = document.getElementById("scopeDisplay");
+const jobListNode = document.getElementById("jobList");
+const outPostNode = document.getElementById("outPost");
+const classSelectorNode = document.getElementById("classSelector");
 
-RootRender(rootDiv, app);
+// HTMLRender(canvasNode, canvas);

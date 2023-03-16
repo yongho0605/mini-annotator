@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header></header>
-    <aside></aside>
-    <aside></aside>
-    <div id=""><canvas id="canvas"></canvas></div>
+    <header id="header"></header>
+    <main>
+      <aside id="toolBar"></aside>
+      <div class="mainBoard">
+        <canvas id="canvas"></canvas>
+        <div class="underDisplay">
+          <div id="scopeDisplay"></div>
+          <div id="jobList"></div>
+          <div id="outPost"></div>
+        </div>
+      </div>
+      <aside id="classSelector"></aside>
+    </main>
     <script type="module" src="main.js"></script>
   </body>
 </html>

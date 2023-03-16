@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  width: 99.92vw;
+  height: 99.92vh;
+  background-color: #0c1d3d;
+  color: white;
+}
+
+header {
+  height: 6%;
+  border-bottom: solid white 0.5px;
+}
+
+main {
+  height: 94%;
+  width: 100%;
+  display: flex;
+}
+
+#toolBar {
+  height: 100%;
+  width: 3%;
+  border-right: solid white 0.5px;
+}
+
+.mainBoard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+}
+
+#canvas {
+  width: 100%;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+  border-bottom: solid white 0.5px;
+}
+
+.underDisplay {
+  display: flex;
+  width: 100%;
+  height: 30%;
+}
+
+#classSelector {
+  height: 100%;
+  width: 17%;
+  border-left: solid white 0.5px;
+}
+
+#scopeDisplay {
+  width: 30%;
+  height: 100%;
+}
+
+#jobList {
+  width: 30%;
+  height: 100%;
+  border-left: solid white 0.5px;
+  border-right: solid white 0.5px;
+}
+
+#outPost {
+  width: 40%;
+  height: 100%;
+}
