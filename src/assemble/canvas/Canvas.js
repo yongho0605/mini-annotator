@@ -1,5 +1,7 @@
-import canvasImageRender from "/src/components/canvas/canvasImage.js";
+import mousePointer from "/src/components/canvas/mousePointer.js";
+import canvasImageRender from "/src/components/canvas/imageRender.js";
 
 export default function Canvas() {
   canvasImageRender();
+  mousePointer();
 }

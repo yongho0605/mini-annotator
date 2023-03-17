@@ -23,6 +23,7 @@ header {
 }
 
 main {
+  position: relative;
   height: 94%;
   width: 100%;
   display: flex;
@@ -35,12 +36,20 @@ main {
   width: 50%;
 }
 
-#canvas {
-  display: flex;
+canvas {
+  position: absolute;
+  left: 0px;
+  top: 0px;
   width: 70%;
   height: 100%;
-  align-items: center;
-  justify-content: center;
+}
+
+#canvas {
+  z-index: 1;
+}
+
+#imageCanvas {
+  z-index: 0;
 }
 
 #classSelector {
