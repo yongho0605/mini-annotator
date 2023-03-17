@@ -1,5 +1,5 @@
-import Canvas from "./pages/canvas/Canvas.js";
-import Toolkit from "./pages/toolBox/ToolKit.js";
+import Canvas from "./assemble/canvas/Canvas.js";
+import Toolkit from "./assemble/toolBox/ToolKit.js";
 
 export default function app() {
   Toolkit();
