@@ -6,17 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>datamaker mini annotator</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/src/styles/header.css" />
+    <link rel="stylesheet" href="/src/styles/toolBar.css" />
   </head>
   <body>
-    <header id="header"></header>
+    <header id="header">
+      <span>datamaker mini annotator</span>
+      <button class="outPost">내보내기</button>
+    </header>
     <main>
-      <aside id="toolBar"></aside>
+      <aside id="toolBar">
+        <button class="selector">선택도구</button>
+        <button class="boundingBox">바운딩박스</button>
+        <button class="polygon">폴리곤</button>
+        <button class="polyline">폴리라인</button>
+        <button class="keyPoint">키포인트</button>
+      </aside>
       <div class="mainBoard">
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" width="1920" height="1080"> </canvas>
         <div class="underDisplay">
           <div id="scopeDisplay"></div>
           <div id="jobList"></div>
-          <div id="outPost"></div>
+          <div id="outPostDisplay"></div>
         </div>
       </div>
       <aside id="classSelector"></aside>
