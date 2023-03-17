@@ -13,8 +13,6 @@
     <header id="header">
       <span>datamaker mini annotator</span>
       <button class="outPost">내보내기</button>
-    </header>
-    <main>
       <aside id="toolBar">
         <button class="selector">선택도구</button>
         <button class="boundingBox">바운딩박스</button>
@@ -22,14 +20,9 @@
         <button class="polyline">폴리라인</button>
         <button class="keyPoint">키포인트</button>
       </aside>
-      <div class="mainBoard">
-        <canvas id="canvas" width="1920" height="1080"> </canvas>
-        <div class="underDisplay">
-          <div id="scopeDisplay"></div>
-          <div id="jobList"></div>
-          <div id="outPostDisplay"></div>
-        </div>
-      </div>
+    </header>
+    <main>
+      <canvas id="canvas" width="1920" height="1080"> </canvas>
       <aside id="classSelector"></aside>
     </main>
     <script type="module" src="main.js"></script>

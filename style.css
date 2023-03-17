@@ -15,7 +15,10 @@ body {
 }
 
 header {
+  display: flex;
+  flex-wrap: wrap;
   height: 6%;
+  width: 100%;
   border-bottom: solid white 0.5px;
 }
 
@@ -26,52 +29,21 @@ main {
 }
 
 #toolBar {
-  height: 100%;
-  width: 3%;
-  border-right: solid white 0.5px;
-}
-
-.mainBoard {
   display: flex;
-  flex-direction: column;
+  gap: 2px;
   height: 100%;
-  width: 80%;
+  width: 50%;
 }
 
 #canvas {
   display: flex;
-  width: 100%;
-  height: 70%;
+  width: 70%;
+  height: 100%;
   align-items: center;
   justify-content: center;
-  border-bottom: solid white 0.5px;
-}
-
-.underDisplay {
-  display: flex;
-  width: 100%;
-  height: 30%;
 }
 
 #classSelector {
   height: 100%;
-  width: 17%;
-  border-left: solid white 0.5px;
-}
-
-#scopeDisplay {
   width: 30%;
-  height: 100%;
-}
-
-#jobList {
-  width: 30%;
-  height: 100%;
-  border-left: solid white 0.5px;
-  border-right: solid white 0.5px;
-}
-
-#outPostDisplay {
-  width: 40%;
-  height: 100%;
 }
