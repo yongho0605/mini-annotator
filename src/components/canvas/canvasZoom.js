@@ -13,7 +13,7 @@ export default function ZoomEvent(img) {
     // const minScale = 0.1;
     // let currentScale = 1;
 
-    // let scale = 1 + (e.deltaY < 0 ? 0.1 : -0.1);
+    let scale = 1 + (e.deltaY < 0 ? 0.1 : -0.1);
 
     // let newScale = currentScale * scale;
 
@@ -22,7 +22,11 @@ export default function ZoomEvent(img) {
     // }
     // currentScale = newScale;
 
+    //TODO: 메트릭스 값을 이용해서 확대 축소 제한 가능
     const imageMatrix = imageCtx.getTransform();
+    const scaleX = imageMatrix.a;
+    const scaleY = imageMatrix.d;
+    console.log(`Current scale X: ${scaleX}, Y: ${scaleY}`);
 
     const mousePos = getCanvasMousePosition(e, canvas);
     let x = mousePos.x;
