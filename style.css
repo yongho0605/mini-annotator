@@ -50,12 +50,16 @@ canvas {
 
 #imageCanvas {
   position: absolute;
+  min-width: 1024px;
+  min-height: 576px;
   top: 0;
   left: 0;
   z-index: 0;
 }
 
 #canvas {
+  min-width: 1024px;
+  min-height: 576px;
   z-index: 1;
   background-color: transparent;
 }
