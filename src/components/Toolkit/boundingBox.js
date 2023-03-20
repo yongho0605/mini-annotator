@@ -1,5 +1,8 @@
 export default function boundingBox() {
   const boundingBoxNode = document.querySelector(".boundingBox");
+
+  function drawBoundingBox() {}
+
   function click() {
     alert("바운딩박스");
   }

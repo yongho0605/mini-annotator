@@ -5,7 +5,7 @@ import polygon from "/src/components/Toolkit/polygon.js";
 import polyline from "/src/components/Toolkit/polyline.js";
 import selector from "/src/components/Toolkit/selector.js";
 
-export default function Toolkit() {
+export default function toolkit() {
   outPost();
   selector();
   boundingBox();

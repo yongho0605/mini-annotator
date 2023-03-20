@@ -1,9 +1,9 @@
-import Canvas from "/src/assemble/canvas/Canvas.js";
-import Toolkit from "/src/assemble/toolBox/ToolKit.js";
-import Shortcut from "/src/assemble/utils/shortcut.js";
+import canvas from "/src/assemble/canvas/canvas.js";
+import toolkit from "/src/assemble/toolBox/toolKit.js";
+import shortcut from "/src/assemble/utils/shortcut.js";
 
 export default function app() {
-  Toolkit();
-  Canvas();
-  Shortcut();
+  toolkit();
+  canvas();
+  shortcut();
 }
