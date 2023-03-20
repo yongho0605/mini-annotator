@@ -1,16 +1,16 @@
 export default function polyline() {
   const polylineNode = document.querySelector(".polyline");
 
-  function onClick() {
+  function click() {
     alert("폴리라인");
   }
 
-  function keydownHandler(e) {
+  function keydown(e) {
     if (e.keyCode === 76) {
       alert("폴리라인");
     }
   }
 
-  window.addEventListener("keydown", keydownHandler);
-  polylineNode.addEventListener("click", onClick);
+  window.addEventListener("keydown", keydown);
+  polylineNode.addEventListener("click", click);
 }

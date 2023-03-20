@@ -1,16 +1,29 @@
-import { canvas, imageCtx } from "./canvasExport.js";
+import {
+  canvas,
+  imageCtx,
+  imageCanvas,
+} from "/src/components/canvas/canvasExport.js";
+import getCanvasMousePosition from "/src/components/canvas/getMousePosition.js";
 
-export default function ZoomEvent() {
-  function wheelHandler(evt) {
-    evt.preventDefault();
+export default function ZoomEvent(img) {
+  function wheelHandler(e) {
+    e.preventDefault();
 
-    const delta = evt.deltaY;
-    console.log("휠 추적", delta);
+    imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
 
-    const scaleFactor = delta < 0 ? 1.1 : 0.9;
-    imageCtx.scale(scaleFactor, scaleFactor);
+    // const minScale = 0.1;
+    // const maxScale = 10;
+    let scale = 1 + (e.deltaY < 0 ? 0.1 : -0.1);
 
-    imageCtx.clearRect(0, 0, canvas.width, canvas.height);
+    const mousePos = getCanvasMousePosition(e, canvas);
+    let x = mousePos.x;
+    let y = mousePos.y;
+
+    imageCtx.translate(x, y);
+    imageCtx.scale(scale, scale);
+    imageCtx.translate(-x, -y);
+
+    imageCtx.drawImage(img, 0, 0, imageCanvas.width, imageCanvas.height);
   }
 
   canvas.addEventListener("wheel", wheelHandler);

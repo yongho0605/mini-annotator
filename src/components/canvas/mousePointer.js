@@ -1,5 +1,5 @@
-import { ctx, canvas } from "./canvasExport.js";
-import getCanvasMousePosition from "./getMousePosition.js";
+import { ctx, canvas } from "/src/components/canvas/canvasExport.js";
+import getCanvasMousePosition from "/src/components/canvas/getMousePosition.js";
 
 export default function mousePointer() {
   function drawCrossLine(x, y) {

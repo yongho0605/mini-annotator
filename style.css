@@ -40,6 +40,7 @@ main {
 #classSelector {
   height: 100%;
   width: 30%;
+  border-left: solid white 0.5px;
 }
 
 canvas {
