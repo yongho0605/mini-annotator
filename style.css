@@ -50,8 +50,8 @@ canvas {
 
 #imageCanvas {
   position: absolute;
-  min-width: 1024px;
-  min-height: 576px;
+  min-width: 960px;
+  min-height: 540px;
   top: 0;
   left: 0;
   z-index: 0;
@@ -59,8 +59,8 @@ canvas {
 
 #boundingBoxCanvas {
   position: absolute;
-  min-width: 1024px;
-  min-height: 576px;
+  min-width: 960px;
+  min-height: 540px;
   top: 0;
   left: 0;
   z-index: 1;
@@ -68,8 +68,8 @@ canvas {
 
 #polygonCanvas {
   position: absolute;
-  min-width: 1024px;
-  min-height: 576px;
+  min-width: 960px;
+  min-height: 540px;
   top: 0;
   left: 0;
   z-index: 2;
@@ -77,8 +77,8 @@ canvas {
 
 #polylineCanvas {
   position: absolute;
-  min-width: 1024px;
-  min-height: 576px;
+  min-width: 960px;
+  min-height: 540px;
   top: 0;
   left: 0;
   z-index: 3;
@@ -86,16 +86,16 @@ canvas {
 
 #keyPointCanvas {
   position: absolute;
-  min-width: 1024px;
-  min-height: 576px;
+  min-width: 960px;
+  min-height: 540px;
   top: 0;
   left: 0;
   z-index: 4;
 }
 
 #pointerCanvas {
-  min-width: 1024px;
-  min-height: 576px;
+  min-width: 960px;
+  min-height: 540px;
   z-index: 5;
   background-color: transparent;
 }

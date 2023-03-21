@@ -1,12 +1,20 @@
+import { useToolsState } from "/src/store/useToolsState.js";
+
 export default function keyPoint() {
   const keyPoint = document.querySelector(".keyPoint");
   function click() {
-    alert("키포인트");
+    useToolsState.keypoint = true;
+    if (useToolsState.keypoint) {
+      alert("키포인트");
+    }
   }
 
   function keydown(e) {
     if (e.keyCode === 79) {
-      alert("키포인트");
+      useToolsState.keypoint = true;
+      if (useToolsState.keypoint) {
+        alert("키포인트");
+      }
     }
   }
 
