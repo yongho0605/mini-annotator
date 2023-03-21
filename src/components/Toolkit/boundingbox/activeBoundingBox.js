@@ -1,15 +1,17 @@
-export default function boundingBox() {
-  const boundingBoxNode = document.querySelector(".boundingBox");
+import drawBoundingBox from "./drawBoundingbox.js";
 
-  function drawBoundingBox() {}
+export default function activeBoundingbox() {
+  const boundingBoxNode = document.querySelector(".boundingBox");
 
   function click() {
     alert("바운딩박스");
+    drawBoundingBox();
   }
 
   function keydown(e) {
     if (e.keyCode === 66) {
       alert("바운딩박스");
+      drawBoundingBox();
     }
   }
 
