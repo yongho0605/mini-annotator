@@ -1,20 +1,23 @@
-import { ctx, canvas } from "/src/components/canvas/canvasExport.js";
 import getCanvasMousePosition from "/src/components/canvas/getMousePosition.js";
+import {
+  pointerCanvas,
+  pointerCtx,
+} from "/src/components/canvas/canvasExport.js";
 
 export default function mousePointer() {
   function drawCrossLine(x, y) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pointerCtx.clearRect(0, 0, pointerCanvas.width, pointerCanvas.height);
 
-    ctx.beginPath();
-    ctx.moveTo(x, 0);
-    ctx.lineTo(x, canvas.height);
-    ctx.moveTo(0, y);
-    ctx.lineTo(canvas.width, y);
-    ctx.stroke();
+    pointerCtx.beginPath();
+    pointerCtx.moveTo(x, 0);
+    pointerCtx.lineTo(x, pointerCanvas.height);
+    pointerCtx.moveTo(0, y);
+    pointerCtx.lineTo(pointerCanvas.width, y);
+    pointerCtx.stroke();
   }
 
   function moveMousePoint(evt) {
-    const mousePosition = getCanvasMousePosition(evt, canvas);
+    const mousePosition = getCanvasMousePosition(evt, pointerCanvas);
 
     const x = mousePosition.x;
     const y = mousePosition.y;
@@ -23,12 +26,12 @@ export default function mousePointer() {
   }
 
   function leaveMousePoint() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pointerCtx.clearRect(0, 0, pointerCanvas.width, pointerCanvas.height);
   }
 
   //마우스가 canvas에 들어왔을 때 십자가 포인터 적용
-  canvas.addEventListener("mousemove", moveMousePoint);
+  pointerCanvas.addEventListener("mousemove", moveMousePoint);
 
   //마우스가 canvas에서 떠났을 때 십자가 포인터 삭제
-  canvas.addEventListener("mouseleave", leaveMousePoint);
+  pointerCanvas.addEventListener("mouseleave", leaveMousePoint);
 }
