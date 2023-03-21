@@ -1,4 +1,3 @@
-import getCanvasMousePosition from "/src/components/canvas/getMousePosition.js";
 import {
   boundingBoxCanvas,
   boundingBoxCtx,
