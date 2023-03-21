@@ -36,44 +36,50 @@ export default function drawBoundingBox() {
     }
 
     move(dx, dy) {
-      boundingBoxCtx.clearRect(dx, dy, this.width, this.height);
       this.x += dx;
       this.y += dy;
     }
   }
 
   function redraw() {
-    boundingBoxCtx.clearRect(0, 0, boundingBoxCtx.width, boundingBoxCtx.height);
     rectangles.forEach((rect) => rect.draw());
   }
 
   function mousedown(e) {
-    const mousePos = getCanvasMousePosition(e, boundingBoxCanvas);
-    offsetX = mousePos.x;
-    offsetY = mousePos.y;
+    if (e.button === 0) {
+      const mousePos = getCanvasMousePosition(e, boundingBoxCanvas);
+      offsetX = mousePos.x;
+      offsetY = mousePos.y;
 
-    activeRectangle = rectangles.find((rect) =>
-      rect.contains(offsetX, offsetY)
-    );
-
-    if (!activeRectangle) {
-      isDrawing = true;
-      activeRectangle = new Rectangle(
+      boundingBoxCtx.clearRect(
         offsetX,
         offsetY,
         boundingBoxCtx.width,
         boundingBoxCtx.height
       );
-      rectangles.push(activeRectangle);
+
+      activeRectangle = rectangles.find((rect) =>
+        rect.contains(offsetX, offsetY)
+      );
+
+      if (!activeRectangle) {
+        isDrawing = true;
+        activeRectangle = new Rectangle(
+          offsetX,
+          offsetY,
+          boundingBoxCtx.width,
+          boundingBoxCtx.height
+        );
+        rectangles.push(activeRectangle);
+      }
     }
   }
 
   function mousemove(e) {
-    if (!isDrawing && !activeRectangle) return;
-
     const mousePos = getCanvasMousePosition(e, boundingBoxCanvas);
     const x = mousePos.x;
     const y = mousePos.y;
+    if (!isDrawing && !activeRectangle) return;
 
     if (isDrawing) {
       activeRectangle.width = x - offsetX;
