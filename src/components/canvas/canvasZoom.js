@@ -1,6 +1,8 @@
-import { pointerCanvas } from "/src/components/canvas/canvasExport.js";
+import { canvasObj } from "/src/components/canvas/canvasExport.js";
 
-export default function ZoomEvent(img) {
+const { pointerCanvas } = canvasObj;
+
+export default function ZoomEvent() {
   function wheelHandler(e) {}
 
   pointerCanvas.addEventListener("wheel", wheelHandler);

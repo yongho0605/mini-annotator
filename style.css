@@ -22,7 +22,7 @@ header {
   border-bottom: solid white 0.5px;
 }
 
-#toolBar {
+.toolBar {
   display: flex;
   gap: 2px;
   height: 100%;
@@ -40,62 +40,18 @@ main {
 #classSelector {
   height: 100%;
   width: 30%;
-  border-left: solid white 0.5px;
 }
 
 canvas {
   width: 70%;
   height: 100%;
-}
-
-#imageCanvas {
-  position: absolute;
   min-width: 960px;
   min-height: 540px;
-  top: 0;
-  left: 0;
-  z-index: 0;
 }
 
-#boundingBoxCanvas {
-  position: absolute;
-  min-width: 960px;
-  min-height: 540px;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-#polygonCanvas {
-  position: absolute;
-  min-width: 960px;
-  min-height: 540px;
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
-
-#polylineCanvas {
-  position: absolute;
-  min-width: 960px;
-  min-height: 540px;
-  top: 0;
-  left: 0;
-  z-index: 3;
-}
-
-#keyPointCanvas {
-  position: absolute;
-  min-width: 960px;
-  min-height: 540px;
-  top: 0;
-  left: 0;
-  z-index: 4;
-}
-
-#pointerCanvas {
-  min-width: 960px;
-  min-height: 540px;
-  z-index: 5;
-  background-color: transparent;
+.resizer {
+  cursor: 
+  height: 100%;
+  width: 1px;
+  background-color: #eee;
 }

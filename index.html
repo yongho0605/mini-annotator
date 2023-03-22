@@ -11,10 +11,10 @@
     <link rel="icon" href="/src/assets/images/favicon.ico" />
   </head>
   <body>
-    <header id="header">
+    <header>
       <span>datamaker mini annotator</span>
       <button class="outPost">내보내기</button>
-      <aside id="toolBar">
+      <aside class="toolBar">
         <button class="selector">선택도구</button>
         <button class="boundingBox">바운딩박스</button>
         <button class="polygon">폴리곤</button>
@@ -23,12 +23,8 @@
       </aside>
     </header>
     <main>
-      <canvas id="imageCanvas" width="960" height="540"></canvas>
-      <canvas id="boundingBoxCanvas" width="960" height="540"></canvas>
-      <canvas id="polygonCanvas" width="960" height="540"></canvas>
-      <canvas id="polylineCanvas" width="960" height="540"></canvas>
-      <canvas id="keyPointCanvas" width="960" height="540"></canvas>
-      <canvas id="pointerCanvas" width="960" height="540"></canvas>
+      <canvas id="canvas" width="960" height="540"></canvas>
+      <div class="resizer"></div>
       <aside id="classSelector">클래스 셀렉터</aside>
     </main>
     <script type="module" src="main.js"></script>
