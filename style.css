@@ -43,15 +43,14 @@ main {
 }
 
 canvas {
-  width: 70%;
   height: 100%;
-  min-width: 960px;
-  min-height: 540px;
+  width: 70%;
+  object-fit: contain;
 }
 
 .resizer {
-  cursor: 
+  cursor: col-resize;
   height: 100%;
-  width: 1px;
+  min-width: 5px;
   background-color: #eee;
 }
