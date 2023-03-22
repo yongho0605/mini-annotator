@@ -1,5 +1,3 @@
-import drawBoundingBox from "/src/components/Toolkit/boundingbox/drawBoundingbox.js";
-
 const toolsState = {
   boundingbox: false,
   keypoint: false,

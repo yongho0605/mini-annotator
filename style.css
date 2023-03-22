@@ -34,23 +34,37 @@ main {
   position: relative;
   height: 94%;
   width: 100%;
+}
+
+.panels {
+  overflow: hidden;
   display: flex;
-}
-
-#classSelector {
   height: 100%;
-  width: 30%;
-}
-
-canvas {
-  height: 100%;
-  width: 70%;
-  object-fit: contain;
+  width: 20%;
+  min-width: 20%;
 }
 
 .resizer {
   cursor: col-resize;
+  width: 1%;
   height: 100%;
   min-width: 5px;
   background-color: #eee;
+}
+
+#classSelector {
+  width: 99%;
+  height: 100%;
+}
+
+canvas {
+  height: 100%;
+  width: 80%;
+  object-fit: cover;
+}
+
+#guideLineCanvas {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
