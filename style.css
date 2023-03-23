@@ -5,6 +5,7 @@
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  user-select: none;
 }
 
 body {
@@ -30,6 +31,7 @@ header {
 }
 
 main {
+  overflow: hidden;
   display: flex;
   position: relative;
   height: 94%;
@@ -55,16 +57,28 @@ main {
 #classSelector {
   width: 99%;
   height: 100%;
+  z-index: 10;
+}
+
+.annotator {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 80%;
 }
 
 canvas {
   height: 100%;
-  width: 80%;
+  width: 100%;
   object-fit: cover;
+  z-index: 0;
 }
 
 #guideLineCanvas {
   position: absolute;
+  height: 100%;
+  width: 100%;
   left: 0;
   top: 0;
+  z-index: 1;
 }
