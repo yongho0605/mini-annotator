@@ -7,17 +7,17 @@ export default function canvasImageRender() {
   // img.src = "/src/assets/images/reuseableRocket.jpeg";
 
   img.onload = function () {
-    if (img.width > img.height) {
+    function ratioUnification() {
       imageCanvas.width = img.width;
       imageCanvas.height = img.width;
       guideLineCanvas.width = img.width;
       guideLineCanvas.height = img.width;
+    }
+    if (img.width > img.height) {
+      ratioUnification();
       imageCanvas.style.objectFit = "cover";
     } else if (img.width < img.height) {
-      imageCanvas.width = img.height;
-      imageCanvas.height = img.height;
-      guideLineCanvas.width = img.height;
-      guideLineCanvas.height = img.height;
+      ratioUnification();
       imageCanvas.style.objectFit = "contain";
     }
     const x = (imageCanvas.width - img.width) / 2;

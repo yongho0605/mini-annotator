@@ -19,7 +19,7 @@ export default function guideLine() {
 
     guideLineCtx.clearRect(0, 0, canvasWidth, canvasHeight);
     guideLineCtx.beginPath();
-    //FIXME: 지평선 좌표값 수정 필요
+    //FIXME: Rect. width 와 height에 따른 좌표 수정
     guideLineCtx.moveTo(0, y);
     guideLineCtx.lineTo(canvasWidth, y);
     guideLineCtx.moveTo(x, 0);

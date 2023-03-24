@@ -23,8 +23,8 @@ export default function resizeCanvas() {
           return;
         } else {
           // console.log(classSelector.style);
-          classSelector.style.width = x + "px";
-          annotator.style.width = x + "px";
+          classSelector.style.width = Math.round(x) + "px";
+          annotator.style.width = Math.round(x) + "px";
         }
       }
 
