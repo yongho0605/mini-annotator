@@ -14,8 +14,8 @@ export default function resizeCanvas() {
 
       function mousemove(e) {
         let x = e.clientX;
-        const minSize = 200;
-        const maxSize = 1150;
+        const minSize = 100;
+        const maxSize = 8000;
 
         if (x < minSize) {
           x = minSize;

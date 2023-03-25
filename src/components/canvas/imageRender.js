@@ -1,9 +1,10 @@
+import guideLine from "../utils/guideLine.js";
 import { imageCanvas, imageCtx, canvasObj } from "./canvasExport.js";
 
 export default function canvasImageRender() {
   const img = new Image();
-  // img.src = "/src/assets/images/mudeung.jpg";
-  img.src = "/src/assets/images/musk.jpeg";
+  img.src = "/src/assets/images/mudeung.jpg";
+  // img.src = "/src/assets/images/musk.jpeg";
   // img.src = "/src/assets/images/reuseableRocket.jpeg";
 
   img.onload = function () {
@@ -14,6 +15,7 @@ export default function canvasImageRender() {
       });
     }
     setCanvasRatio();
+    guideLine(img);
     console.log(imageCanvas.width, imageCanvas.height);
     const x = (imageCanvas.width - img.width) / 2;
     const y = (imageCanvas.height - img.height) / 2;
