@@ -67,10 +67,11 @@ main {
   width: 80%;
 }
 
-canvas {
-  height: 100%;
+#imageCanvas {
+  object-fit: contain;
+  position: absolute;
   width: 100%;
-  object-fit: cover;
+  height: 100%;
   z-index: 0;
 }
 

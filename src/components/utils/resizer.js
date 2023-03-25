@@ -1,3 +1,5 @@
+import { imageCanvas } from "../canvas/canvasExport.js";
+
 export default function resizeCanvas() {
   const resizer = document.querySelector(".resizer");
   const classSelector = document.getElementById("classSelector");
@@ -12,7 +14,7 @@ export default function resizeCanvas() {
 
       function mousemove(e) {
         let x = e.clientX;
-        const minSize = 550;
+        const minSize = 200;
         const maxSize = 1150;
 
         if (x < minSize) {
@@ -22,7 +24,6 @@ export default function resizeCanvas() {
           x = maxSize;
           return;
         } else {
-          // console.log(classSelector.style);
           classSelector.style.width = Math.round(x) + "px";
           annotator.style.width = Math.round(x) + "px";
         }
