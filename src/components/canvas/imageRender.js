@@ -1,5 +1,10 @@
-import guideLine from "../utils/guideLine.js";
-import { imageCanvas, imageCtx, canvasObj } from "./canvasExport.js";
+import useImagePixel from "/src/store/useImagePixel.js";
+import guideLine from "/src/components/utils/guideLine.js";
+import {
+  imageCanvas,
+  imageCtx,
+  canvasObj,
+} from "/src/components/canvas/canvasExport.js";
 
 export default function canvasImageRender() {
   const img = new Image();
@@ -15,8 +20,11 @@ export default function canvasImageRender() {
       });
     }
     setCanvasRatio();
+
+    let { width, height } = useImagePixel;
+    width = img.width;
+    height = img.height;
     guideLine(img);
-    console.log(imageCanvas.width, imageCanvas.height);
     const x = (imageCanvas.width - img.width) / 2;
     const y = (imageCanvas.height - img.height) / 2;
     imageCtx.drawImage(img, x, y, img.width, img.height);

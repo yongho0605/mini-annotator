@@ -1,4 +1,4 @@
-import { useToolsState } from "/src/store/useToolsState.js";
+import useToolsState from "/src/store/useToolsState.js";
 
 export default function polygon() {
   const polygonNode = document.querySelector(".polygon");

@@ -3,6 +3,7 @@ import {
   guideLineCanvas,
   guideLineCtx,
 } from "/src/components/canvas/canvasExport.js";
+import useImagePixel from "/src/store/useImagePixel.js";
 
 export default function guideLine(img) {
   guideLineCanvas.addEventListener("mousemove", mousemove);
@@ -17,17 +18,17 @@ export default function guideLine(img) {
 
     const rect = guideLineCanvas.getBoundingClientRect();
 
+    const { defaultPixel, width, height } = useImagePixel;
+
     guideLineCtx.clearRect(0, 0, canvasWidth, canvasHeight);
     guideLineCtx.beginPath();
-    guideLineCtx.lineWidth = 1;
-    console.log("지평선", guideLineCtx.lineWidth);
+    guideLineCtx.lineWidth = Math.round(canvasHeight / rect.height);
     guideLineCtx.moveTo(0, y);
     guideLineCtx.lineTo(canvasWidth, y);
     guideLineCtx.stroke();
 
     guideLineCtx.beginPath();
-    guideLineCtx.lineWidth = Math.ceil(rect.height / rect.width);
-    console.log("수평선", guideLineCtx.lineWidth);
+    guideLineCtx.lineWidth = Math.round(canvasWidth / rect.width);
     guideLineCtx.moveTo(x, 0);
     guideLineCtx.lineTo(x, canvasHeight);
     guideLineCtx.closePath();
