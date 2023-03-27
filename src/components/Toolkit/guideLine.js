@@ -3,7 +3,7 @@ import {
   guideLineCanvas,
   guideLineCtx,
 } from '/src/components/canvas/canvasExport.js'
-import getGuideLineWidth from '/src/components/modules/getGuideLineWidth.js'
+import { getGuideLineWidth } from '/src/components/modules/getGuideLineFunction.js'
 
 export default function guideLine() {
   guideLineCanvas.addEventListener('mousemove', mousemove)
@@ -30,18 +30,18 @@ export default function guideLine() {
       rectHeight: rect.height,
     }
 
-    const verticalGuideLine = getGuideLineWidth(widthLine)
-    const horizontalGuideLine = getGuideLineWidth(heightLine)
+    const verticalLineWidth = getGuideLineWidth(widthLine)
+    const horizontalLineWidth = getGuideLineWidth(heightLine)
 
     guideLineCtx.clearRect(0, 0, canvasWidth, canvasHeight)
     guideLineCtx.beginPath()
-    guideLineCtx.lineWidth = horizontalGuideLine
+    guideLineCtx.lineWidth = horizontalLineWidth
     guideLineCtx.moveTo(0, y)
     guideLineCtx.lineTo(canvasWidth, y)
     guideLineCtx.stroke()
 
     guideLineCtx.beginPath()
-    guideLineCtx.lineWidth = verticalGuideLine
+    guideLineCtx.lineWidth = verticalLineWidth
     guideLineCtx.moveTo(x, 0)
     guideLineCtx.lineTo(x, canvasHeight)
     guideLineCtx.closePath()
