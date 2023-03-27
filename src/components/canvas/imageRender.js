@@ -4,9 +4,9 @@ import { setCanvasRatio } from '/src/components/canvas/canvasExport.js'
 
 export default function canvasImageRender() {
   const img = new Image()
-  // img.src = '/src/assets/images/mudeung.jpg'
+  img.src = '/src/assets/images/mudeung.jpg'
   // img.src = '/src/assets/images/musk.jpeg'
-  img.src = '/src/assets/images/reuseableRocket.jpeg'
+  // img.src = '/src/assets/images/reuseableRocket.jpeg'
 
   img.onload = function () {
     setCanvasRatio(img)
