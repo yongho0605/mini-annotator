@@ -1,25 +1,16 @@
-import guideLine from '/src/utils/guideLine.js'
-import {
-  imageCanvas,
-  imageCtx,
-  canvasObj,
-} from '/src/components/canvas/canvasExport.js'
+import guideLine from '/src/components/toolkit/guideLine.js'
+import { imageCanvas, imageCtx } from '/src/components/canvas/canvasExport.js'
+import { setCanvasRatio } from '/src/components/canvas/canvasExport.js'
 
 export default function canvasImageRender() {
   const img = new Image()
-  img.src = '/src/assets/images/mudeung.jpg'
+  // img.src = '/src/assets/images/mudeung.jpg'
   // img.src = '/src/assets/images/musk.jpeg'
-  // img.src = '/src/assets/images/reuseableRocket.jpeg'
+  img.src = '/src/assets/images/reuseableRocket.jpeg'
 
   img.onload = function () {
-    function setCanvasRatio() {
-      Object.keys(canvasObj).forEach((canvas) => {
-        canvasObj[canvas].width = img.width
-        canvasObj[canvas].height = img.height
-      })
-    }
-    setCanvasRatio()
-    guideLine(img)
+    setCanvasRatio(img)
+    guideLine()
     const x = (imageCanvas.width - img.width) / 2
     const y = (imageCanvas.height - img.height) / 2
     imageCtx.drawImage(img, x, y, img.width, img.height)

@@ -11,3 +11,10 @@ export const ctxObj = {
 }
 
 export const { imageCtx, guideLineCtx } = ctxObj
+
+export function setCanvasRatio(img) {
+  Object.keys(canvasObj).forEach((canvas) => {
+    canvasObj[canvas].width = img.width
+    canvasObj[canvas].height = img.height
+  })
+}
