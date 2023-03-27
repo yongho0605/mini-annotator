@@ -1,24 +1,24 @@
-import useToolsState from "/src/store/useToolsState.js";
+import useTools from '/src/store/useTools.js'
 
 export default function polygon() {
-  const polygonNode = document.querySelector(".polygon");
+  const polygonNode = document.querySelector('.polygon')
 
   function click() {
-    useToolsState.polygon = true;
-    if (useToolsState.polygon) {
-      alert("폴리곤");
+    useTools.polygon = true
+    if (useTools.polygon) {
+      alert('폴리곤')
     }
   }
 
   function keydown(e) {
     if (e.keyCode === 80) {
-      useToolsState.polygon = true;
-      if (useToolsState.polygon) {
-        alert("폴리곤");
+      useTools.polygon = true
+      if (useTools.polygon) {
+        alert('폴리곤')
       }
     }
   }
 
-  window.addEventListener("keydown", keydown);
-  polygonNode.addEventListener("click", click);
+  window.addEventListener('keydown', keydown)
+  polygonNode.addEventListener('click', click)
 }

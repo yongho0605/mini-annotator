@@ -1,18 +1,18 @@
-import useToolsState from "/src/store/useToolsState.js";
+import useTools from '/src/store/useTools.js'
 
 export default function activeBoundingbox() {
-  const boundingboxNode = document.querySelector(".boundingBox");
+  const boundingboxNode = document.querySelector('.boundingBox')
 
   function click() {
-    useToolsState.boundingbox = true;
+    useTools.boundingbox = true
   }
 
   function keydown(e) {
     if (e.keyCode === 66) {
-      useToolsState.boundingbox = true;
+      useTools.boundingbox = true
     }
   }
 
-  boundingboxNode.addEventListener("click", click);
-  window.addEventListener("keydown", keydown);
+  boundingboxNode.addEventListener('click', click)
+  window.addEventListener('keydown', keydown)
 }
