@@ -16,3 +16,14 @@ export function getGuideLineWidth(props) {
   const lineWidth = props.name === 'width' ? widthSize() : heightSize()
   return Math.floor(lineWidth)
 }
+
+export function drawGuideLine(ctx, coordinates, canvasSize, lineWidth) {
+  const { x, y, coordinate } = coordinates
+  const moveTo = coordinate === 'x' ? [x, 0] : [0, y]
+  const lineTo = coordinate === 'x' ? [x, canvasSize] : [canvasSize, y]
+  ctx.beginPath()
+  ctx.lineWidth = lineWidth
+  ctx.moveTo(...moveTo)
+  ctx.lineTo(...lineTo)
+  ctx.stroke()
+}
