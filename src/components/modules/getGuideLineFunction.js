@@ -1,4 +1,4 @@
-export default function getGuideLineWidth(props) {
+export function getGuideLineWidth(props) {
   function widthSize() {
     const { canvasWidth, rectWidth } = props
     const rectRatio = canvasWidth / rectWidth
