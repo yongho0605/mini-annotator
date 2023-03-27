@@ -1,3 +1,5 @@
-import app from '/src/app.js'
+import toolkit from '/src/assemble/toolkit/toolkit.js'
+import canvas from '/src/assemble/canvas/canvas.js'
 
-app()
+toolkit()
+canvas()
