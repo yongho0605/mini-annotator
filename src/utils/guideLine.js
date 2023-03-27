@@ -3,7 +3,6 @@ import {
   guideLineCanvas,
   guideLineCtx,
 } from "/src/components/canvas/canvasExport.js";
-import useImagePixel from "/src/store/useImagePixel.js";
 
 export default function guideLine(img) {
   guideLineCanvas.addEventListener("mousemove", mousemove);
@@ -18,8 +17,6 @@ export default function guideLine(img) {
 
     const rect = guideLineCanvas.getBoundingClientRect();
 
-    const { defaultPixel, width, height } = useImagePixel;
-
     guideLineCtx.clearRect(0, 0, canvasWidth, canvasHeight);
     guideLineCtx.beginPath();
     guideLineCtx.lineWidth = Math.round(canvasHeight / rect.height);
@@ -28,7 +25,11 @@ export default function guideLine(img) {
     guideLineCtx.stroke();
 
     guideLineCtx.beginPath();
-    guideLineCtx.lineWidth = Math.round(canvasWidth / rect.width);
+    if (canvasWidth / rect.width < 2.6) {
+      guideLineCtx.lineWidth = Math.round(canvasWidth / rect.width) / 2;
+    } else {
+      guideLineCtx.lineWidth = Math.round(canvasWidth / rect.width);
+    }
     guideLineCtx.moveTo(x, 0);
     guideLineCtx.lineTo(x, canvasHeight);
     guideLineCtx.closePath();
