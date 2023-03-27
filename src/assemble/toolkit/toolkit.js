@@ -5,7 +5,7 @@ import outPost from '/src/components/toolkit/outPost.js'
 import polygon from '/src/components/toolkit/polygon/activePolygon.js'
 import polyline from '/src/components/toolkit/polyline/activePolyline.js'
 import selector from '/src/components/toolkit/selector/activeSelector.js'
-
+import resizeCanvas from '/src/components/toolkit/resizer.js'
 export default function toolkit() {
   outPost()
   selector()
@@ -14,4 +14,5 @@ export default function toolkit() {
   polyline()
   keyPoint()
   panning()
+  resizeCanvas()
 }
