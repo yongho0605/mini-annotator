@@ -1,4 +1,4 @@
-export default function resizeCanvas() {
+export default function resize() {
   const resizer = document.querySelector('.resizer')
   const classSelector = document.getElementById('classSelector')
   const mainElem = document.querySelector('main')
