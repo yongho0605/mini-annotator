@@ -1,16 +1,16 @@
 export default function resize() {
-  const resizer = document.querySelector('.resizer')
-  const classSelector = document.getElementById('classSelector')
-  const mainElem = document.querySelector('main')
-  const annotator = document.querySelector('.annotator')
+  const resizeHandler = document.querySelector('.resizeHandler')
+  const classSelector = document.querySelector('#classSelector')
+  const annotatorEl = document.querySelector('.annotator')
+  const mainEl = document.querySelector('main')
 
-  resizer.addEventListener('mousedown', mousedown)
-  function mousedown(e) {
+  resizeHandler.addEventListener('mousedown', onMouseDown)
+  function onMouseDown(e) {
     if (e.button === 0) {
-      mainElem.addEventListener('mousemove', mousemove)
-      mainElem.addEventListener('mouseup', remove)
+      mainEl.addEventListener('mousemove', onMouseMove)
+      mainEl.addEventListener('mouseup', onMouseUp)
 
-      function mousemove(e) {
+      function onMouseMove(e) {
         let x = e.clientX
         const minSize = 250
         const maxSize = 8000
@@ -23,12 +23,12 @@ export default function resize() {
           return
         } else {
           classSelector.style.width = `${Math.round(x)}px`
-          annotator.style.width = `${Math.round(x)}px`
+          annotatorEl.style.width = `${Math.round(x)}px`
         }
       }
 
-      function remove() {
-        mainElem.removeEventListener('mousemove', mousemove)
+      function onMouseUp() {
+        mainEl.removeEventListener('mousemove', onMouseMove)
       }
     }
   }

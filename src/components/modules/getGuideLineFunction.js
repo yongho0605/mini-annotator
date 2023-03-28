@@ -1,7 +1,7 @@
 export function getGuideLineWidth(props) {
+  const { canvas, rect } = props
   function widthSize() {
-    const { canvasWidth, rectWidth } = props
-    const rectRatio = canvasWidth / rectWidth
+    const rectRatio = canvas.width / rect.width
     if (rectRatio < 2.6) {
       return rectRatio / 2
     } else {
@@ -9,21 +9,38 @@ export function getGuideLineWidth(props) {
     }
   }
   function heightSize() {
-    const { canvasHeight, rectHeight } = props
-    return canvasHeight / rectHeight
+    return canvas.height / rect.height
   }
 
-  const lineWidth = props.name === 'width' ? widthSize() : heightSize()
-  return Math.floor(lineWidth)
+  return {
+    verticalLineWidth: Math.floor(widthSize()),
+    horizontalLineWidth: Math.floor(heightSize()),
+  }
 }
 
-export function drawGuideLine(ctx, coordinates, canvasSize, lineWidth) {
-  const { x, y, coordinate } = coordinates
-  const moveTo = coordinate === 'x' ? [x, 0] : [0, y]
-  const lineTo = coordinate === 'x' ? [x, canvasSize] : [canvasSize, y]
-  ctx.beginPath()
-  ctx.lineWidth = lineWidth
-  ctx.moveTo(...moveTo)
-  ctx.lineTo(...lineTo)
-  ctx.stroke()
+export function drawGuideLine(ctx, coordinate, size, crossLine) {
+  const { x, y } = coordinate
+  const { canvas } = size
+
+  Object.keys(crossLine).forEach((key) => {
+    let moveTo = null
+    let lineTo = null
+    switch (key) {
+      case 'verticalLineWidth':
+        moveTo = [x, 0]
+        lineTo = [x, canvas.width]
+        break
+      case 'horizontalLineWidth':
+        moveTo = [0, y]
+        lineTo = [canvas.height, y]
+        break
+      default:
+        break
+    }
+    ctx.beginPath()
+    ctx.lineWidth = crossLine[key]
+    ctx.moveTo(...moveTo)
+    ctx.lineTo(...lineTo)
+    ctx.stroke()
+  })
 }

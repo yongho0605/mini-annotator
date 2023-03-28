@@ -1,18 +1,20 @@
 import guideLine from '/src/components/toolkit/guideLine.js'
 import zoom from '/src/components/toolkit/zoom.js'
 import { imageCanvas, imageCtx } from '/src/components/canvas/canvasExport.js'
-import { setCanvasRatio } from '/src/components/canvas/canvasExport.js'
+import { setCanvasSize } from '/src/components/canvas/canvasExport.js'
 import panning from '/src/components/toolkit/panning.js'
-import resize from '/src/components/toolkit/resizer.js'
 
 export default function canvasImageRender() {
   const img = new Image()
-  // img.src = '/src/assets/images/mudeung.jpg'
+  img.src = '/src/assets/images/mudeung.jpg'
   // img.src = '/src/assets/images/musk.jpeg'
-  img.src = '/src/assets/images/tesla_model_S_Plaid.webp'
+  // img.src = '/src/assets/images/tesla_model_S_Plaid.webp'
+
+  img.naturalWidth
+  // 이 메소드를 사용해서 계산 하는게 좋음
 
   img.onload = function () {
-    setCanvasRatio(img)
+    setCanvasSize(img)
     guideLine()
     zoom(img)
     panning(img)

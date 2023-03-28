@@ -1,4 +1,4 @@
-import getCanvasMousePosition from '/src/components/canvas/getCanvasMousePosition.js'
+import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   guideLineCanvas,
   guideLineCtx,
@@ -16,42 +16,36 @@ export default function guideLine() {
 
   function mousemove(e) {
     const mousePos = getCanvasMousePosition(e, guideLineCanvas)
-    let x = mousePos.x
-    let y = mousePos.y
+    const { x, y } = mousePos
 
     const rect = guideLineCanvas.getBoundingClientRect()
 
-    const widthLine = {
-      name: 'width',
-      canvasWidth: canvasWidth,
-      rectWidth: rect.width,
+    const size = {
+      canvas: {
+        width: canvasWidth,
+        height: canvasHeight,
+      },
+      rect: {
+        width: rect.width,
+        height: rect.height,
+      },
     }
 
-    const heightLine = {
-      name: 'height',
-      canvasHeight: canvasHeight,
-      rectHeight: rect.height,
+    const coordinate = {
+      x,
+      y,
     }
+    const crossLine = getGuideLineWidth(size)
 
-    const coordinateX = {
-      coordinate: 'x',
-      x: x,
-    }
-
-    const coordinateY = {
-      coordinate: 'y',
-      y: y,
-    }
-
-    const verticalLineWidth = getGuideLineWidth(widthLine)
-    const horizontalLineWidth = getGuideLineWidth(heightLine)
-
-    guideLineCtx.clearRect(0, 0, canvasWidth, canvasHeight)
-    drawGuideLine(guideLineCtx, coordinateY, canvasWidth, horizontalLineWidth)
-    drawGuideLine(guideLineCtx, coordinateX, canvasHeight, verticalLineWidth)
+    clearCanvas()
+    drawGuideLine(guideLineCtx, coordinate, size, crossLine)
   }
 
   function mouseleave() {
+    clearCanvas()
+  }
+
+  function clearCanvas() {
     guideLineCtx.clearRect(0, 0, canvasWidth, canvasHeight)
   }
 }
