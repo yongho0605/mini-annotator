@@ -10,9 +10,6 @@ export default function canvasImageRender() {
   // img.src = '/src/assets/images/musk.jpeg'
   // img.src = '/src/assets/images/tesla_model_S_Plaid.webp'
 
-  img.naturalWidth
-  // 이 메소드를 사용해서 계산 하는게 좋음
-
   img.onload = function () {
     setCanvasSize(img)
     activeGuideLine()

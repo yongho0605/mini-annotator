@@ -8,35 +8,18 @@ import {
 // FIXME: 확대 축소 먼저 구현
 export default function activeZoom(img) {
   function wheel(e) {
-    // const mousePos = getCanvasMousePosition(e, guideLineCanvas)
-    // const x = mousePos.x / 2
-    // const y = mousePos.y / 2
-    e.deltaY < 0 ? zoomIn() : zoomOut()
+    const { x, y } = getCanvasMousePosition(e, guideLineCanvas)
 
-    function zoomOut() {
-      console.log(imageCanvas.width)
-      imageCanvas.width *= 1.1
-      imageCanvas.height *= 1.1
-      const x = (imageCanvas.width - img.width) / 2
-      const y = (imageCanvas.height - img.height) / 2
+    const scale = e.deltaY > 0 ? 0.9 : 1.1
+    console.log(e.deltaY)
 
-      if (imageCanvas.width < 13000) {
-        imageCtx.drawImage(img, x, y)
-      } else if (imageCanvas.width > 13000) {
-        imageCanvas.width = 13000
-        imageCanvas.height = 13000
-      }
-    }
+    imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height)
 
-    function zoomIn() {
-      console.log(imageCanvas.width)
-      imageCanvas.width *= 0.9
-      imageCanvas.height *= 0.9
-      const x = (imageCanvas.width - img.width) / 2
-      const y = (imageCanvas.height - img.height) / 2
+    imageCtx.translate(x, y)
+    imageCtx.scale(scale, scale)
+    imageCtx.translate(-x, -y)
 
-      imageCtx.drawImage(img, x, y)
-    }
+    imageCtx.drawImage(img, 0, 0)
   }
 
   guideLineCanvas.addEventListener('wheel', wheel)

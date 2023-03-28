@@ -28,11 +28,11 @@ export function drawGuideLine(ctx, coordinate, size, crossLine) {
     switch (key) {
       case 'verticalLineWidth':
         moveTo = [x, 0]
-        lineTo = [x, canvas.width]
+        lineTo = [x, canvas.height]
         break
       case 'horizontalLineWidth':
         moveTo = [0, y]
-        lineTo = [canvas.height, y]
+        lineTo = [canvas.width, y]
         break
       default:
         break
