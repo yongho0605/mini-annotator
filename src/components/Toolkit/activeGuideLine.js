@@ -15,8 +15,7 @@ export default function activeGuideLine() {
   const canvasHeight = guideLineCanvas.height
 
   function onMouseMove(e) {
-    const mousePos = getCanvasMousePosition(e, guideLineCanvas)
-    const { x, y } = mousePos
+    const { x, y } = getCanvasMousePosition(e, guideLineCanvas)
 
     const rect = guideLineCanvas.getBoundingClientRect()
 
