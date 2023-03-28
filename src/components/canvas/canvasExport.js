@@ -1,6 +1,6 @@
 export const canvasObj = {
-  imageCanvas: document.getElementById('imageCanvas'),
-  guideLineCanvas: document.getElementById('guideLineCanvas'),
+  imageCanvas: document.querySelector('#imageCanvas'),
+  guideLineCanvas: document.querySelector('#guideLineCanvas'),
 }
 
 export const { imageCanvas, guideLineCanvas } = canvasObj
@@ -12,9 +12,20 @@ export const ctxObj = {
 
 export const { imageCtx, guideLineCtx } = ctxObj
 
-export function setCanvasRatio(img) {
+export function setCanvasSize(img) {
   Object.keys(canvasObj).forEach((canvas) => {
     canvasObj[canvas].width = img.width
     canvasObj[canvas].height = img.height
   })
+}
+
+export function getCanvasMousePosition(e, canvas) {
+  const canvasRect = canvas.getBoundingClientRect()
+  const scaleX = canvas.width / canvasRect.width
+  const scaleY = canvas.height / canvasRect.height
+
+  return {
+    x: (e.clientX - canvasRect.left) * scaleX,
+    y: (e.clientY - canvasRect.top) * scaleY,
+  }
 }

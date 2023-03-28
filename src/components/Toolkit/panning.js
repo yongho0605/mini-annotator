@@ -1,4 +1,4 @@
-import getCanvasMousePosition from '/src/components/canvas/getCanvasMousePosition.js'
+import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   guideLineCanvas,
   imageCtx,

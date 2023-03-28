@@ -1,11 +1,11 @@
-import getCanvasMousePosition from '/src/components/canvas/getCanvasMousePosition.js'
+import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   imageCanvas,
   guideLineCanvas,
   imageCtx,
 } from '/src/components/canvas/canvasExport.js'
 
-// FIXME: 우선 놔두고 다른거 해야할듯, 확대 및 축소가 젤 어려운 것 같음...
+// FIXME: 확대 축소 먼저 구현
 export default function zoom(img) {
   function wheel(e) {
     // const mousePos = getCanvasMousePosition(e, guideLineCanvas)
