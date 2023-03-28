@@ -1,2 +1,4 @@
 # mini-annotator
-via Vanilla JS
+Make Via Vanilla JS
+
+junior developer task on datamaker company
