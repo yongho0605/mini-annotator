@@ -1,7 +1,7 @@
 export default function selector() {
   const selectorNode = document.querySelector('.selector')
 
-  function click() {
+  function onClick() {
     alert('선택도구')
   }
 
@@ -12,5 +12,5 @@ export default function selector() {
   }
 
   window.addEventListener('keydown', keydown)
-  selectorNode.addEventListener('click', click)
+  selectorNode.addEventListener('click', onClick)
 }

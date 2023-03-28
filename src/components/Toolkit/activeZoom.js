@@ -6,7 +6,7 @@ import {
 } from '/src/components/canvas/canvasExport.js'
 
 // FIXME: 확대 축소 먼저 구현
-export default function zoom(img) {
+export default function activeZoom(img) {
   function wheel(e) {
     // const mousePos = getCanvasMousePosition(e, guideLineCanvas)
     // const x = mousePos.x / 2

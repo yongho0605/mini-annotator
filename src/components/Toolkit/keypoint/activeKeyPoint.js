@@ -2,7 +2,7 @@ import useTools from '/src/store/useTools.js'
 
 export default function keyPoint() {
   const keyPoint = document.querySelector('.keyPoint')
-  function click() {
+  function onClick() {
     useTools.keypoint = true
     if (useTools.keypoint) {
       alert('키포인트')
@@ -18,6 +18,6 @@ export default function keyPoint() {
     }
   }
 
-  keyPoint.addEventListener('click', click)
+  keyPoint.addEventListener('click', onClick)
   window.addEventListener('keydown', keydown)
 }

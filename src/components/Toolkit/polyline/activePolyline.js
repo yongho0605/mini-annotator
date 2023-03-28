@@ -3,7 +3,7 @@ import useTools from '/src/store/useTools.js'
 export default function polyline() {
   const polylineNode = document.querySelector('.polyline')
 
-  function click() {
+  function onClick() {
     useTools.polyline = true
     console.log('boundingbox', useTools.boundingbox)
     console.log('polygon', useTools.polygon)
@@ -24,5 +24,5 @@ export default function polyline() {
   }
 
   window.addEventListener('keydown', keydown)
-  polylineNode.addEventListener('click', click)
+  polylineNode.addEventListener('click', onClick)
 }

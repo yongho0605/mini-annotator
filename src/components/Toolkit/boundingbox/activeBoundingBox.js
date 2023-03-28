@@ -3,7 +3,7 @@ import useTools from '/src/store/useTools.js'
 export default function activeBoundingbox() {
   const boundingboxNode = document.querySelector('.boundingBox')
 
-  function click() {
+  function onClick() {
     useTools.boundingbox = true
   }
 
@@ -13,6 +13,6 @@ export default function activeBoundingbox() {
     }
   }
 
-  boundingboxNode.addEventListener('click', click)
+  boundingboxNode.addEventListener('click', onClick)
   window.addEventListener('keydown', keydown)
 }

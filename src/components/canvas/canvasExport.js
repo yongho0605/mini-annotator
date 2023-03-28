@@ -14,8 +14,8 @@ export const { imageCtx, guideLineCtx } = ctxObj
 
 export function setCanvasSize(img) {
   Object.keys(canvasObj).forEach((canvas) => {
-    canvasObj[canvas].width = img.width
-    canvasObj[canvas].height = img.height
+    canvasObj[canvas].width = img.naturalWidth
+    canvasObj[canvas].height = img.naturalHeight
   })
 }
 

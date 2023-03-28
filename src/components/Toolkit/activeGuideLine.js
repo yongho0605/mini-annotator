@@ -8,13 +8,13 @@ import {
   drawGuideLine,
 } from '/src/components/modules/getGuideLineFunction.js'
 
-export default function guideLine() {
-  guideLineCanvas.addEventListener('mousemove', mousemove)
-  guideLineCanvas.addEventListener('mouseleave', mouseleave)
+export default function activeGuideLine() {
+  guideLineCanvas.addEventListener('mousemove', onMouseMove)
+  guideLineCanvas.addEventListener('mouseleave', onMouseLeave)
   const canvasWidth = guideLineCanvas.width
   const canvasHeight = guideLineCanvas.height
 
-  function mousemove(e) {
+  function onMouseMove(e) {
     const mousePos = getCanvasMousePosition(e, guideLineCanvas)
     const { x, y } = mousePos
 
@@ -31,17 +31,14 @@ export default function guideLine() {
       },
     }
 
-    const coordinate = {
-      x,
-      y,
-    }
+    const coordinate = { x, y }
     const crossLine = getGuideLineWidth(size)
 
     clearCanvas()
     drawGuideLine(guideLineCtx, coordinate, size, crossLine)
   }
 
-  function mouseleave() {
+  function onMouseLeave() {
     clearCanvas()
   }
 

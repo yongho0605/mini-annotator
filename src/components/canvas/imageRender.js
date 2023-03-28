@@ -1,8 +1,8 @@
-import guideLine from '/src/components/toolkit/guideLine.js'
-import zoom from '/src/components/toolkit/zoom.js'
+import activeGuideLine from '/src/components/toolkit/activeGuideLine.js'
+import activeZoom from '/src/components/toolkit/activeZoom.js'
 import { imageCanvas, imageCtx } from '/src/components/canvas/canvasExport.js'
 import { setCanvasSize } from '/src/components/canvas/canvasExport.js'
-import panning from '/src/components/toolkit/panning.js'
+import activePan from '/src/components/toolkit/activePan.js'
 
 export default function canvasImageRender() {
   const img = new Image()
@@ -15,11 +15,11 @@ export default function canvasImageRender() {
 
   img.onload = function () {
     setCanvasSize(img)
-    guideLine()
-    zoom(img)
-    panning(img)
-    const x = (imageCanvas.width - img.width) / 2
-    const y = (imageCanvas.height - img.height) / 2
+    activeGuideLine()
+    activeZoom(img)
+    activePan(img)
+    const x = (imageCanvas.width - img.naturalWidth) / 2
+    const y = (imageCanvas.height - img.naturalHeight) / 2
     imageCtx.drawImage(img, x, y)
   }
 }

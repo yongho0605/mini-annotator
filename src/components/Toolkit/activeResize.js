@@ -1,4 +1,4 @@
-export default function resize() {
+export default function activeResize() {
   const resizeHandler = document.querySelector('.resizeHandler')
   const classSelector = document.querySelector('#classSelector')
   const annotatorEl = document.querySelector('.annotator')
