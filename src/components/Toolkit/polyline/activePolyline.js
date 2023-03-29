@@ -1,7 +1,7 @@
 import useTools from '/src/store/useTools.js'
 
 export default function polyline() {
-  const polylineNode = document.querySelector('.polyline')
+  const polylineEl = document.querySelector('.polyline')
 
   function onClick() {
     useTools.polyline = true
@@ -24,5 +24,5 @@ export default function polyline() {
   }
 
   window.addEventListener('keydown', keydown)
-  polylineNode.addEventListener('click', onClick)
+  polylineEl.addEventListener('click', onClick)
 }

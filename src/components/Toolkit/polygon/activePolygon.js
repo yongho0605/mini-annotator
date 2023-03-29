@@ -1,7 +1,7 @@
 import useTools from '/src/store/useTools.js'
 
 export default function polygon() {
-  const polygonNode = document.querySelector('.polygon')
+  const polygonEl = document.querySelector('.polygon')
 
   function onClick() {
     useTools.polygon = true
@@ -20,5 +20,5 @@ export default function polygon() {
   }
 
   window.addEventListener('keydown', keydown)
-  polygonNode.addEventListener('click', onClick)
+  polygonEl.addEventListener('click', onClick)
 }
