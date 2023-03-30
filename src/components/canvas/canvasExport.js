@@ -12,10 +12,10 @@ export const ctxObj = {
 
 export const { imageCtx, guideLineCtx } = ctxObj
 
-export function setCanvasSize(img) {
+export function setCanvasSize() {
   Object.keys(canvasObj).forEach((canvas) => {
-    canvasObj[canvas].width = img.naturalWidth
-    canvasObj[canvas].height = img.naturalHeight
+    canvasObj[canvas].width = 1920
+    canvasObj[canvas].height = 1080
   })
 }
 
@@ -25,7 +25,7 @@ export function getCanvasMousePosition(e, canvas) {
   const scaleY = canvas.height / canvasRect.height
 
   return {
-    x: (e.clientX - canvasRect.left) * scaleX,
-    y: (e.clientY - canvasRect.top) * scaleY,
+    x: Math.floor((e.clientX - canvasRect.left) * scaleX),
+    y: Math.floor((e.clientY - canvasRect.top) * scaleY),
   }
 }
