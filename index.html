@@ -24,12 +24,24 @@
     </header>
     <main>
       <div class="annotator">
-        <canvas id="imageCanvas"></canvas>
+        <canvas id="imageCanvas" width="1920" height="1080"></canvas>
         <canvas id="guideLineCanvas"></canvas>
       </div>
       <div class="panels">
         <div class="resizeHandler"></div>
-        <aside id="classSelector">클래스 셀렉터</aside>
+        <aside id="classSelector">
+          <h2>Coordinates</h2>
+          <ul class="coordinateIndex">
+            <li class="DOMCoordinate">client: (0,0)</li>
+            <li class="canvasCoordinate">canvas: (0,0)</li>
+            <li class="canvasOnImageCoordinate">canvasOnImage: (0,0)</li>
+            <li class="canvasTranslateCoordinate">canvasTranslate: (0,0)</li>
+            <li class="imageTranslateCoordinate">imageTranslate: (0,0)</li>
+            <li class="canvasScaleCoordinate">canvasScale: (0,0)</li>
+            <li class="canvasImageSize">canvasImageSize width:0 height:0</li>
+            <li class="naturalImageSize">naturalImageSize width:0 height:0</li>
+          </ul>
+        </aside>
       </div>
     </main>
     <script type="module" src="main.js"></script>
