@@ -5,6 +5,7 @@ import polygon from '/src/components/toolkit/polygon/activePolygon.js'
 import polyline from '/src/components/toolkit/polyline/activePolyline.js'
 import selector from '/src/components/toolkit/selector/activeSelector.js'
 import activeResize from '/src/components/toolkit/resize/activeResize.js'
+import chaseCoordinate from '/src/components/toolkit/chaseCoordinate.js'
 
 export default function toolkit() {
   activeOutPost()
@@ -14,4 +15,5 @@ export default function toolkit() {
   polyline()
   keyPoint()
   activeResize()
+  chaseCoordinate()
 }
