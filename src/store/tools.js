@@ -20,5 +20,5 @@ const toolHandler = {
   },
 }
 
-const useTools = new Proxy(toolsState, toolHandler)
-export default useTools
+const tools = new Proxy(toolsState, toolHandler)
+export default tools

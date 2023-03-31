@@ -1,4 +1,4 @@
-const coordinateState = {
+const coordStore = {
   DOM: {
     x: 0,
     y: 0,
@@ -7,7 +7,7 @@ const coordinateState = {
     x: 0,
     y: 0,
   },
-  canvasOnImage: {
+  canvasOnImg: {
     x: 0,
     y: 0,
   },
@@ -15,7 +15,7 @@ const coordinateState = {
     x: 0,
     y: 0,
   },
-  imageTranslate: {
+  imgTranslate: {
     x: 0,
     y: 0,
   },
@@ -23,17 +23,17 @@ const coordinateState = {
     x: 0,
     y: 0,
   },
-  canvasImageSize: {
+  canvasImgSize: {
     width: 0,
     height: 0,
   },
-  naturalImageSize: {
+  naturalImgSize: {
     width: 0,
     height: 0,
   },
 }
 
-const coordinateHandler = {
+const onCoordChangeHandler = {
   get(target, prop) {
     return target[prop]
   },
@@ -43,4 +43,4 @@ const coordinateHandler = {
   },
 }
 
-export const coordinate = new Proxy(coordinateState, coordinateHandler)
+export default new Proxy(coordStore, onCoordChangeHandler)

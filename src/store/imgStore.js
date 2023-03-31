@@ -1,8 +1,8 @@
-const imageState = {
+const imgState = {
   source: null,
 }
 
-const imageHandler = {
+const imgHandler = {
   get(target, prop) {
     return target[prop]
   },
@@ -12,4 +12,4 @@ const imageHandler = {
   },
 }
 
-export const image = new Proxy(imageState, imageHandler)
+export default new Proxy(imgState, imgHandler)
