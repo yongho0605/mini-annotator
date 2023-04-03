@@ -1,18 +1,18 @@
-import useTools from '/src/store/useTools.js'
+import ToolsState from '/src/store/tools.js'
 
 export default function keyPoint() {
   const keyPointEl = document.querySelector('.keyPoint')
   function onClick() {
-    useTools.keypoint = true
-    if (useTools.keypoint) {
+    ToolsState.keyPoint = true
+    if (ToolsState.keyPoint) {
       alert('키포인트')
     }
   }
 
   function keydown(e) {
-    if (e.keyCode === 79) {
-      useTools.keypoint = true
-      if (useTools.keypoint) {
+    if (e.key === 'k' || e.key === 'ㅏ') {
+      ToolsState.keyPoint = true
+      if (ToolsState.keyPoint) {
         alert('키포인트')
       }
     }

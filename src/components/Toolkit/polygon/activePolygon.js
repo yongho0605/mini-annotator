@@ -1,19 +1,19 @@
-import useTools from '/src/store/useTools.js'
+import ToolsState from '/src/store/tools.js'
 
 export default function polygon() {
   const polygonEl = document.querySelector('.polygon')
 
   function onClick() {
-    useTools.polygon = true
-    if (useTools.polygon) {
+    ToolsState.polygon = true
+    if (ToolsState.polygon) {
       alert('폴리곤')
     }
   }
 
   function keydown(e) {
-    if (e.keyCode === 80) {
-      useTools.polygon = true
-      if (useTools.polygon) {
+    if (e.key === 'p' || e.key === 'ㅔ') {
+      ToolsState.polygon = true
+      if (ToolsState.polygon) {
         alert('폴리곤')
       }
     }

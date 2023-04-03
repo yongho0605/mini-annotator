@@ -1,23 +1,23 @@
-import useTools from '/src/store/useTools.js'
+import ToolsState from '/src/store/tools.js'
 
 export default function polyline() {
   const polylineEl = document.querySelector('.polyline')
 
   function onClick() {
-    useTools.polyline = true
-    console.log('boundingbox', useTools.boundingbox)
-    console.log('polygon', useTools.polygon)
-    console.log('polyline', useTools.polyline)
-    console.log('selector', useTools.selector)
-    if (useTools.polyline) {
+    ToolsState.polyline = true
+    console.log('boundingBox', ToolsState.boundingBox)
+    console.log('polygon', ToolsState.polygon)
+    console.log('polyline', ToolsState.polyline)
+    console.log('selector', ToolsState.selector)
+    if (ToolsState.polyline) {
       alert('폴리라인')
     }
   }
 
   function keydown(e) {
-    if (e.keyCode === 76) {
-      useTools.polyline = true
-      if (useTools.polyline) {
+    if (e.key === 'l' || e.key === 'ㅣ') {
+      ToolsState.polyline = true
+      if (ToolsState.polyline) {
         alert('폴리라인')
       }
     }

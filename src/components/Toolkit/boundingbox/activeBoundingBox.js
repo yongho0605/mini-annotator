@@ -1,18 +1,24 @@
-import useTools from '/src/store/useTools.js'
+import ToolsState from '/src/store/tools.js'
 
-export default function activeBoundingbox() {
-  const boundingboxEl = document.querySelector('.boundingBox')
+export default function activeBoundingBox() {
+  const boundingBoxEl = document.querySelector('.boundingBox')
 
   function onClick() {
-    useTools.boundingbox = true
-  }
-
-  function keydown(e) {
-    if (e.keyCode === 66) {
-      useTools.boundingbox = true
+    ToolsState.boundingBox = true
+    if (ToolsState.boundingBox) {
+      alert('바운딩박스')
     }
   }
 
-  boundingboxEl.addEventListener('click', onClick)
-  window.addEventListener('keydown', keydown)
+  function onKeyDown(e) {
+    ToolsState.boundingBox = true
+    if (e.key === 'b' || e.key === 'ㅠ') {
+      if (ToolsState.boundingBox) {
+        alert('바운딩박스')
+      }
+    }
+  }
+
+  boundingBoxEl.addEventListener('click', onClick)
+  window.addEventListener('keydown', onKeyDown)
 }

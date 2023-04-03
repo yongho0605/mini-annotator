@@ -6,7 +6,7 @@ export default function selector() {
   }
 
   function keydown(e) {
-    if (e.keyCode === 86) {
+    if (e.key === 'v' || e.key === 'ㅍ') {
       alert('선택도구')
     }
   }
