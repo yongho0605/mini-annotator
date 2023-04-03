@@ -23,6 +23,10 @@ const coordStore = {
     x: 0,
     y: 0,
   },
+  imgScale: {
+    x: 0,
+    y: 0,
+  },
   canvasImgSize: {
     width: 0,
     height: 0,
