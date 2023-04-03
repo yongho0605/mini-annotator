@@ -29,11 +29,11 @@ export default function applyChangesOnResize(img, canvas, ctx) {
   function getScaledCanvasHeight(scaleNum) {
     return Math.round(img.height * scaleFactor * scaleNum)
   }
-  function reassignmentCoordinate() {
+  function reassignmentCoord() {
     x = (canvas.width - canvasImgWidth) / 2
     y = (canvas.height - canvasImgHeight) / 2
   }
-  function saveCoordStore(x, y, imgWidth, imgHeight) {
+  function saveCoord(x, y, imgWidth, imgHeight) {
     CoordStore.imgTranslate.x = x
     CoordStore.imgTranslate.y = y
     CoordStore.canvasImgSize.width = imgWidth
@@ -58,7 +58,7 @@ export default function applyChangesOnResize(img, canvas, ctx) {
       canvasImgHeight = getScaledCanvasHeight(horizontalAspect)
     }
   }
-  reassignmentCoordinate()
-  saveCoordStore(x, y, canvasImgWidth, canvasImgHeight)
+  reassignmentCoord()
+  saveCoord(x, y, canvasImgWidth, canvasImgHeight)
   ctx.drawImage(img, x, y, canvasImgWidth, canvasImgHeight)
 }
