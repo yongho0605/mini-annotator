@@ -1,16 +1,16 @@
 export const canvasObj = {
-  imageCanvas: document.querySelector('#imageCanvas'),
+  imgCanvas: document.querySelector('#imgCanvas'),
   guideLineCanvas: document.querySelector('#guideLineCanvas'),
 }
 
-export const { imageCanvas, guideLineCanvas } = canvasObj
+export const { imgCanvas: imgCanvas, guideLineCanvas } = canvasObj
 
 export const ctxObj = {
-  imageCtx: imageCanvas.getContext('2d'),
+  imgCtx: imgCanvas.getContext('2d'),
   guideLineCtx: guideLineCanvas.getContext('2d'),
 }
 
-export const { imageCtx, guideLineCtx } = ctxObj
+export const { imgCtx, guideLineCtx } = ctxObj
 
 export function setCanvasSize() {
   Object.keys(canvasObj).forEach((canvas) => {

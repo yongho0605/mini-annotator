@@ -1,6 +1,6 @@
 const toolsState = {
-  boundingbox: false,
-  keypoint: false,
+  boundingBox: false,
+  keyPoint: false,
   polygon: false,
   polyline: false,
   selector: false,
@@ -20,5 +20,4 @@ const toolHandler = {
   },
 }
 
-const tools = new Proxy(toolsState, toolHandler)
-export default tools
+export default new Proxy(toolsState, toolHandler)
