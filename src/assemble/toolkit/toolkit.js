@@ -1,19 +1,19 @@
-import boundingBox from '/src/components/toolkit/boundingbox/activeBoundingBox.js'
-import keyPoint from '/src/components/toolkit/keyPoint/activeKeyPoint.js'
-import activeOutPost from '/src/components/toolkit/activeOutPost.js'
-import polygon from '/src/components/toolkit/polygon/activePolygon.js'
-import polyline from '/src/components/toolkit/polyline/activePolyline.js'
-import selector from '/src/components/toolkit/selector/activeSelector.js'
-import activeResize from '/src/components/toolkit/resize/activeResize.js'
-import chaseCoordinate from '/src/components/toolkit/chaseCoordinate.js'
+import ActiveBoundingBox from '/src/components/toolkit/boundingBox/activeBoundingBox.js'
+import ActiveKeyPoint from '/src/components/toolkit/keyPoint/activeKeyPoint.js'
+import ActiveOutPost from '/src/components/toolkit/activeOutPost.js'
+import ActivePolygon from '/src/components/toolkit/polygon/activePolygon.js'
+import ActivePolyline from '/src/components/toolkit/polyline/activePolyline.js'
+import ActiveSelector from '/src/components/toolkit/selector/activeSelector.js'
+import ActiveResize from '/src/components/toolkit/resize/activeResize.js'
+import ChaseCoordinate from '/src/components/toolkit/chaseCoordinate.js'
 
 export default function toolkit() {
-  activeOutPost()
-  selector()
-  boundingBox()
-  polygon()
-  polyline()
-  keyPoint()
-  activeResize()
-  chaseCoordinate()
+  ActiveOutPost()
+  ActiveSelector()
+  ActiveBoundingBox()
+  ActivePolygon()
+  ActivePolyline()
+  ActiveKeyPoint()
+  ActiveResize()
+  ChaseCoordinate()
 }

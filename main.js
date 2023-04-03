@@ -1,5 +1,5 @@
-import toolkit from '/src/assemble/toolkit/toolkit.js'
-import canvas from '/src/assemble/canvas/canvas.js'
+import Toolkit from '/src/assemble/toolkit/toolkit.js'
+import ImgCanvasRender from '/src/components/canvas/imgRender.js'
 
-canvas()
-toolkit()
+ImgCanvasRender()
+Toolkit()
