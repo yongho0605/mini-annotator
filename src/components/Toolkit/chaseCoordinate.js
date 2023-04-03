@@ -1,73 +1,52 @@
-import { image } from '/src/store/image.js'
-import { imageCanvas, imageCtx } from '/src/components/canvas/canvasExport.js'
+import ImgStore from '/src/store/imgStore.js'
+import CoordStore from '/src/store/coordStore.js'
+import { imgCanvas, imgCtx } from '/src/components/canvas/canvasExport.js'
 import {
   annotatorEl,
   coordinateIndex,
-  DOMEl,
-  canvasEl,
-  canvasOnImageEl,
-  canvasTranslateEl,
-  imageTranslateEl,
-  canvasScaleEl,
-  canvasImageSize,
-  naturalImageSize,
 } from '/src/components/modules/getElement.js'
-import { coordinate } from '/src/store/coordinate.js'
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 
 export default function chaseCoordinate() {
   annotatorEl.addEventListener('mousemove', onMouseMove)
-  const getRoundValue = (value) => Math.round(value)
   function onMouseMove(e) {
-    const { x: canvasX, y: canvasY } = getCanvasMousePosition(e, imageCanvas)
-    const { width: imgWidth, height: imgHeight } = image.source
-    const scaleFactor = Math.min(
-      imageCanvas.width / imgWidth,
-      imageCanvas.height / imgHeight
+    const coordOnCanvas = getCanvasMousePosition(e, imgCanvas)
+    const { width: imgWidth, height: imgHeight } = ImgStore.source
+    const transform = imgCtx.getTransform()
+
+    function removeFloatingPoint(num) {
+      return Number(num.toFixed(2))
+    }
+
+    CoordStore.DOM.x = e.clientX
+    CoordStore.DOM.y = e.clientY
+    CoordStore.canvas.x = coordOnCanvas.x
+    CoordStore.canvas.y = coordOnCanvas.y
+    CoordStore.canvasOnImg.x = coordOnCanvas.x - CoordStore.imgTranslate.x
+    CoordStore.canvasOnImg.y = coordOnCanvas.y - CoordStore.imgTranslate.y
+    CoordStore.canvasTranslate.x = removeFloatingPoint(transform.e)
+    CoordStore.canvasTranslate.y = removeFloatingPoint(transform.f)
+    CoordStore.canvasScale.x = removeFloatingPoint(transform.a)
+    CoordStore.canvasScale.y = removeFloatingPoint(transform.d)
+    CoordStore.imgScale.x = removeFloatingPoint(
+      (imgCanvas.width * transform.a) / imgWidth
     )
-    const newImgWidth = getRoundValue(imgWidth * scaleFactor)
-    const newImgHeight = getRoundValue(imgHeight * scaleFactor)
-    const imageX = (imageCanvas.width - newImgWidth) / 2
-    const imageY = (imageCanvas.height - newImgHeight) / 2
-    const transform = imageCtx.getTransform()
-
-    let {
-      DOM,
-      canvas,
-      canvasOnImage,
-      canvasTranslate,
-      imageTranslate,
-      canvasScale,
-      canvasImageSize,
-      naturalImageSize,
-    } = coordinate
-
-    DOM.x = e.clientX
-    DOM.y = e.clientY
-    canvas.x = canvasX
-    canvas.y = canvasY
-    canvasOnImage.x = canvasX - imageX
-    canvasOnImage.y = canvasY - imageY
-    canvasTranslate.x = transform.e
-    canvasTranslate.y = transform.f
-    imageTranslate.x = transform.e + imageX
-    imageTranslate.y = transform.f + imageY
-    canvasScale.x = transform.a
-    canvasScale.y = transform.d
-    canvasImageSize.width = newImgWidth
-    canvasImageSize.height = newImgHeight
-    naturalImageSize.width = imgWidth
-    naturalImageSize.height = imgHeight
+    CoordStore.imgScale.y = removeFloatingPoint(
+      (imgCanvas.height * transform.d) / imgHeight
+    )
+    CoordStore.naturalImgSize.width = imgWidth
+    CoordStore.naturalImgSize.height = imgHeight
 
     coordinateIndex.innerHTML = `
-    <li>client:(${DOM.x},${DOM.y})</li>
-    <li>canvas:(${canvas.x},${canvas.y})</li>
-    <li>canvasOnImage:(${canvasOnImage.x},${canvasOnImage.y})</li>
-    <li>canvasTranslate:(${canvasTranslate.x},${canvasTranslate.y})</li>
-    <li>imageTranslate:(${imageTranslate.x},${imageTranslate.y})</li>
-    <li>canvasScale:(${canvasScale.x}, ${canvasScale.y})</li>
-    <li>canvasImageSize width:${canvasImageSize.width} height:${canvasImageSize.height}</li>
-    <li>naturalImageSize width:${naturalImageSize.width} height:${naturalImageSize.height}</li>
+    <li>client:(${CoordStore.DOM.x}, ${CoordStore.DOM.y})</li>
+    <li>canvas:(${CoordStore.canvas.x}, ${CoordStore.canvas.y})</li>
+    <li>canvasOnImg:(${CoordStore.canvasOnImg.x}, ${CoordStore.canvasOnImg.y})</li>
+    <li>canvasTranslate:(${CoordStore.canvasTranslate.x}, ${CoordStore.canvasTranslate.y})</li>
+    <li>imgTranslate:(${CoordStore.imgTranslate.x}, ${CoordStore.imgTranslate.y})</li>
+    <li>canvasScale:(${CoordStore.canvasScale.x}, ${CoordStore.canvasScale.y})</li>
+    <li>imgScale: (${CoordStore.imgScale.x}, ${CoordStore.imgScale.y})</li>
+    <li>canvasImgSize width:${CoordStore.canvasImgSize.width} height:${CoordStore.canvasImgSize.height}</li>
+    <li>naturalImgSize width:${CoordStore.naturalImgSize.width} height:${CoordStore.naturalImgSize.height}</li>
     `
   }
 }
