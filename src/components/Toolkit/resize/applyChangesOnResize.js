@@ -1,4 +1,5 @@
 import { annotatorEl } from '/src/components/modules/getElement.js'
+import CoordStore from '/src/store/coordStore.js'
 export default function applyChangesOnResize(img, canvas, ctx) {
   const scaleFactor = Math.min(
     canvas.width / img.width,
@@ -22,15 +23,21 @@ export default function applyChangesOnResize(img, canvas, ctx) {
   let x = (canvas.width - canvasImgWidth) / 2
   let y = (canvas.height - canvasImgHeight) / 2
 
-  function getScaledCanvasWidth(value) {
-    return Math.round(img.width * scaleFactor * value)
+  function getScaledCanvasWidth(scaleNum) {
+    return Math.round(img.width * scaleFactor * scaleNum)
   }
-  function getScaledCanvasHeight(value) {
-    return Math.round(img.height * scaleFactor * value)
+  function getScaledCanvasHeight(scaleNum) {
+    return Math.round(img.height * scaleFactor * scaleNum)
   }
   function reassignmentCoordinate() {
     x = (canvas.width - canvasImgWidth) / 2
     y = (canvas.height - canvasImgHeight) / 2
+  }
+  function saveCoordStore(x, y, imgWidth, imgHeight) {
+    CoordStore.imgTranslate.x = x
+    CoordStore.imgTranslate.y = y
+    CoordStore.canvasImgSize.width = imgWidth
+    CoordStore.canvasImgSize.height = imgHeight
   }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -52,5 +59,6 @@ export default function applyChangesOnResize(img, canvas, ctx) {
     }
   }
   reassignmentCoordinate()
+  saveCoordStore(x, y, canvasImgWidth, canvasImgHeight)
   ctx.drawImage(img, x, y, canvasImgWidth, canvasImgHeight)
 }
