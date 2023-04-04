@@ -14,7 +14,7 @@ export default function chaseCoordinate() {
     const { width: imgWidth, height: imgHeight } = ImgStore.source
     const transform = imgCtx.getTransform()
 
-    function removeFloatingPoint(num) {
+    function roundFloatingPoint_2(num) {
       return Number(num.toFixed(2))
     }
 
@@ -24,14 +24,14 @@ export default function chaseCoordinate() {
     CoordStore.canvas.y = coordOnCanvas.y
     CoordStore.canvasOnImg.x = coordOnCanvas.x - CoordStore.imgTranslate.x
     CoordStore.canvasOnImg.y = coordOnCanvas.y - CoordStore.imgTranslate.y
-    CoordStore.canvasTranslate.x = removeFloatingPoint(transform.e)
-    CoordStore.canvasTranslate.y = removeFloatingPoint(transform.f)
-    CoordStore.canvasScale.x = removeFloatingPoint(transform.a)
-    CoordStore.canvasScale.y = removeFloatingPoint(transform.d)
-    CoordStore.imgScale.x = removeFloatingPoint(
+    CoordStore.canvasTranslate.x = roundFloatingPoint_2(transform.e)
+    CoordStore.canvasTranslate.y = roundFloatingPoint_2(transform.f)
+    CoordStore.canvasScale.x = roundFloatingPoint_2(transform.a)
+    CoordStore.canvasScale.y = roundFloatingPoint_2(transform.d)
+    CoordStore.imgScale.x = roundFloatingPoint_2(
       (imgCanvas.width * transform.a) / imgWidth
     )
-    CoordStore.imgScale.y = removeFloatingPoint(
+    CoordStore.imgScale.y = roundFloatingPoint_2(
       (imgCanvas.height * transform.d) / imgHeight
     )
     CoordStore.naturalImgSize.width = imgWidth

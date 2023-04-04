@@ -1,27 +1,35 @@
-import detectCanvasResize from '/src/components/toolkit/resize/detectCanvasResize.js'
+import ApplyChangesOnResize from '/src/components/toolkit/resize/applyChangesOnResize.js'
+import ImgStore from '/src/store/imgStore.js'
+import { imgCanvas, imgCtx } from '/src/components/canvas/canvasExport.js'
+import {
+  resizeHandlerEl,
+  classSelectorEl,
+  annotatorEl,
+  mainEl,
+} from '/src/components/modules/getElement.js'
 
 export default function activeResize() {
-  const resizeHandler = document.querySelector('.resizeHandler')
-  const classSelector = document.querySelector('#classSelector')
-  const annotatorEl = document.querySelector('.annotator')
-  const mainEl = document.querySelector('main')
-
-  annotatorEl.addEventListener('resize', onResize)
-  resizeHandler.addEventListener('mousedown', onMouseDown)
+  function resizeCanvas() {
+    ApplyChangesOnResize(ImgStore.source, imgCanvas, imgCtx)
+  }
+  const resizeObserver = new ResizeObserver(resizeCanvas)
+  resizeHandlerEl.addEventListener('mousedown', onMouseDown)
+  window.addEventListener('resize', onResize)
 
   function onResize() {
-    detectCanvasResize()
+    resizeCanvas()
   }
 
   function onMouseDown(e) {
     if (e.button === 0) {
       mainEl.addEventListener('mousemove', onMouseMove)
       mainEl.addEventListener('mouseup', onMouseUp)
+      resizeObserver.observe(imgCanvas)
 
       function onMouseMove(e) {
         let x = e.clientX
         const minSize = 250
-        const maxSize = 5000
+        const maxSize = Math.floor(screen.width * 0.8)
 
         if (x < minSize) {
           x = minSize
@@ -30,13 +38,16 @@ export default function activeResize() {
           x = maxSize
           return
         } else {
-          classSelector.style.width = `${Math.round(x)}px`
-          annotatorEl.style.width = `${Math.round(x)}px`
+          const width = `${Math.round(x)}px`
+          classSelectorEl.style.width = width
+          annotatorEl.style.width = width
         }
       }
 
       function onMouseUp() {
         mainEl.removeEventListener('mousemove', onMouseMove)
+        mainEl.removeEventListener('mouseup', onMouseUp)
+        resizeObserver.unobserve(imgCanvas)
       }
     }
   }
