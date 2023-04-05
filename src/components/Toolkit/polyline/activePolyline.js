@@ -1,4 +1,4 @@
-import ToolsState from '/src/store/tools.js'
+import ToolsState from '/src/store/toolsState.js'
 
 export default function polyline() {
   const polylineEl = document.querySelector('.polyline')

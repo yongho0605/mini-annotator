@@ -1,4 +1,4 @@
-import ToolsState from '/src/store/tools.js'
+import ToolsState from '/src/store/toolsState.js'
 
 export default function keyPoint() {
   const keyPointEl = document.querySelector('.keyPoint')
