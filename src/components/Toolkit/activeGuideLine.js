@@ -1,3 +1,4 @@
+import CoordStore from '/src/store/coordStore.js'
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   guideLineCanvas,
@@ -13,10 +14,8 @@ export default function activeGuideLine() {
   guideLineCanvas.addEventListener('mouseleave', onMouseLeave)
   const canvasWidth = guideLineCanvas.width
   const canvasHeight = guideLineCanvas.height
-
   function onMouseMove(e) {
     const { x, y } = getCanvasMousePosition(e, guideLineCanvas)
-
     const rect = guideLineCanvas.getBoundingClientRect()
 
     const size = {
@@ -35,6 +34,10 @@ export default function activeGuideLine() {
 
     clearCanvas()
     drawGuideLine(guideLineCtx, coordinate, size, crossLine)
+    CoordStore.DOM.x = e.clientX
+    CoordStore.DOM.y = e.clientY
+    CoordStore.canvas.x = x
+    CoordStore.canvas.y = y
   }
 
   function onMouseLeave() {

@@ -27,15 +27,7 @@ const coordStore = {
     x: 0,
     y: 0,
   },
-  scaledMousePosition: {
-    x: 0,
-    y: 0,
-  },
-  scaledCanvasSize: {
-    width: 0,
-    height: 0,
-  },
-  canvasImgSize: {
+  ImgSize: {
     width: 0,
     height: 0,
   },
