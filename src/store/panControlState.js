@@ -13,5 +13,4 @@ const panHandler = {
   },
 }
 
-const pan = new Proxy(panState, panHandler)
-export default pan
+export default new Proxy(panState, panHandler)
