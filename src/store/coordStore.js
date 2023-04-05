@@ -27,6 +27,14 @@ const coordStore = {
     x: 0,
     y: 0,
   },
+  scaledMousePosition: {
+    x: 0,
+    y: 0,
+  },
+  scaledCanvasSize: {
+    width: 0,
+    height: 0,
+  },
   canvasImgSize: {
     width: 0,
     height: 0,
@@ -34,6 +42,14 @@ const coordStore = {
   naturalImgSize: {
     width: 0,
     height: 0,
+  },
+  initMousePos: {
+    x: 0,
+    y: 0,
+  },
+  currentMousePos: {
+    x: 0,
+    y: 0,
   },
 }
 
