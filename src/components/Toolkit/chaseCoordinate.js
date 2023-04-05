@@ -34,6 +34,18 @@ export default function chaseCoordinate() {
     CoordStore.imgScale.y = roundFloatingPoint_2(
       (imgCanvas.height * transform.d) / imgHeight
     )
+    CoordStore.scaledMousePosition.x = roundFloatingPoint_2(
+      CoordStore.canvas.x * CoordStore.canvasScale.x
+    )
+    CoordStore.scaledMousePosition.y = roundFloatingPoint_2(
+      CoordStore.canvas.y * CoordStore.canvasScale.y
+    )
+    CoordStore.scaledCanvasSize.width = roundFloatingPoint_2(
+      imgCanvas.width * CoordStore.canvasScale.x
+    )
+    CoordStore.scaledCanvasSize.height = roundFloatingPoint_2(
+      imgCanvas.height * CoordStore.canvasScale.y
+    )
     CoordStore.naturalImgSize.width = imgWidth
     CoordStore.naturalImgSize.height = imgHeight
 
@@ -45,8 +57,10 @@ export default function chaseCoordinate() {
     <li>imgTranslate:(${CoordStore.imgTranslate.x}, ${CoordStore.imgTranslate.y})</li>
     <li>canvasScale:(${CoordStore.canvasScale.x}, ${CoordStore.canvasScale.y})</li>
     <li>imgScale: (${CoordStore.imgScale.x}, ${CoordStore.imgScale.y})</li>
-    <li>canvasImgSize width:${CoordStore.canvasImgSize.width} height:${CoordStore.canvasImgSize.height}</li>
-    <li>naturalImgSize width:${CoordStore.naturalImgSize.width} height:${CoordStore.naturalImgSize.height}</li>
+    <li>scaledMousePosition: (${CoordStore.scaledMousePosition.x}, ${CoordStore.scaledMousePosition.y})</li>
+    <li>scaledCanvasSize: width: ${CoordStore.scaledCanvasSize.width} height: ${CoordStore.scaledCanvasSize.height}</li>
+    <li>canvasImgSize width: ${CoordStore.canvasImgSize.width} height: ${CoordStore.canvasImgSize.height}</li>
+    <li>naturalImgSize width: ${CoordStore.naturalImgSize.width} height: ${CoordStore.naturalImgSize.height}</li>
     `
   }
 }
