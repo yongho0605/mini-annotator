@@ -14,6 +14,4 @@ export default function toolkit() {
   ActivePolygon()
   ActivePolyline()
   ActiveKeyPoint()
-  ActiveResize()
-  ChaseCoordinate()
 }
