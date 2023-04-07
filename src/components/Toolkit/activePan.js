@@ -1,9 +1,7 @@
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
-import {
-  guideLineCanvas,
-  imageCtx,
-} from '/src/components/canvas/canvasExport.js'
-import usePan from '/src/store/usePan.js'
+import { guideLineCanvas, imgCtx } from '/src/components/canvas/canvasExport.js'
+import PanState from '/src/store/panState.js'
+import MouseButtons from '/src/components/modules/mouseButtons.js'
 
 export default function panning(img) {
   function removeEvent() {
@@ -11,43 +9,42 @@ export default function panning(img) {
   }
 
   function onMouseMove(e) {
-    imageCtx.clearRect(0, 0, imageCanvas.width, imageCanvas.height)
+    imgCtx.clearRect(0, 0, imgCanvas.width, imgCanvas.height)
     const { x, y } = getCanvasMousePosition(e, guideLineCanvas)
   }
 
   function checkPressed() {
-    if (usePan.spacePressed && usePan.mousePressed) {
+    if (PanState.spacePressed && PanState.mousePressed) {
       guideLineCanvas.addEventListener('mousemove', onMouseMove)
-
-      usePan.spacePressed = false
-      usePan.mousePressed = false
+      PanState.spacePressed = false
+      PanState.mousePressed = false
     }
   }
 
   function onKeyPress(e) {
-    if (e.keyCode === 32) {
-      usePan.spacePressed = true
+    if (e.code === 'Space') {
+      PanState.spacePressed = true
       checkPressed()
     }
   }
 
   function onKeyUp(e) {
-    if (e.keyCode === 32) {
-      usePan.spacePressed = false
+    if (e.code === 'Space') {
+      PanState.spacePressed = false
       removeEvent()
     }
   }
 
   function onMouseDown(e) {
-    if (e.button === 0) {
-      usePan.mousePressed = true
+    if (e.button === MouseButtons.LEFT) {
+      PanState.mousePressed = true
       checkPressed()
     }
   }
 
   function onMouseUp(e) {
-    if (e.button === 0) {
-      usePan.mousePressed = false
+    if (e.button === MouseButtons.LEFT) {
+      PanState.mousePressed = false
       removeEvent()
     }
   }
