@@ -36,7 +36,7 @@ export default function chaseCoordinate(img) {
     <li>imgTranslate:(${CoordStore.imgTranslate.x}, ${CoordStore.imgTranslate.y})</li>
     <li>canvasScale:(${CoordStore.canvasScale.x}, ${CoordStore.canvasScale.y})</li>
     <li>imgScale: (${CoordStore.imgScale.x}, ${CoordStore.imgScale.y})</li>
-    <li>ImgSize width: ${CoordStore.ImgSize.width} height: ${CoordStore.ImgSize.height}</li>
+    <li>ImgSize width: ${CoordStore.imgSize.width} height: ${CoordStore.imgSize.height}</li>
     <li>naturalImgSize width: ${CoordStore.naturalImgSize.width} height: ${CoordStore.naturalImgSize.height}</li>
     `
   }
