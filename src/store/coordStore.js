@@ -27,21 +27,13 @@ const coordStore = {
     x: 0,
     y: 0,
   },
-  ImgSize: {
+  imgSize: {
     width: 0,
     height: 0,
   },
   naturalImgSize: {
     width: 0,
     height: 0,
-  },
-  initMousePos: {
-    x: 0,
-    y: 0,
-  },
-  currentMousePos: {
-    x: 0,
-    y: 0,
   },
 }
 
