@@ -20,7 +20,6 @@ export default function imgCanvasRender() {
     ActiveZoom(img)
     ActivePan(img)
     chaseCoordinate(img)
-
     InitCanvasImgSize(img, imgCanvas, imgCtx)
   }
 }

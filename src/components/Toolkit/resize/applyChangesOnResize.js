@@ -33,13 +33,12 @@ export default function applyChangesOnResize(img, canvas, ctx) {
     x = (canvas.width - canvasImgWidth) / 2
     y = (canvas.height - canvasImgHeight) / 2
   }
-  function saveCoord(x, y, imgWidth, imgHeight) {
+  function saveCoordStore(x, y, imgWidth, imgHeight) {
     CoordStore.imgTranslate.x = x
     CoordStore.imgTranslate.y = y
-    CoordStore.canvasImgSize.width = imgWidth
-    CoordStore.canvasImgSize.height = imgHeight
+    CoordStore.imgSize.width = imgWidth
+    CoordStore.imgSize.height = imgHeight
   }
-
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   if (rect.width > rect.height) {
     if (scaledRectWidth < canvasImgWidthRatio) {
@@ -59,6 +58,7 @@ export default function applyChangesOnResize(img, canvas, ctx) {
     }
   }
   reassignmentCoord()
-  saveCoord(x, y, canvasImgWidth, canvasImgHeight)
+  saveCoordStore(x, y, canvasImgWidth, canvasImgHeight)
+  ctx.imageSmoothingEnabled = false
   ctx.drawImage(img, x, y, canvasImgWidth, canvasImgHeight)
 }

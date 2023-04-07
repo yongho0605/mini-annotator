@@ -1,5 +1,4 @@
 import ApplyChangesOnResize from '/src/components/toolkit/resize/applyChangesOnResize.js'
-import ImgStore from '/src/store/imgStore.js'
 import { imgCanvas, imgCtx } from '/src/components/canvas/canvasExport.js'
 import {
   resizeHandlerEl,
@@ -8,9 +7,9 @@ import {
   mainEl,
 } from '/src/components/modules/getElement.js'
 
-export default function activeResize() {
+export default function activeResize(img) {
   function resizeCanvas() {
-    ApplyChangesOnResize(ImgStore.source, imgCanvas, imgCtx)
+    ApplyChangesOnResize(img, imgCanvas, imgCtx)
   }
   const resizeObserver = new ResizeObserver(resizeCanvas)
   resizeHandlerEl.addEventListener('mousedown', onMouseDown)
