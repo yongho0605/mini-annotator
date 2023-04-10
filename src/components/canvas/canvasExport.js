@@ -1,23 +1,16 @@
-export const canvasObj = {
+export const canvasAggregation = {
   imgCanvas: document.querySelector('#imgCanvas'),
   guideLineCanvas: document.querySelector('#guideLineCanvas'),
 }
 
-export const { imgCanvas: imgCanvas, guideLineCanvas } = canvasObj
+export const { imgCanvas, guideLineCanvas } = canvasAggregation
 
-export const ctxObj = {
+export const ctxAggregation = {
   imgCtx: imgCanvas.getContext('2d'),
   guideLineCtx: guideLineCanvas.getContext('2d'),
 }
 
-export const { imgCtx, guideLineCtx } = ctxObj
-
-export function setCanvasSize() {
-  Object.keys(canvasObj).forEach((canvas) => {
-    canvasObj[canvas].width = 1920
-    canvasObj[canvas].height = 1080
-  })
-}
+export const { imgCtx, guideLineCtx } = ctxAggregation
 
 export function getCanvasMousePosition(e, canvas) {
   const canvasRect = canvas.getBoundingClientRect()

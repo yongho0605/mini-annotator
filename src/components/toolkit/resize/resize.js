@@ -5,10 +5,12 @@ import {
   classSelectorEl,
   annotatorEl,
   mainEl,
-} from '/src/components/modules/getElement.js'
+} from '/src/components/modules/elements.js'
 
 const resize = {
   init: (img) => {
+    imgCanvas.width = imgCanvas.clientWidth
+    imgCanvas.height = imgCanvas.clientHeight
     applyChangesOnResize(img, imgCanvas, imgCtx)
   },
   applyAnnotator: (img) => {
