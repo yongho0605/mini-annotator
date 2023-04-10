@@ -1,6 +1,6 @@
 import ToolsState from '/src/store/toolsState.js'
 
-export default function activeBoundingBox() {
+export default function applyBoundingBox() {
   const boundingBoxEl = document.querySelector('.boundingBox')
 
   function onClick() {

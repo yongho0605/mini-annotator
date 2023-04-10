@@ -1,82 +1,84 @@
-let canvas = document.getElementById('canvas')
-let ctx = canvas.getContext('2d')
+// See blogpost here for more details: https://roblouie.com/article/617
 
-let cameraOffset = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
-let SCROLL_SENSITIVITY = 0.0005
+const canvas = document.getElementById('canvas')
+const context = canvas.getContext('2d')
 
-function draw() {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+// See individual pixels when zooming
+context.imageSmoothingEnabled = false
 
-  // Translate to the canvas centre before zooming - so you'll always zoom on what you're looking directly at
-  ctx.translate(window.innerWidth / 2, window.innerHeight / 2)
-  ctx.scale(cameraZoom, cameraZoom)
-  ctx.translate(
-    -window.innerWidth / 2 + cameraOffset.x,
-    -window.innerHeight / 2 + cameraOffset.y
-  )
-  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+// Simply used to display the mouse position and transformed mouse position
+const mousePos = document.getElementById('mouse-pos')
+const transformedMousePos = document.getElementById('transformed-mouse-pos')
 
-  requestAnimationFrame(draw)
-}
-
-// Gets the relevant location from a mouse or single touch event
-function getEventLocation(e) {
-  return { x: e.clientX, y: e.clientY }
-}
+const image = new Image()
+image.src =
+  'https://roblouie.com/wp-content/uploads/2020/04/60788338_304920937106527_8424495022080625603_n.jpg'
+image.onload = drawImageToCanvas
 
 let isDragging = false
-let dragStart = { x: 0, y: 0 }
+let dragStartPosition = { x: 0, y: 0 }
+let currentTransformedCursor
 
-function onPointerDown(e) {
+function drawImageToCanvas() {
+  context.save()
+  context.setTransform(1, 0, 0, 1, 0, 0)
+  context.clearRect(0, 0, canvas.width, canvas.height)
+  context.restore()
+
+  context.drawImage(image, 0, 0, 200, 200)
+}
+
+function onMouseDown(event) {
   isDragging = true
-  dragStart.x = getEventLocation(e).x / cameraZoom - cameraOffset.x
-  dragStart.y = getEventLocation(e).y / cameraZoom - cameraOffset.y
+  dragStartPosition = getTransformedPoint(event.offsetX, event.offsetY)
 }
 
-function onPointerUp(e) {
-  isDragging = false
-  initialPinchDistance = null
-  lastZoom = cameraZoom
+function getTransformedPoint(x, y) {
+  const originalPoint = new DOMPoint(x, y)
+  return context.getTransform().invertSelf().transformPoint(originalPoint)
 }
 
-function onPointerMove(e) {
+function onMouseMove(event) {
+  currentTransformedCursor = getTransformedPoint(event.offsetX, event.offsetY)
+  mousePos.innerText = `Original X: ${event.offsetX}, Y: ${event.offsetY}`
+  transformedMousePos.innerText = `Transformed X: ${currentTransformedCursor.x}, Y: ${currentTransformedCursor.y}`
+
   if (isDragging) {
-    cameraOffset.x = getEventLocation(e).x / cameraZoom - dragStart.x
-    cameraOffset.y = getEventLocation(e).y / cameraZoom - dragStart.y
+    context.translate(
+      currentTransformedCursor.x - dragStartPosition.x,
+      currentTransformedCursor.y - dragStartPosition.y
+    )
+    drawImageToCanvas()
   }
 }
 
-function handleTouch(e, singleTouchHandler) {
-  if (e.touches.length == 1) {
-    singleTouchHandler(e)
-  } else if (e.type == 'touchmove' && e.touches.length == 2) {
-    isDragging = false
-    handlePinch(e)
-  }
+function onMouseUp() {
+  isDragging = false
 }
 
-let initialPinchDistance = null
+function onWheel(event) {
+  const zoom = event.deltaY < 0 ? 1.1 : 0.9
 
-function handlePinch(e) {
-  e.preventDefault()
+  context.translate(currentTransformedCursor.x, currentTransformedCursor.y)
+  context.scale(zoom, zoom)
+  context.translate(-currentTransformedCursor.x, -currentTransformedCursor.y)
 
-  let touch1 = { x: e.touches[0].clientX, y: e.touches[0].clientY }
-  let touch2 = { x: e.touches[1].clientX, y: e.touches[1].clientY }
-
-  // This is distance squared, but no need for an expensive sqrt as it's only used in ratio
-  let currentDistance = (touch1.x - touch2.x) ** 2 + (touch1.y - touch2.y) ** 2
-
-  if (initialPinchDistance == null) {
-    initialPinchDistance = currentDistance
-  } else {
-    adjustZoom(null, currentDistance / initialPinchDistance)
-  }
+  drawImageToCanvas()
+  event.preventDefault()
 }
 
-canvas.addEventListener('mousedown', onPointerDown)
-canvas.addEventListener('mouseup', onPointerUp)
-canvas.addEventListener('mousemove', onPointerMove)
+canvas.addEventListener('mousedown', onMouseDown)
+canvas.addEventListener('mousemove', onMouseMove)
+canvas.addEventListener('mouseup', onMouseUp)
+canvas.addEventListener('wheel', onWheel)
 
-// Ready, set, go
-draw()
+function getTransformedPoint(x, y) {
+  const transform = context.getTransform()
+  const invertedScaleX = 1 / transform.a
+  const invertedScaleY = 1 / transform.d
+
+  const transformedX = invertedScaleX * (x - transform.e)
+  const transformedY = invertedScaleY * y - invertedScaleY * transform.f
+
+  return { x: transformedX, y: transformedY }
+}

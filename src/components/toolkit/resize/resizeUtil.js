@@ -1,6 +1,6 @@
 import { annotatorEl } from '/src/components/modules/getElement.js'
 import CoordStore from '/src/store/coordStore.js'
-export default function applyChangesOnResize(img, canvas, ctx) {
+export function applyChangesOnResize(img, canvas, ctx) {
   const scaleFactor = Math.min(
     canvas.width / img.width,
     canvas.height / img.height

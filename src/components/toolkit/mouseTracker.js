@@ -5,7 +5,7 @@ import {
   coordinateIndex,
 } from '/src/components/modules/getElement.js'
 
-export default function chaseCoordinate(img) {
+export default function chaseWholeCanvasCoordinate(img) {
   annotatorEl.addEventListener('mousemove', onMouseMove)
   function onMouseMove() {
     const { width: imgWidth, height: imgHeight } = img
