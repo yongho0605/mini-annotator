@@ -12,7 +12,7 @@ export function applyGuideLine() {
   const canvasWidth = guideLineCanvas.width
   const canvasHeight = guideLineCanvas.height
   function onMouseMove(e) {
-    const { x, y } = getCanvasMousePosition(e, guideLineCanvas)
+    const mousePos = getCanvasMousePosition(e, guideLineCanvas)
     const rect = guideLineCanvas.getBoundingClientRect()
 
     const size = {
@@ -25,17 +25,15 @@ export function applyGuideLine() {
         height: rect.height,
       },
     }
-
-    const coordinate = { x, y }
     const crossLine = guideLine.getWidth(size)
 
     clearCanvas()
-    guideLine.draw(guideLineCtx, coordinate, size, crossLine)
+    guideLine.draw(guideLineCtx, mousePos, size, crossLine)
 
     CoordStore.DOM.x = e.clientX
     CoordStore.DOM.y = e.clientY
-    CoordStore.canvas.x = x
-    CoordStore.canvas.y = y
+    CoordStore.canvas.x = mousePos.x
+    CoordStore.canvas.y = mousePos.y
   }
 
   function onMouseLeave() {
