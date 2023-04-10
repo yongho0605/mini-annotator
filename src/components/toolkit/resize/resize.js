@@ -1,5 +1,9 @@
 import { applyChangesOnResize } from '/src/components/toolkit/resize/resizeUtil.js'
-import { imgCanvas, imgCtx } from '/src/components/canvas/canvasExport.js'
+import {
+  imgCanvas,
+  imgCtx,
+  guideLineCanvas,
+} from '/src/components/canvas/canvasExport.js'
 import {
   resizeHandlerEl,
   classSelectorEl,
@@ -7,6 +11,7 @@ import {
   mainEl,
 } from '/src/components/modules/elements.js'
 
+const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {
   init: (img) => {
     imgCanvas.width = imgCanvas.clientWidth
@@ -39,9 +44,9 @@ const resize = {
             x = maxSize
             return
           } else {
-            const currentDOMWidth = `${Math.round(x)}px`
-            classSelectorEl.style.width = currentDOMWidth
-            annotatorEl.style.width = currentDOMWidth
+            classSelectorEl.style.width = `${x}px`
+            annotatorEl.style.width = `${x}px`
+            guideLineCanvas.style.width = `${guideLineCanvasWidth}px`
           }
         }
 

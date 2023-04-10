@@ -60,6 +60,7 @@ main {
 .annotator {
   position: relative;
   width: 80%;
+  overflow: hidden;
 }
 
 #imgCanvas {
