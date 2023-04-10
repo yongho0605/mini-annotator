@@ -4,12 +4,9 @@ import {
   guideLineCanvas,
   guideLineCtx,
 } from '/src/components/canvas/canvasExport.js'
-import {
-  getGuideLineWidth,
-  drawGuideLine,
-} from '/src/components/modules/getGuideLineFunction.js'
+import guideLine from '/src/components/modules/guideLine.js'
 
-export default function activeGuideLine() {
+export function applyGuideLine() {
   guideLineCanvas.addEventListener('mousemove', onMouseMove)
   guideLineCanvas.addEventListener('mouseleave', onMouseLeave)
   const canvasWidth = guideLineCanvas.width
@@ -30,10 +27,11 @@ export default function activeGuideLine() {
     }
 
     const coordinate = { x, y }
-    const crossLine = getGuideLineWidth(size)
+    const crossLine = guideLine.getWidth(size)
 
     clearCanvas()
-    drawGuideLine(guideLineCtx, coordinate, size, crossLine)
+    guideLine.draw(guideLineCtx, coordinate, size, crossLine)
+
     CoordStore.DOM.x = e.clientX
     CoordStore.DOM.y = e.clientY
     CoordStore.canvas.x = x
