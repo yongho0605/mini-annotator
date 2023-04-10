@@ -3,7 +3,7 @@ import { imgCanvas, imgCtx } from '/src/components/canvas/canvasExport.js'
 import {
   annotatorEl,
   coordinateIndex,
-} from '/src/components/modules/getElement.js'
+} from '/src/components/modules/elements.js'
 
 export default function chaseWholeCanvasCoordinate(img) {
   annotatorEl.addEventListener('mousemove', onMouseMove)
@@ -11,18 +11,18 @@ export default function chaseWholeCanvasCoordinate(img) {
     const { width: imgWidth, height: imgHeight } = img
     const transform = imgCtx.getTransform()
 
-    const roundFloatingPoint_2 = (num) => Number(num.toFixed(2))
+    const fixedSecondDecimalPoint = (num) => Number(num.toFixed(2))
 
     CoordStore.canvasOnImg.x = CoordStore.canvas.x - CoordStore.imgTranslate.x
     CoordStore.canvasOnImg.y = CoordStore.canvas.y - CoordStore.imgTranslate.y
-    CoordStore.canvasTranslate.x = roundFloatingPoint_2(transform.e)
-    CoordStore.canvasTranslate.y = roundFloatingPoint_2(transform.f)
-    CoordStore.canvasScale.x = roundFloatingPoint_2(transform.a)
-    CoordStore.canvasScale.y = roundFloatingPoint_2(transform.d)
-    CoordStore.imgScale.x = roundFloatingPoint_2(
+    CoordStore.canvasTranslate.x = fixedSecondDecimalPoint(transform.e)
+    CoordStore.canvasTranslate.y = fixedSecondDecimalPoint(transform.f)
+    CoordStore.canvasScale.x = fixedSecondDecimalPoint(transform.a)
+    CoordStore.canvasScale.y = fixedSecondDecimalPoint(transform.d)
+    CoordStore.imgScale.x = fixedSecondDecimalPoint(
       (imgCanvas.width * transform.a) / imgWidth
     )
-    CoordStore.imgScale.y = roundFloatingPoint_2(
+    CoordStore.imgScale.y = fixedSecondDecimalPoint(
       (imgCanvas.height * transform.d) / imgHeight
     )
     CoordStore.naturalImgSize.width = imgWidth
