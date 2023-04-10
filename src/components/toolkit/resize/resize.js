@@ -7,47 +7,50 @@ import {
   mainEl,
 } from '/src/components/modules/getElement.js'
 
-export default function applyResize(img) {
-  function resizeCanvas() {
+const resize = {
+  init: (img) => {
     applyChangesOnResize(img, imgCanvas, imgCtx)
-  }
-  const resizeObserver = new ResizeObserver(resizeCanvas)
-  resizeHandlerEl.addEventListener('mousedown', onMouseDown)
-  window.addEventListener('resize', onResize)
+  },
+  applyAnnotator: (img) => {
+    function onResize() {
+      resize.init(img)
+    }
+    const resizeObserver = new ResizeObserver(onResize)
+    resizeHandlerEl.addEventListener('mousedown', onMouseDown)
+    window.addEventListener('resize', onResize)
 
-  function onResize() {
-    resizeCanvas()
-  }
+    function onMouseDown(e) {
+      if (e.button === 0) {
+        mainEl.addEventListener('mousemove', onMouseMove)
+        mainEl.addEventListener('mouseup', onMouseUp)
+        resizeObserver.observe(imgCanvas)
 
-  function onMouseDown(e) {
-    if (e.button === 0) {
-      mainEl.addEventListener('mousemove', onMouseMove)
-      mainEl.addEventListener('mouseup', onMouseUp)
-      resizeObserver.observe(imgCanvas)
+        function onMouseMove(e) {
+          let x = e.clientX
+          const minSize = 250
+          const maxSize = Math.floor(screen.width * 0.8)
 
-      function onMouseMove(e) {
-        let x = e.clientX
-        const minSize = 250
-        const maxSize = Math.floor(screen.width * 0.8)
+          if (x < minSize) {
+            x = minSize
+            return
+          } else if (x > maxSize) {
+            x = maxSize
+            return
+          } else {
+            const currentDOMWidth = `${Math.round(x)}px`
+            classSelectorEl.style.width = currentDOMWidth
+            annotatorEl.style.width = currentDOMWidth
+          }
+        }
 
-        if (x < minSize) {
-          x = minSize
-          return
-        } else if (x > maxSize) {
-          x = maxSize
-          return
-        } else {
-          const width = `${Math.round(x)}px`
-          classSelectorEl.style.width = width
-          annotatorEl.style.width = width
+        function onMouseUp() {
+          mainEl.removeEventListener('mousemove', onMouseMove)
+          mainEl.removeEventListener('mouseup', onMouseUp)
+          resizeObserver.unobserve(imgCanvas)
         }
       }
-
-      function onMouseUp() {
-        mainEl.removeEventListener('mousemove', onMouseMove)
-        mainEl.removeEventListener('mouseup', onMouseUp)
-        resizeObserver.unobserve(imgCanvas)
-      }
     }
-  }
+  },
 }
+
+export default resize
