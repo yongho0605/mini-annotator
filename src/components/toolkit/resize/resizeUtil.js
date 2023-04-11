@@ -40,13 +40,9 @@ export function applyChangesOnResize(img, canvas, ctx) {
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   if (rect.width > rect.height) {
-    if (scaledRectWidth < canvasImgWidthRatio) {
-      canvasImgWidth = getScaledCanvasWidth(verticalAspect)
-    }
+    canvasImgWidth = getScaledCanvasWidth(verticalAspect)
   } else {
-    if (img.width > canvas.width) {
-      canvasImgHeight = getScaledCanvasHeight(horizontalAspect)
-    }
+    canvasImgHeight = getScaledCanvasHeight(horizontalAspect)
   }
 
   reassignmentCoord()
