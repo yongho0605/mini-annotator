@@ -10,14 +10,10 @@ export function applyChangesOnResize(img, canvas, ctx) {
   let canvasImgHeight = img.height * scaleFactor
 
   const rect = annotatorEl.getBoundingClientRect()
-  const imgHeight = img.height / img.width
-  const rectHeight = rect.height / rect.width
   const canvasRectWidth = canvas.width / rect.width
   const canvasRectHeight = canvas.height / rect.height
   const verticalAspect = canvasRectWidth / canvasRectHeight
   const horizontalAspect = canvasRectHeight / canvasRectWidth
-  const canvasImgWidthRatio = img.width * (imgHeight * rectHeight)
-  const scaledRectWidth = rect.width * scaleFactor
 
   let x = (canvas.width - canvasImgWidth) / 2
   let y = (canvas.height - canvasImgHeight) / 2
