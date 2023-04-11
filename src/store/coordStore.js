@@ -1,8 +1,4 @@
 const coordStore = {
-  DOM: {
-    x: 0,
-    y: 0,
-  },
   canvas: {
     x: 0,
     y: 0,
