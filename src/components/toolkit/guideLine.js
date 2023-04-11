@@ -24,10 +24,8 @@ export function applyGuideLine() {
     ctx.lineTo(canvas.width, y)
     ctx.stroke()
 
-    CoordStore.DOM.x = e.clientX
-    CoordStore.DOM.y = e.clientY
-    CoordStore.canvas.x = x
-    CoordStore.canvas.y = y
+    CoordStore.canvas.x = e.clientX
+    CoordStore.canvas.y = e.clientY
   }
 
   function onMouseLeave() {
