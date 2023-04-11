@@ -29,7 +29,6 @@ export default function chaseWholeCanvasCoordinate(img) {
     CoordStore.naturalImgSize.height = imgHeight
 
     coordinateIndex.innerHTML = `
-    <li>client:(${CoordStore.DOM.x}, ${CoordStore.DOM.y})</li>
     <li>canvas:(${CoordStore.canvas.x}, ${CoordStore.canvas.y})</li>
     <li>canvasOnImg:(${CoordStore.canvasOnImg.x}, ${CoordStore.canvasOnImg.y})</li>
     <li>canvasTranslate:(${CoordStore.canvasTranslate.x}, ${CoordStore.canvasTranslate.y})</li>
