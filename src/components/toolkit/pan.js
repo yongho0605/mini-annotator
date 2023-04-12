@@ -1,16 +1,32 @@
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
-import { guideLineCanvas, imgCtx } from '/src/components/canvas/canvasExport.js'
+import {
+  guideLineCanvas,
+  imgCtx,
+  imgCanvas,
+} from '/src/components/canvas/canvasExport.js'
 import PanState from '/src/store/panState.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
+import CoordStore from '/src/store/coordStore.js'
 
-export default function panning(img) {
+export default function applyPan(img) {
   function removeEvent() {
     guideLineCanvas.removeEventListener('mousemove', onMouseMove)
   }
 
   function onMouseMove(e) {
-    imgCtx.clearRect(0, 0, imgCanvas.width, imgCanvas.height)
-    const { x, y } = getCanvasMousePosition(e, guideLineCanvas)
+    imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
+    const { imgTranslate, imgSize, canvasScale } = CoordStore
+    const { x, y } = getCanvasMousePosition(e, imgCanvas)
+
+    imgCtx.setTransform(canvasScale.x, 0, 0, canvasScale.y, x, y)
+
+    imgCtx.drawImage(
+      img,
+      imgTranslate.x,
+      imgTranslate.y,
+      imgSize.width,
+      imgSize.height
+    )
   }
 
   function checkPressed() {
