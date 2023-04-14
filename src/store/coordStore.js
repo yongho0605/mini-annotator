@@ -3,7 +3,7 @@ const coordStore = {
     x: 0,
     y: 0,
   },
-  canvasOnImg: {
+  imgOnCanvas: {
     x: 0,
     y: 0,
   },
@@ -30,6 +30,14 @@ const coordStore = {
   naturalImgSize: {
     width: 0,
     height: 0,
+  },
+  scaledImgSize: {
+    width: 0,
+    height: 0,
+  },
+  scaledImgTranslate: {
+    x: 0,
+    y: 0,
   },
 }
 
