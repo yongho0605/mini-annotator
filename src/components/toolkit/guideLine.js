@@ -1,4 +1,3 @@
-import CoordStore from '/src/store/coordStore.js'
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   guideLineCanvas as canvas,
@@ -23,9 +22,6 @@ export function applyGuideLine() {
     ctx.moveTo(0, y)
     ctx.lineTo(canvas.width, y)
     ctx.stroke()
-
-    CoordStore.canvas.x = e.clientX
-    CoordStore.canvas.y = e.clientY
   }
 
   function onMouseLeave() {
