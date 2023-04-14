@@ -16,7 +16,7 @@ export default function applyZoom(img) {
   const mouseCoordArr = []
 
   function onWheel(e) {
-    const { x, y } = getCanvasMousePosition(e, imgCanvas)
+    let { x, y } = getCanvasMousePosition(e, imgCanvas)
     const { imgTranslate, imgSize } = CoordStore
     const scaleFactor = e.deltaY > 0 ? 0.9 : 1.1
     imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
@@ -33,32 +33,30 @@ export default function applyZoom(img) {
       function compareScaledCondition() {
         scale.before = scale.current
         scale.current = scale.before * scaleFactor
-
-        const currentMouseCoord = {
-          scale: scale.current,
-          x,
-          y,
-        }
         if (e.deltaY === 0) {
           scale.current = scale.before
           return
         }
-        mouseCoordArr.push(currentMouseCoord)
-        mouseCoordArr.length > 2 && mouseCoordArr.shift()
-
-        const getScaleComputedSize = (size) => size - size * scale.current
-        const translate = {
-          x: getScaleComputedSize(imgCanvas.width) / 2,
-          y: getScaleComputedSize(imgCanvas.height) / 2,
+        const currentMouseCoord = { x, y }
+        if (
+          mouseCoordArr.length < 2 ||
+          mouseCoordArr[0].x !== x ||
+          mouseCoordArr[0].y !== y
+        ) {
+          mouseCoordArr.push(currentMouseCoord)
         }
-        imgCtx.setTransform(
-          scale.current,
-          0,
-          0,
-          scale.current,
-          translate.x,
-          translate.y
-        )
+        mouseCoordArr.length > 2 && mouseCoordArr.shift()
+        const beforeCoord = {
+          x: mouseCoordArr[0].x,
+          y: mouseCoordArr[0].y,
+        }
+
+        imgCtx.setTransform(scale.current, 0, 0, scale.current, x, y)
+        if (beforeCoord.x !== x || beforeCoord.y !== y) {
+          x = (x - beforeCoord.x) / scale.before + beforeCoord.x
+          y = (y - beforeCoord.y) / scale.before + beforeCoord.y
+        }
+        imgCtx.translate(-x, -y)
       }
     }
     imgCtx.drawImage(
@@ -69,5 +67,6 @@ export default function applyZoom(img) {
       imgSize.height
     )
   }
+
   guideLineCanvas.addEventListener('wheel', onWheel)
 }
