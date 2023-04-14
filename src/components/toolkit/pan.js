@@ -13,7 +13,13 @@ export default function applyPan(img) {
     guideLineCanvas.removeEventListener('mousemove', onMouseMove)
   }
 
+  const panedPosition = {
+    init: 0,
+    moved: 0,
+  }
+
   function onMouseMove(e) {
+    guideLineCanvas.style.cursor = 'grabbing'
     imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
     const { imgTranslate, imgSize, canvasScale } = CoordStore
     const { x, y } = getCanvasMousePosition(e, imgCanvas)
@@ -31,36 +37,43 @@ export default function applyPan(img) {
 
   function checkPressed() {
     if (PanState.spacePressed && PanState.mousePressed) {
+      guideLineCanvas.style.cursor = 'grabbing'
       guideLineCanvas.addEventListener('mousemove', onMouseMove)
       PanState.spacePressed = false
       PanState.mousePressed = false
     }
   }
 
-  function onKeyPress(e) {
-    if (e.code === 'Space') {
-      PanState.spacePressed = true
-      checkPressed()
-    }
-  }
-
-  function onKeyUp(e) {
-    if (e.code === 'Space') {
-      PanState.spacePressed = false
-      removeEvent()
-    }
-  }
-
   function onMouseDown(e) {
     if (e.button === MouseButtons.LEFT) {
       PanState.mousePressed = true
+      const { x, y } = getCanvasMousePosition(e, imgCanvas)
       checkPressed()
     }
   }
-
   function onMouseUp(e) {
     if (e.button === MouseButtons.LEFT) {
       PanState.mousePressed = false
+      guideLineCanvas.style.cursor = 'auto'
+      removeEvent()
+    }
+  }
+  function onKeyPress(e) {
+    if (e.repeat) {
+      return
+    }
+    if (e.code === 'Space') {
+      PanState.spacePressed = true
+      if (!PanState.mousePressed) {
+        guideLineCanvas.style.cursor = 'grab'
+      }
+      checkPressed()
+    }
+  }
+  function onKeyUp(e) {
+    if (e.code === 'Space') {
+      PanState.spacePressed = false
+      guideLineCanvas.style.cursor = 'auto'
       removeEvent()
     }
   }
