@@ -26,17 +26,19 @@ export function applyChangesOnTranslate(e, scale, coordCollection, ctx) {
       y = computedGLCoord.y
     }
 
+    function assignComputedGLCoord(targetCoord) {
+      computedGLCoord.x = (x - beforeGLCoord.x) / scale.before + targetCoord.x
+      computedGLCoord.y = (y - beforeGLCoord.y) / scale.before + targetCoord.y
+    }
+
     ctx.setTransform(scale.current, 0, 0, scale.current, x, y)
 
     if (beforeGLCoord.x !== x || beforeGLCoord.y !== y) {
-      console.log('변경 전', x, y)
-      computedGLCoord.x = (x - beforeGLCoord.x) / scale.before + beforeGLCoord.x
-      computedGLCoord.y = (y - beforeGLCoord.y) / scale.before + beforeGLCoord.y
+      computedGLCoord.x ? assignComputedGLCoord(computedGLCoord) : assignComputedGLCoord(beforeGLCoord)
       assignTranslationCoord()
     } else if (computedGLCoord.x) {
       assignTranslationCoord()
     }
-    console.log('변경 후', x, y)
     ctx.translate(-x, -y)
   }
 }
