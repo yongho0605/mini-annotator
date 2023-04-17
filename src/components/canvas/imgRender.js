@@ -1,6 +1,6 @@
-import { applyGuideLine } from '/src/components/toolkit/guideLine.js'
+import applyGuideLine from '/src/components/toolkit/guideLine.js'
 import applyZoom from '/src/components/toolkit/zoom/zoom.js'
-import applyPan from '/src/components/toolkit/pan.js'
+import applyPan from '/src/components/toolkit/pan/pan.js'
 import Resize from '/src/components/toolkit/resize/resize.js'
 import mouseTracker from '/src/components/toolkit/mouseTracker.js'
 
