@@ -1,19 +1,21 @@
+import ZoomStore from '/src/store/zoomStore.js'
+
 export function applyChangesOnTranslate(e, scale, coordCollection, ctx) {
-  const { mouseCoordArr, computedGLCoord, currentGLCoord } = coordCollection
+  const { mouseCoordArr, currentGLCoord } = coordCollection
   let { x, y } = currentGLCoord
 
-  if (scale.factor === 0.9 && scale.before > scale.min) {
+  if (scale.factor === 0.9 && ZoomStore.scale.before > scale.min) {
     compareCoordCondition()
-  } else if (scale.factor === 1.1 && scale.before < scale.max) {
+  } else if (scale.factor === 1.1 && ZoomStore.scale.before < scale.max) {
     compareCoordCondition()
   }
 
   function compareCoordCondition() {
-    scale.before = scale.current
-    scale.current = scale.before * scale.factor
+    ZoomStore.scale.before = ZoomStore.scale.current
+    ZoomStore.scale.current = ZoomStore.scale.before * scale.factor
 
     if (e.deltaY === 0) {
-      scale.current = scale.before
+      ZoomStore.scale.current = ZoomStore.scale.before
       return
     }
 
@@ -22,21 +24,20 @@ export function applyChangesOnTranslate(e, scale, coordCollection, ctx) {
     const beforeGLCoord = { x: mouseCoordArr[0].x, y: mouseCoordArr[0].y }
 
     function assignTranslationCoord() {
-      x = computedGLCoord.x
-      y = computedGLCoord.y
+      x = ZoomStore.translate.x
+      y = ZoomStore.translate.y
     }
 
     function assignComputedGLCoord(targetCoord) {
-      computedGLCoord.x = (x - beforeGLCoord.x) / scale.before + targetCoord.x
-      computedGLCoord.y = (y - beforeGLCoord.y) / scale.before + targetCoord.y
+      ZoomStore.translate.x = (x - beforeGLCoord.x) / ZoomStore.scale.before + targetCoord.x
+      ZoomStore.translate.y = (y - beforeGLCoord.y) / ZoomStore.scale.before + targetCoord.y
     }
 
-    ctx.setTransform(scale.current, 0, 0, scale.current, x, y)
-
+    ctx.setTransform(ZoomStore.scale.current, 0, 0, ZoomStore.scale.current, x, y)
     if (beforeGLCoord.x !== x || beforeGLCoord.y !== y) {
-      computedGLCoord.x ? assignComputedGLCoord(computedGLCoord) : assignComputedGLCoord(beforeGLCoord)
+      ZoomStore.translate.x ? assignComputedGLCoord(ZoomStore.translate) : assignComputedGLCoord(beforeGLCoord)
       assignTranslationCoord()
-    } else if (computedGLCoord.x) {
+    } else if (ZoomStore.translate.x) {
       assignTranslationCoord()
     }
     ctx.translate(-x, -y)

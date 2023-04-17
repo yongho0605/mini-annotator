@@ -5,10 +5,7 @@ import { applyChangesOnTranslate } from '/src/components/toolkit/zoom/zoomUtil.j
 
 export default function applyZoom(img) {
   const mouseCoordArr = []
-  const computedGLCoord = { x: null, y: null }
   const scale = {
-    before: 1,
-    current: 1,
     min: 0.05,
     max: 100,
     factor: null,
@@ -17,7 +14,7 @@ export default function applyZoom(img) {
   function onWheel(e) {
     scale.factor = e.deltaY > 0 ? 0.9 : 1.1
     const currentGLCoord = getCanvasMousePosition(e, imgCanvas)
-    const coordCollection = { mouseCoordArr, computedGLCoord, currentGLCoord }
+    const coordCollection = { mouseCoordArr, currentGLCoord }
     imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
 
     applyChangesOnTranslate(e, scale, coordCollection, imgCtx)

@@ -6,7 +6,6 @@ export function applyChangesOnResize(img, canvas, ctx) {
   let canvasImgWidth = img.width * scaleFactor
   let canvasImgHeight = img.height * scaleFactor
 
-  const transform = ctx.getTransform()
   const rect = annotatorEl.getBoundingClientRect()
   const canvasRectWidth = canvas.width / rect.width
   const canvasRectHeight = canvas.height / rect.height
@@ -27,10 +26,10 @@ export function applyChangesOnResize(img, canvas, ctx) {
     y = (canvas.height - canvasImgHeight) / 2
   }
   function saveCoordStore(x, y, imgWidth, imgHeight) {
-    CoordStore.img.translation.x = x * transform.a
-    CoordStore.img.translation.y = y * transform.d
-    CoordStore.img.size.width = imgWidth * transform.a
-    CoordStore.img.size.height = imgHeight * transform.d
+    CoordStore.img.translation.x = x
+    CoordStore.img.translation.y = y
+    CoordStore.img.size.width = imgWidth
+    CoordStore.img.size.height = imgHeight
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   if (rect.width > rect.height) {
