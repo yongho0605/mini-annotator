@@ -30,10 +30,10 @@ export function applyChangesOnResize(img, canvas, ctx) {
     y = (canvas.height - canvasImgHeight) / 2
   }
   function saveCoordStore(x, y, imgWidth, imgHeight) {
-    CoordStore.imgTranslate.x = x * transform.a
-    CoordStore.imgTranslate.y = y * transform.d
-    CoordStore.imgSize.width = imgWidth * transform.a
-    CoordStore.imgSize.height = imgHeight * transform.d
+    CoordStore.img.translation.x = x * transform.a
+    CoordStore.img.translation.y = y * transform.d
+    CoordStore.img.size.width = imgWidth * transform.a
+    CoordStore.img.size.height = imgHeight * transform.d
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   if (rect.width > rect.height) {

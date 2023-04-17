@@ -18,38 +18,38 @@ export default function chaseWholeCanvasCoordinate(img) {
     const fixedSecondDecimalPoint = (computedValue) =>
       Number(computedValue.toFixed(2))
 
-    CoordStore.canvas.x = x
-    CoordStore.canvas.y = y
-    CoordStore.imgOnCanvas.x = fixedSecondDecimalPoint(
-      CoordStore.canvas.x - CoordStore.imgTranslate.x
+    CoordStore.canvas.guideLine.x = x
+    CoordStore.canvas.guideLine.y = y
+    CoordStore.img.guideLine.x = fixedSecondDecimalPoint(
+      CoordStore.canvas.guideLine.x - CoordStore.img.translation.x
     )
-    CoordStore.imgOnCanvas.y = fixedSecondDecimalPoint(
-      CoordStore.canvas.y - CoordStore.imgTranslate.y
+    CoordStore.img.guideLine.y = fixedSecondDecimalPoint(
+      CoordStore.canvas.guideLine.y - CoordStore.img.translation.y
     )
-    CoordStore.canvasTranslate.x = fixedSecondDecimalPoint(transform.e)
-    CoordStore.canvasTranslate.y = fixedSecondDecimalPoint(transform.f)
-    CoordStore.canvasScale.x = fixedSecondDecimalPoint(transform.a)
-    CoordStore.canvasScale.y = fixedSecondDecimalPoint(transform.d)
-    CoordStore.imgScale.x = fixedSecondDecimalPoint(
+    CoordStore.canvas.translation.x = fixedSecondDecimalPoint(transform.e)
+    CoordStore.canvas.translation.y = fixedSecondDecimalPoint(transform.f)
+    CoordStore.canvas.scale.x = fixedSecondDecimalPoint(transform.a)
+    CoordStore.canvas.scale.y = fixedSecondDecimalPoint(transform.d)
+    CoordStore.img.scale.x = fixedSecondDecimalPoint(
       (canvas.width * transform.a) / imgWidth
     )
-    CoordStore.imgScale.y = fixedSecondDecimalPoint(
+    CoordStore.img.scale.y = fixedSecondDecimalPoint(
       (canvas.height * transform.d) / imgHeight
     )
-    CoordStore.naturalImgSize.width = imgWidth
-    CoordStore.naturalImgSize.height = imgHeight
+    CoordStore.img.naturalSize.width = imgWidth
+    CoordStore.img.naturalSize.height = imgHeight
 
     coordinateIndex.innerHTML = `
-    <li>canvas:(${CoordStore.canvas.x}, ${CoordStore.canvas.y})</li>
-    <li>imgOnCanvas:(${CoordStore.imgOnCanvas.x}, ${CoordStore.imgOnCanvas.y})</li>
-    <li>canvasTranslate:(${CoordStore.canvasTranslate.x}, ${CoordStore.canvasTranslate.y})</li>
-    <li>imgTranslate:(${CoordStore.imgTranslate.x}, ${CoordStore.imgTranslate.y})</li>
-    <li>scaledImgTranslate: (${CoordStore.scaledImgTranslate.x}, ${CoordStore.scaledImgTranslate.y})</li>
-    <li>canvasScale:(${CoordStore.canvasScale.x}, ${CoordStore.canvasScale.y})</li>
-    <li>imgScale: (${CoordStore.imgScale.x}, ${CoordStore.imgScale.y})</li>
-    <li>ImgSize width: ${CoordStore.imgSize.width} height: ${CoordStore.imgSize.height}</li>
-    <li>scaledImgSize width: ${CoordStore.scaledImgSize.width} height: ${CoordStore.scaledImgSize.height}</li>
-    <li>naturalImgSize width: ${CoordStore.naturalImgSize.width} height: ${CoordStore.naturalImgSize.height}</li>
+    <li>canvas.guideLine:(${CoordStore.canvas.guideLine.x}, ${CoordStore.canvas.guideLine.y})</li>
+    <li>img.guideLine:(${CoordStore.img.guideLine.x}, ${CoordStore.img.guideLine.y})</li>
+    <li>canvas.translation:(${CoordStore.canvas.translation.x}, ${CoordStore.canvas.translation.y})</li>
+    <li>img.translation:(${CoordStore.img.translation.x}, ${CoordStore.img.translation.y})</li>
+    <li>img.scaledTranslation: (${CoordStore.img.scaledTranslation.x}, ${CoordStore.img.scaledTranslation.y})</li>
+    <li>canvas.scale:(${CoordStore.canvas.scale.x}, ${CoordStore.canvas.scale.y})</li>
+    <li>img.scale: (${CoordStore.img.scale.x}, ${CoordStore.img.scale.y})</li>
+    <li>img.size width: ${CoordStore.img.size.width} height: ${CoordStore.img.size.height}</li>
+    <li>img.scaledSize width: ${CoordStore.img.scaledSize.width} height: ${CoordStore.img.scaledSize.height}</li>
+    <li>img.naturalSize width: ${CoordStore.img.naturalSize.width} height: ${CoordStore.img.naturalSize.height}</li>
     `
   }
 }

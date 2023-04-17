@@ -1,43 +1,47 @@
 const coordStore = {
   canvas: {
-    x: 0,
-    y: 0,
+    guideLine: {
+      x: 0,
+      y: 0,
+    },
+    translation: {
+      x: 0,
+      y: 0,
+    },
+    scale: {
+      x: 0,
+      y: 0,
+    },
   },
-  imgOnCanvas: {
-    x: 0,
-    y: 0,
-  },
-  canvasTranslate: {
-    x: 0,
-    y: 0,
-  },
-  imgTranslate: {
-    x: 0,
-    y: 0,
-  },
-  canvasScale: {
-    x: 0,
-    y: 0,
-  },
-  imgScale: {
-    x: 0,
-    y: 0,
-  },
-  imgSize: {
-    width: 0,
-    height: 0,
-  },
-  naturalImgSize: {
-    width: 0,
-    height: 0,
-  },
-  scaledImgSize: {
-    width: 0,
-    height: 0,
-  },
-  scaledImgTranslate: {
-    x: 0,
-    y: 0,
+  img: {
+    guideLine: {
+      x: 0,
+      y: 0,
+    },
+    translation: {
+      x: 0,
+      y: 0,
+    },
+    scale: {
+      x: 0,
+      y: 0,
+    },
+    size: {
+      width: 0,
+      height: 0,
+    },
+    naturalSize: {
+      width: 0,
+      height: 0,
+    },
+    scaledSize: {
+      width: 0,
+      height: 0,
+    },
+    scaledTranslation: {
+      x: 0,
+      y: 0,
+    },
   },
 }
 
