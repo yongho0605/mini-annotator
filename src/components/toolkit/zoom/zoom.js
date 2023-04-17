@@ -9,7 +9,7 @@ export default function applyZoom(img) {
   const scale = {
     before: 1,
     current: 1,
-    min: 0.1,
+    min: 0.05,
     max: 100,
     factor: null,
   }
