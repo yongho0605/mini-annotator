@@ -1,8 +1,5 @@
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
-import {
-  guideLineCanvas as canvas,
-  guideLineCtx as ctx,
-} from '/src/components/canvas/canvasExport.js'
+import { guideLineCanvas as canvas, guideLineCtx as ctx } from '/src/components/canvas/canvasExport.js'
 
 export function applyGuideLine() {
   canvas.addEventListener('mousemove', onMouseMove)
