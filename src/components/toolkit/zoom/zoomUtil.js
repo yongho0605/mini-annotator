@@ -4,7 +4,7 @@ export function applyChangesOnTranslate(
   e,
   scale,
   mouseCoordArr,
-  currentGLCoord,
+  originCurrentGLCoord,
   ctx
 ) {
   if (scale.factor === 0.9 && Store.zoom.scale.current > scale.min) {
@@ -14,6 +14,7 @@ export function applyChangesOnTranslate(
   }
 
   function compareCoordCondition() {
+    const currentGLCoord = { ...originCurrentGLCoord }
     Store.zoom.scale.before = Store.zoom.scale.current
     Store.zoom.scale.current = Store.zoom.scale.before * scale.factor
 
