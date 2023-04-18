@@ -1,4 +1,4 @@
-import Store from '/src/Store/Store.js'
+import Store from '/src/store/store.js'
 
 export function applyChangesOnTranslate(
   e,
@@ -23,7 +23,7 @@ export function applyChangesOnTranslate(
       return
     }
 
-    mouseCoordArr.push({ ...currentGLCoord })
+    mouseCoordArr.push({ ...originCurrentGLCoord })
     mouseCoordArr.length > 2 && mouseCoordArr.shift()
     const beforeGLCoord = { x: mouseCoordArr[0].x, y: mouseCoordArr[0].y }
 
@@ -40,6 +40,9 @@ export function applyChangesOnTranslate(
       Store.zoom.translate.y = getComputedCoord('y')
     }
 
+    const compareCoordCondition = (axis) =>
+      beforeGLCoord[axis] !== currentGLCoord[axis]
+
     ctx.setTransform(
       Store.zoom.scale.current,
       0,
@@ -48,10 +51,7 @@ export function applyChangesOnTranslate(
       currentGLCoord.x,
       currentGLCoord.y
     )
-    if (
-      beforeGLCoord.x !== currentGLCoord.x ||
-      beforeGLCoord.y !== currentGLCoord.y
-    ) {
+    if (compareCoordCondition('x') || compareCoordCondition('y')) {
       Store.zoom.translate.x
         ? assignComputedGLCoord(Store.zoom.translate)
         : assignComputedGLCoord(beforeGLCoord)

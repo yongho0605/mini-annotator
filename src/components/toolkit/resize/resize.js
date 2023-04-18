@@ -36,7 +36,7 @@ const resize = {
         function onMouseMove(e) {
           Store.zoom.scale.current = 1
           Store.zoom.translate = { x: 0, y: 0 }
-          Store.pan.moved = { x: 0, y: 0 }
+          Store.pan.coord.moved = { x: 0, y: 0 }
           let x = e.clientX
           const minSize = 250
           const maxSize = Math.floor(screen.width * 0.8)

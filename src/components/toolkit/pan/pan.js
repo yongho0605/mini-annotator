@@ -9,7 +9,7 @@ import {
   cursorStyleHandler,
 } from '/src/components/toolkit/pan/panUtil.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
-import Store from '/src/Store/Store.js'
+import Store from '/src/store/store.js'
 import PressedState from '/src/store/state/panState.js'
 
 const pan = {
@@ -19,7 +19,6 @@ const pan = {
     }
 
     function onMouseMove(e) {
-      guideLineCanvas.style.cursor = 'grabbing'
       imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
       const currentGLCoord = getCanvasMousePosition(e, imgCanvas)
 
@@ -27,10 +26,10 @@ const pan = {
 
       imgCtx.drawImage(
         img,
-        Store.coord.img.translation.x,
-        Store.coord.img.translation.y,
-        Store.coord.img.size.width,
-        Store.coord.img.size.height
+        Store.img.translation.x,
+        Store.img.translation.y,
+        Store.img.size.width,
+        Store.img.size.height
       )
     }
 
@@ -42,7 +41,7 @@ const pan = {
     function onMouseDown(e) {
       if (e.button === MouseButtons.LEFT) {
         PressedState.mouse = true
-        Store.pan.init = getCanvasMousePosition(e, imgCanvas)
+        Store.pan.coord.init = getCanvasMousePosition(e, imgCanvas)
         checkPressed()
       }
     }
@@ -50,7 +49,7 @@ const pan = {
       const transform = imgCtx.getTransform()
       if (e.button === MouseButtons.LEFT) {
         PressedState.mouse = false
-        Store.pan.moved = { x: transform.e, y: transform.f }
+        Store.pan.coord.moved = { x: transform.e, y: transform.f }
         removeEvent()
       }
     }

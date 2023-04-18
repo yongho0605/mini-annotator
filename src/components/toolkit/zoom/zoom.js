@@ -1,4 +1,4 @@
-import Store from '/src/Store/Store.js'
+import Store from '/src/store/store.js'
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   imgCanvas,
@@ -28,10 +28,10 @@ const zoom = {
 
       imgCtx.drawImage(
         img,
-        Store.coord.img.translation.x,
-        Store.coord.img.translation.y,
-        Store.coord.img.size.width,
-        Store.coord.img.size.height
+        Store.img.translation.x,
+        Store.img.translation.y,
+        Store.img.size.width,
+        Store.img.size.height
       )
     }
 

@@ -1,4 +1,4 @@
-import Store from '/src/Store/Store.js'
+import store from '/src/store/store.js'
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   imgCanvas as canvas,
@@ -19,44 +19,44 @@ export default function chaseWholeCanvasCoordinate(img) {
     const fixedSecondDecimalPoint = (computedValue) =>
       Number(computedValue.toFixed(2))
 
-    Store.coord.canvas.guideLine.x = x
-    Store.coord.canvas.guideLine.y = y
-    Store.coord.img.guideLine.x = fixedSecondDecimalPoint(
-      Store.coord.canvas.guideLine.x - Store.coord.img.translation.x
+    store.canvas.guideLine.x = x
+    store.canvas.guideLine.y = y
+    store.img.guideLine.x = fixedSecondDecimalPoint(
+      store.canvas.guideLine.x - store.img.translation.x
     )
-    Store.coord.img.guideLine.y = fixedSecondDecimalPoint(
-      Store.coord.canvas.guideLine.y - Store.coord.img.translation.y
+    store.img.guideLine.y = fixedSecondDecimalPoint(
+      store.canvas.guideLine.y - store.img.translation.y
     )
-    Store.coord.canvas.translation.x = fixedSecondDecimalPoint(transform.e)
-    Store.coord.canvas.translation.y = fixedSecondDecimalPoint(transform.f)
-    Store.coord.canvas.scale.x = fixedSecondDecimalPoint(scale)
-    Store.coord.canvas.scale.y = fixedSecondDecimalPoint(scale)
-    Store.coord.img.scale.x = fixedSecondDecimalPoint(
+    store.canvas.translation.x = fixedSecondDecimalPoint(transform.e)
+    store.canvas.translation.y = fixedSecondDecimalPoint(transform.f)
+    store.canvas.scale.x = scale
+    store.canvas.scale.y = scale
+    store.img.scale.x = fixedSecondDecimalPoint(
       (canvas.width * scale) / imgWidth
     )
-    Store.coord.img.scale.y = fixedSecondDecimalPoint(
+    store.img.scale.y = fixedSecondDecimalPoint(
       (canvas.height * scale) / imgHeight
     )
-    Store.coord.img.scaledSize.width = fixedSecondDecimalPoint(
-      Store.coord.img.size.width * scale
+    store.img.scaledSize.width = fixedSecondDecimalPoint(
+      store.img.size.width * scale
     )
-    Store.coord.img.scaledSize.height = fixedSecondDecimalPoint(
-      Store.coord.img.size.height * scale
+    store.img.scaledSize.height = fixedSecondDecimalPoint(
+      store.img.size.height * scale
     )
-    Store.coord.img.naturalSize.width = imgWidth
-    Store.coord.img.naturalSize.height = imgHeight
+    store.img.naturalSize.width = imgWidth
+    store.img.naturalSize.height = imgHeight
 
     coordinateIndex.innerHTML = `
-    <li>canvasGuideLine:(${Store.coord.canvas.guideLine.x}, ${Store.coord.canvas.guideLine.y})</li>
-    <li>imgGuideLine:(${Store.coord.img.guideLine.x}, ${Store.coord.img.guideLine.y})</li>
-    <li>canvasTranslation:(${Store.coord.canvas.translation.x}, ${Store.coord.canvas.translation.y})</li>
-    <li>imgTranslation:(${Store.coord.img.translation.x}, ${Store.coord.img.translation.y})</li>
-    <li>imgScaledTranslation: (${Store.coord.img.scaledTranslation.x}, ${Store.coord.img.scaledTranslation.y})</li>
-    <li>canvasScale:(${Store.coord.canvas.scale.x}, ${Store.coord.canvas.scale.y})</li>
-    <li>imgScale: (${Store.coord.img.scale.x}, ${Store.coord.img.scale.y})</li>
-    <li>imgSize width: ${Store.coord.img.size.width} height: ${Store.coord.img.size.height}</li>
-    <li>imgScaledSize width: ${Store.coord.img.scaledSize.width} height: ${Store.coord.img.scaledSize.height}</li>
-    <li>imgNaturalSize width: ${Store.coord.img.naturalSize.width} height: ${Store.coord.img.naturalSize.height}</li>
+    <li>canvasGuideLine:(${store.canvas.guideLine.x}, ${store.canvas.guideLine.y})</li>
+    <li>imgGuideLine:(${store.img.guideLine.x}, ${store.img.guideLine.y})</li>
+    <li>canvasTranslation:(${store.canvas.translation.x}, ${store.canvas.translation.y})</li>
+    <li>imgTranslation:(${store.img.translation.x}, ${store.img.translation.y})</li>
+    <li>imgScaledTranslation: (${store.img.scaledTranslation.x}, ${store.img.scaledTranslation.y})</li>
+    <li>canvasScale:(${store.canvas.scale.x}, ${store.canvas.scale.y})</li>
+    <li>imgScale: (${store.img.scale.x}, ${store.img.scale.y})</li>
+    <li>imgSize width: ${store.img.size.width} height: ${store.img.size.height}</li>
+    <li>imgScaledSize width: ${store.img.scaledSize.width} height: ${store.img.scaledSize.height}</li>
+    <li>imgNaturalSize width: ${store.img.naturalSize.width} height: ${store.img.naturalSize.height}</li>
     `
   }
 }

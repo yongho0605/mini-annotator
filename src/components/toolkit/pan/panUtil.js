@@ -1,22 +1,27 @@
-import Store from '/src/Store/Store.js'
+import Store from '/src/store/store.js'
 import PressedState from '/src/store/state/panState.js'
 
-export function applyChangesOnPan(currentGLCoord, ctx) {
-  let { x, y } = currentGLCoord
-  if (Store.pan.moved.x) {
-    x = x - Store.pan.init.x + Store.pan.moved.x
-    y = y - Store.pan.init.y + Store.pan.moved.y
+export function applyChangesOnPan(originCurrentGLCoord, ctx) {
+  const { pan } = Store
+  const translate = { ...originCurrentGLCoord }
+  const getComputedDisplacement = (axis) =>
+    originCurrentGLCoord[axis] - pan.coord.init[axis]
+
+  if (pan.coord.moved.x) {
+    translate.x = getComputedDisplacement('x') + pan.coord.moved.x
+    translate.y = getComputedDisplacement('y') + pan.coord.moved.y
   } else {
-    x = x - Store.pan.init.x
-    y = y - Store.pan.init.y
+    translate.x = getComputedDisplacement('x')
+    translate.y = getComputedDisplacement('y')
   }
+
   ctx.setTransform(
-    Store.coord.canvas.scale.x,
+    Store.canvas.scale.x,
     0,
     0,
-    Store.coord.canvas.scale.y,
-    x,
-    y
+    Store.canvas.scale.y,
+    translate.x,
+    translate.y
   )
 }
 
