@@ -1,18 +1,14 @@
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import { guideLineCanvas, imgCtx, imgCanvas } from '/src/components/canvas/canvasExport.js'
-import PanState from '/src/store/panState.js'
+import { applyChangesOnPan } from '/src/components/toolkit/pan/panUtil.js'
+import PanState from '/src/store/pan/panState.js'
+import PanStore from '/src/store/pan/panStore.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
 import CoordStore from '/src/store/coordStore.js'
-import { applyChangesOnPan } from '/src/components/toolkit/pan/panUtil.js'
 
 export default function applyPan(img) {
   function removeEvent() {
     guideLineCanvas.removeEventListener('mousemove', onMouseMove)
-  }
-
-  const panCoord = {
-    init: { x: 0, y: 0 },
-    moved: { x: 0, y: 0 },
   }
 
   function onMouseMove(e) {
@@ -20,8 +16,7 @@ export default function applyPan(img) {
     imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
     const currentGLCoord = getCanvasMousePosition(e, imgCanvas)
 
-    applyChangesOnPan(panCoord, currentGLCoord, imgCtx)
-
+    applyChangesOnPan(PanStore, currentGLCoord, imgCtx)
     imgCtx.drawImage(
       img,
       CoordStore.img.translation.x,
@@ -43,7 +38,7 @@ export default function applyPan(img) {
   function onMouseDown(e) {
     if (e.button === MouseButtons.LEFT) {
       PanState.mousePressed = true
-      panCoord.init = getCanvasMousePosition(e, imgCanvas)
+      PanStore.init = getCanvasMousePosition(e, imgCanvas)
       checkPressed()
     }
   }
@@ -53,7 +48,7 @@ export default function applyPan(img) {
     if (e.button === MouseButtons.LEFT) {
       PanState.mousePressed = false
       guideLineCanvas.style.cursor = 'auto'
-      panCoord.moved = { x: transform.e, y: transform.f }
+      PanStore.moved = { x: transform.e, y: transform.f }
       removeEvent()
     }
   }

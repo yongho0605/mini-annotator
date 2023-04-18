@@ -2,6 +2,7 @@ import { applyChangesOnResize } from '/src/components/toolkit/resize/resizeUtil.
 import { imgCanvas, imgCtx, guideLineCanvas } from '/src/components/canvas/canvasExport.js'
 import { resizeHandlerEl, classSelectorEl, annotatorEl, mainEl } from '/src/components/modules/elements.js'
 import ZoomStore from '/src/store/zoomStore.js'
+import PanStore from '/src/store/pan/panStore.js'
 
 const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {
@@ -27,6 +28,7 @@ const resize = {
         function onMouseMove(e) {
           ZoomStore.scale.current = 1
           ZoomStore.translate = { x: 0, y: 0 }
+          PanStore.moved = { x: 0, y: 0 }
           let x = e.clientX
           const minSize = 250
           const maxSize = Math.floor(screen.width * 0.8)
