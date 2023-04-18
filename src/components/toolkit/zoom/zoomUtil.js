@@ -4,9 +4,9 @@ export function applyChangesOnTranslate(e, scale, coordCollection, ctx) {
   const { mouseCoordArr, currentGLCoord } = coordCollection
   let { x, y } = currentGLCoord
 
-  if (scale.factor === 0.9 && ZoomStore.scale.before > scale.min) {
+  if (scale.factor === 0.9 && ZoomStore.scale.current > scale.min) {
     compareCoordCondition()
-  } else if (scale.factor === 1.1 && ZoomStore.scale.before < scale.max) {
+  } else if (scale.factor === 1.1 && ZoomStore.scale.current < scale.max) {
     compareCoordCondition()
   }
 
@@ -23,7 +23,7 @@ export function applyChangesOnTranslate(e, scale, coordCollection, ctx) {
     mouseCoordArr.length > 2 && mouseCoordArr.shift()
     const beforeGLCoord = { x: mouseCoordArr[0].x, y: mouseCoordArr[0].y }
 
-    function assignTranslationCoord() {
+    function assignTranslation() {
       x = ZoomStore.translate.x
       y = ZoomStore.translate.y
     }
@@ -36,9 +36,9 @@ export function applyChangesOnTranslate(e, scale, coordCollection, ctx) {
     ctx.setTransform(ZoomStore.scale.current, 0, 0, ZoomStore.scale.current, x, y)
     if (beforeGLCoord.x !== x || beforeGLCoord.y !== y) {
       ZoomStore.translate.x ? assignComputedGLCoord(ZoomStore.translate) : assignComputedGLCoord(beforeGLCoord)
-      assignTranslationCoord()
+      assignTranslation()
     } else if (ZoomStore.translate.x) {
-      assignTranslationCoord()
+      assignTranslation()
     }
     ctx.translate(-x, -y)
   }
