@@ -1,4 +1,5 @@
 import Store from '/src/Store/Store.js'
+import PressedState from '/src/store/state/panState.js'
 
 export function applyChangesOnPan(currentGLCoord, ctx) {
   let { x, y } = currentGLCoord
@@ -17,4 +18,14 @@ export function applyChangesOnPan(currentGLCoord, ctx) {
     x,
     y
   )
+}
+
+export function cursorStyleHandler(canvas) {
+  if (PressedState.space) {
+    PressedState.mouse
+      ? (canvas.style.cursor = 'grabbing')
+      : (canvas.style.cursor = 'grab')
+  } else {
+    canvas.style.cursor = 'auto'
+  }
 }

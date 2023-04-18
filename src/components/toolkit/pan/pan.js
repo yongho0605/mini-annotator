@@ -4,9 +4,13 @@ import {
   imgCtx,
   imgCanvas,
 } from '/src/components/canvas/canvasExport.js'
-import { applyChangesOnPan } from '/src/components/toolkit/pan/panUtil.js'
+import {
+  applyChangesOnPan,
+  cursorStyleHandler,
+} from '/src/components/toolkit/pan/panUtil.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
 import Store from '/src/Store/Store.js'
+import PressedState from '/src/store/state/panState.js'
 
 const pan = {
   init(img) {
@@ -30,48 +34,40 @@ const pan = {
       )
     }
 
-    const pressedState = { space: false, mouse: false }
     function checkPressed() {
-      if (pressedState.space && pressedState.mouse) {
+      if (PressedState.space && PressedState.mouse) {
         guideLineCanvas.addEventListener('mousemove', onMouseMove)
       }
     }
-
     function onMouseDown(e) {
       if (e.button === MouseButtons.LEFT) {
-        pressedState.mouse = true
+        PressedState.mouse = true
         Store.pan.init = getCanvasMousePosition(e, imgCanvas)
         checkPressed()
       }
     }
-
     function onMouseUp(e) {
       const transform = imgCtx.getTransform()
       if (e.button === MouseButtons.LEFT) {
-        pressedState.mouse = false
+        PressedState.mouse = false
         Store.pan.moved = { x: transform.e, y: transform.f }
         removeEvent()
       }
     }
-    //FIXME: mouse cursor style을 한곳에서 관리할 수 있도록 해줘보자.
     function onKeyDown(e) {
       if (e.code === 'Space') {
-        pressedState.space = true
-        pressedState.mouse
-          ? (guideLineCanvas.style.cursor = 'grabbing')
-          : (guideLineCanvas.style.cursor = 'grab')
+        PressedState.space = true
+        cursorStyleHandler(guideLineCanvas)
         checkPressed()
       }
     }
-
     function onKeyUp(e) {
       if (e.code === 'Space') {
-        pressedState.space = false
-        guideLineCanvas.style.cursor = 'auto'
+        PressedState.space = false
+        cursorStyleHandler(guideLineCanvas)
         removeEvent()
       }
     }
-
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('keyup', onKeyUp)
     guideLineCanvas.addEventListener('mousedown', onMouseDown)

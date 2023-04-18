@@ -7,7 +7,7 @@ const toolsState = {
   panning: false,
 }
 
-const toolHandler = {
+const toolStateHandler = {
   get(target, prop) {
     return target[prop]
   },
@@ -20,4 +20,4 @@ const toolHandler = {
   },
 }
 
-export default new Proxy(toolsState, toolHandler)
+export default new Proxy(toolsState, toolStateHandler)
