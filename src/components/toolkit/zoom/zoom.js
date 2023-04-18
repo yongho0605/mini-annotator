@@ -1,4 +1,4 @@
-import CoordStore from '/src/store/coordStore.js'
+import Store from '/src/Store/Store.js'
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   imgCanvas,
@@ -10,7 +10,6 @@ import { applyChangesOnTranslate } from '/src/components/toolkit/zoom/zoomUtil.j
 export default function applyZoom(img) {
   const mouseCoordArr = []
   const scale = {
-    //픽셀 기준으로 배율을 잡기
     min: 0.05,
     max: 100,
     factor: null,
@@ -25,10 +24,10 @@ export default function applyZoom(img) {
 
     imgCtx.drawImage(
       img,
-      CoordStore.img.translation.x,
-      CoordStore.img.translation.y,
-      CoordStore.img.size.width,
-      CoordStore.img.size.height
+      Store.coord.img.translation.x,
+      Store.coord.img.translation.y,
+      Store.coord.img.size.width,
+      Store.coord.img.size.height
     )
   }
 

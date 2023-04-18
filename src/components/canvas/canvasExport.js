@@ -1,16 +1,8 @@
-export const canvasAggregation = {
-  imgCanvas: document.querySelector('#imgCanvas'),
-  guideLineCanvas: document.querySelector('#guideLineCanvas'),
-}
+export const imgCanvas = document.querySelector('#imgCanvas')
+export const guideLineCanvas = document.querySelector('#guideLineCanvas')
 
-export const { imgCanvas, guideLineCanvas } = canvasAggregation
-
-export const ctxAggregation = {
-  imgCtx: imgCanvas.getContext('2d'),
-  guideLineCtx: guideLineCanvas.getContext('2d'),
-}
-
-export const { imgCtx, guideLineCtx } = ctxAggregation
+export const imgCtx = imgCanvas.getContext('2d')
+export const guideLineCtx = guideLineCanvas.getContext('2d')
 
 export function getCanvasMousePosition(e, canvas) {
   const canvasRect = canvas.getBoundingClientRect()

@@ -10,8 +10,7 @@ import {
   annotatorEl,
   mainEl,
 } from '/src/components/modules/elements.js'
-import ZoomStore from '/src/store/zoomStore.js'
-import PanStore from '/src/store/panStore.js'
+import Store from '/src/Store/Store.js'
 
 const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {
@@ -35,9 +34,9 @@ const resize = {
         resizeObserver.observe(imgCanvas)
 
         function onMouseMove(e) {
-          ZoomStore.scale.current = 1
-          ZoomStore.translate = { x: 0, y: 0 }
-          PanStore.moved = { x: 0, y: 0 }
+          Store.zoom.scale.current = 1
+          Store.zoom.translate = { x: 0, y: 0 }
+          Store.pan.moved = { x: 0, y: 0 }
           let x = e.clientX
           const minSize = 250
           const maxSize = Math.floor(screen.width * 0.8)

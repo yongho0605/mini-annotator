@@ -1,5 +1,5 @@
 import { annotatorEl } from '/src/components/modules/elements.js'
-import CoordStore from '/src/store/coordStore.js'
+import Store from '/src/Store/Store.js'
 
 export function applyChangesOnResize(img, canvas, ctx) {
   const scaleFactor = Math.min(
@@ -29,10 +29,10 @@ export function applyChangesOnResize(img, canvas, ctx) {
     y = (canvas.height - canvasImgHeight) / 2
   }
   function saveCoordStore(x, y, imgWidth, imgHeight) {
-    CoordStore.img.translation.x = x
-    CoordStore.img.translation.y = y
-    CoordStore.img.size.width = imgWidth
-    CoordStore.img.size.height = imgHeight
+    Store.coord.img.translation.x = x
+    Store.coord.img.translation.y = y
+    Store.coord.img.size.width = imgWidth
+    Store.coord.img.size.height = imgHeight
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   if (rect.width > rect.height) {

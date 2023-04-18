@@ -1,4 +1,4 @@
-import ToolsState from '/src/store/toolsState.js'
+import ToolsState from '/src/Store/toolsState.js'
 
 export default function applyBoundingBox() {
   const boundingBoxEl = document.querySelector('.boundingBox')

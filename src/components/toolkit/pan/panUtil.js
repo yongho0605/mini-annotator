@@ -1,20 +1,19 @@
-import CoordStore from '/src/store/coordStore.js'
-import PanStore from '/src/store/panStore.js'
+import Store from '/src/Store/Store.js'
 
 export function applyChangesOnPan(currentGLCoord, ctx) {
   let { x, y } = currentGLCoord
-  if (PanStore.moved.x) {
-    x = x - PanStore.init.x + PanStore.moved.x
-    y = y - PanStore.init.y + PanStore.moved.y
+  if (Store.pan.moved.x) {
+    x = x - Store.pan.init.x + Store.pan.moved.x
+    y = y - Store.pan.init.y + Store.pan.moved.y
   } else {
-    x = x - PanStore.init.x
-    y = y - PanStore.init.y
+    x = x - Store.pan.init.x
+    y = y - Store.pan.init.y
   }
   ctx.setTransform(
-    CoordStore.canvas.scale.x,
+    Store.coord.canvas.scale.x,
     0,
     0,
-    CoordStore.canvas.scale.y,
+    Store.coord.canvas.scale.y,
     x,
     y
   )

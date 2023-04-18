@@ -5,9 +5,8 @@ import {
   imgCanvas,
 } from '/src/components/canvas/canvasExport.js'
 import { applyChangesOnPan } from '/src/components/toolkit/pan/panUtil.js'
-import PanStore from '/src/store/panStore.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
-import CoordStore from '/src/store/coordStore.js'
+import Store from '/src/Store/Store.js'
 
 export default function applyPan(img) {
   function removeEvent() {
@@ -23,16 +22,15 @@ export default function applyPan(img) {
 
     imgCtx.drawImage(
       img,
-      CoordStore.img.translation.x,
-      CoordStore.img.translation.y,
-      CoordStore.img.size.width,
-      CoordStore.img.size.height
+      Store.coord.img.translation.x,
+      Store.coord.img.translation.y,
+      Store.coord.img.size.width,
+      Store.coord.img.size.height
     )
   }
 
   const pressedState = { space: false, mouse: false }
   function checkPressed() {
-    console.log('엄청나게 실행 될 것 같은데')
     if (pressedState.space && pressedState.mouse) {
       guideLineCanvas.addEventListener('mousemove', onMouseMove)
     }
@@ -41,7 +39,7 @@ export default function applyPan(img) {
   function onMouseDown(e) {
     if (e.button === MouseButtons.LEFT) {
       pressedState.mouse = true
-      PanStore.init = getCanvasMousePosition(e, imgCanvas)
+      Store.pan.init = getCanvasMousePosition(e, imgCanvas)
       checkPressed()
     }
   }
@@ -50,11 +48,11 @@ export default function applyPan(img) {
     const transform = imgCtx.getTransform()
     if (e.button === MouseButtons.LEFT) {
       pressedState.mouse = false
-      PanStore.moved = { x: transform.e, y: transform.f }
+      Store.pan.moved = { x: transform.e, y: transform.f }
       removeEvent()
     }
   }
-
+  //FIXME: mouse cursor style을 한곳에서 관리할 수 있도록 해줘보자.
   function onKeyDown(e) {
     if (e.code === 'Space') {
       pressedState.space = true
