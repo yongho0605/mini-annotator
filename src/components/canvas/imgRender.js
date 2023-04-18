@@ -1,6 +1,6 @@
-import applyGuideLine from '/src/components/toolkit/guideLine.js'
-import applyZoom from '/src/components/toolkit/zoom/zoom.js'
-import applyPan from '/src/components/toolkit/pan/pan.js'
+import guideLine from '/src/components/toolkit/guideLine.js'
+import Zoom from '/src/components/toolkit/zoom/zoom.js'
+import Pan from '/src/components/toolkit/pan/pan.js'
 import Resize from '/src/components/toolkit/resize/resize.js'
 import mouseTracker from '/src/components/toolkit/mouseTracker.js'
 
@@ -10,10 +10,10 @@ export default function imgCanvasRender() {
   // img.src = '/src/assets/images/musk.jpeg'
   img.src = '/src/assets/images/tesla_model_S_Plaid.webp'
   img.onload = function () {
+    guideLine.init()
     Resize.init(img)
-    applyGuideLine()
-    applyZoom(img)
-    applyPan(img)
+    Zoom.init(img)
+    Pan.init(img)
     mouseTracker(img)
     Resize.applyAnnotator(img)
   }
