@@ -1,8 +1,7 @@
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import { guideLineCanvas, imgCtx, imgCanvas } from '/src/components/canvas/canvasExport.js'
 import { applyChangesOnPan } from '/src/components/toolkit/pan/panUtil.js'
-import PanState from '/src/store/pan/panState.js'
-import PanStore from '/src/store/pan/panStore.js'
+import PanStore from '/src/store/panStore.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
 import CoordStore from '/src/store/coordStore.js'
 
@@ -16,7 +15,7 @@ export default function applyPan(img) {
     imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
     const currentGLCoord = getCanvasMousePosition(e, imgCanvas)
 
-    applyChangesOnPan(PanStore, currentGLCoord, imgCtx)
+    applyChangesOnPan(currentGLCoord, imgCtx)
     imgCtx.drawImage(
       img,
       CoordStore.img.translation.x,
@@ -26,18 +25,17 @@ export default function applyPan(img) {
     )
   }
 
+  const pressedState = { space: false, mouse: false }
   function checkPressed() {
-    if (PanState.spacePressed && PanState.mousePressed) {
-      guideLineCanvas.style.cursor = 'grabbing'
+    console.log('엄청나게 실행 될 것 같은데')
+    if (pressedState.space && pressedState.mouse) {
       guideLineCanvas.addEventListener('mousemove', onMouseMove)
-      PanState.spacePressed = false
-      PanState.mousePressed = false
     }
   }
 
   function onMouseDown(e) {
     if (e.button === MouseButtons.LEFT) {
-      PanState.mousePressed = true
+      pressedState.mouse = true
       PanStore.init = getCanvasMousePosition(e, imgCanvas)
       checkPressed()
     }
@@ -46,8 +44,7 @@ export default function applyPan(img) {
   function onMouseUp(e) {
     const transform = imgCtx.getTransform()
     if (e.button === MouseButtons.LEFT) {
-      PanState.mousePressed = false
-      guideLineCanvas.style.cursor = 'auto'
+      pressedState.mouse = false
       PanStore.moved = { x: transform.e, y: transform.f }
       removeEvent()
     }
@@ -55,19 +52,15 @@ export default function applyPan(img) {
 
   function onKeyDown(e) {
     if (e.code === 'Space') {
-      if (!e.repeat) {
-        PanState.spacePressed = true
-        !PanState.mousePressed && (guideLineCanvas.style.cursor = 'grab')
-        checkPressed()
-      } else {
-        PanState.spacePressed = true
-      }
+      pressedState.space = true
+      pressedState.mouse ? (guideLineCanvas.style.cursor = 'grabbing') : (guideLineCanvas.style.cursor = 'grab')
+      checkPressed()
     }
   }
 
   function onKeyUp(e) {
     if (e.code === 'Space') {
-      PanState.spacePressed = false
+      pressedState.space = false
       guideLineCanvas.style.cursor = 'auto'
       removeEvent()
     }

@@ -2,7 +2,7 @@ import { applyChangesOnResize } from '/src/components/toolkit/resize/resizeUtil.
 import { imgCanvas, imgCtx, guideLineCanvas } from '/src/components/canvas/canvasExport.js'
 import { resizeHandlerEl, classSelectorEl, annotatorEl, mainEl } from '/src/components/modules/elements.js'
 import ZoomStore from '/src/store/zoomStore.js'
-import PanStore from '/src/store/pan/panStore.js'
+import PanStore from '/src/store/panStore.js'
 
 const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {
