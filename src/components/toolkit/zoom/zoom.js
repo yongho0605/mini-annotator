@@ -8,10 +8,14 @@ import {
 import { applyChangesOnTranslate } from '/src/components/toolkit/zoom/zoomUtil.js'
 
 export default function applyZoom(img) {
+  const imgWidth = img.naturalWidth
+  const imgHight = img.naturalHeight
+  const imgSizeCondition = imgWidth < 10 && imgHight < 10
+  const maxLimitScale = imgWidth > imgHight ? imgWidth / 10 : imgHight / 10
   const mouseCoordArr = []
   const scale = {
-    min: 0.05,
-    max: 100,
+    min: imgSizeCondition ? 1 : 0.05,
+    max: imgSizeCondition ? 1 : maxLimitScale,
     factor: null,
   }
 
