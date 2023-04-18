@@ -1,5 +1,9 @@
 import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
-import { guideLineCanvas, imgCtx, imgCanvas } from '/src/components/canvas/canvasExport.js'
+import {
+  guideLineCanvas,
+  imgCtx,
+  imgCanvas,
+} from '/src/components/canvas/canvasExport.js'
 import { applyChangesOnPan } from '/src/components/toolkit/pan/panUtil.js'
 import PanStore from '/src/store/panStore.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
@@ -16,6 +20,7 @@ export default function applyPan(img) {
     const currentGLCoord = getCanvasMousePosition(e, imgCanvas)
 
     applyChangesOnPan(currentGLCoord, imgCtx)
+
     imgCtx.drawImage(
       img,
       CoordStore.img.translation.x,
@@ -53,7 +58,9 @@ export default function applyPan(img) {
   function onKeyDown(e) {
     if (e.code === 'Space') {
       pressedState.space = true
-      pressedState.mouse ? (guideLineCanvas.style.cursor = 'grabbing') : (guideLineCanvas.style.cursor = 'grab')
+      pressedState.mouse
+        ? (guideLineCanvas.style.cursor = 'grabbing')
+        : (guideLineCanvas.style.cursor = 'grab')
       checkPressed()
     }
   }

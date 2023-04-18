@@ -1,6 +1,15 @@
 import { applyChangesOnResize } from '/src/components/toolkit/resize/resizeUtil.js'
-import { imgCanvas, imgCtx, guideLineCanvas } from '/src/components/canvas/canvasExport.js'
-import { resizeHandlerEl, classSelectorEl, annotatorEl, mainEl } from '/src/components/modules/elements.js'
+import {
+  imgCanvas,
+  imgCtx,
+  guideLineCanvas,
+} from '/src/components/canvas/canvasExport.js'
+import {
+  resizeHandlerEl,
+  classSelectorEl,
+  annotatorEl,
+  mainEl,
+} from '/src/components/modules/elements.js'
 import ZoomStore from '/src/store/zoomStore.js'
 import PanStore from '/src/store/panStore.js'
 

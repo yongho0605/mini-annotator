@@ -10,5 +10,12 @@ export function applyChangesOnPan(currentGLCoord, ctx) {
     x = x - PanStore.init.x
     y = y - PanStore.init.y
   }
-  ctx.setTransform(CoordStore.canvas.scale.x, 0, 0, CoordStore.canvas.scale.y, x, y)
+  ctx.setTransform(
+    CoordStore.canvas.scale.x,
+    0,
+    0,
+    CoordStore.canvas.scale.y,
+    x,
+    y
+  )
 }
