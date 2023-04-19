@@ -29,8 +29,6 @@ export default function chaseWholeCanvasCoordinate(img) {
     )
     store.canvas.translation.x = fixedSecondDecimalPoint(transform.e)
     store.canvas.translation.y = fixedSecondDecimalPoint(transform.f)
-    store.canvas.scale.x = scale
-    store.canvas.scale.y = scale
     store.img.scale.x = fixedSecondDecimalPoint(
       (canvas.width * scale) / imgWidth
     )
@@ -52,7 +50,7 @@ export default function chaseWholeCanvasCoordinate(img) {
     <li>canvasTranslation:(${store.canvas.translation.x}, ${store.canvas.translation.y})</li>
     <li>imgTranslation:(${store.img.translation.x}, ${store.img.translation.y})</li>
     <li>imgScaledTranslation: (${store.img.scaledTranslation.x}, ${store.img.scaledTranslation.y})</li>
-    <li>canvasScale:(${store.canvas.scale.x}, ${store.canvas.scale.y})</li>
+    <li>canvasScale: ${store.zoom.scale.current}</li>
     <li>imgScale: (${store.img.scale.x}, ${store.img.scale.y})</li>
     <li>imgSize width: ${store.img.size.width} height: ${store.img.size.height}</li>
     <li>imgScaledSize width: ${store.img.scaledSize.width} height: ${store.img.scaledSize.height}</li>

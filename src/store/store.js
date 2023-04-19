@@ -2,7 +2,7 @@ const Store = {
   canvas: {
     guideLine: { x: 0, y: 0 },
     translation: { x: 0, y: 0 },
-    scale: { x: 0, y: 0 },
+    scale: 0,
   },
   img: {
     guideLine: { x: 0, y: 0 },
@@ -15,10 +15,15 @@ const Store = {
   },
   zoom: {
     scale: { before: 1, current: 1 },
-    translate: { x: 0, y: 0 },
+    willTranslate: { x: 0, y: 0 },
+    translation: { x: 0, y: 0 },
   },
   pan: {
-    coord: { init: { x: 0, y: 0 }, moved: { x: 0, y: 0 } },
+    coord: {
+      init: { x: 0, y: 0 },
+      moved: { x: 0, y: 0 },
+    },
+    willTranslate: { x: 0, y: 0 },
   },
 }
 
