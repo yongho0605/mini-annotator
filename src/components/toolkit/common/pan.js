@@ -7,7 +7,7 @@ import {
 import {
   applyChangesOnPan,
   cursorStyleHandler,
-} from '/src/components/toolkit/pan/panUtil.js'
+} from '/src/components/toolkit/utils/common/panUtil.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
 import Store from '/src/store/store.js'
 import PressedState from '/src/store/state/panState.js'

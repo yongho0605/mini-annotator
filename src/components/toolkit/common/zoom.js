@@ -5,7 +5,7 @@ import {
   guideLineCanvas,
   imgCtx,
 } from '/src/components/canvas/canvasExport.js'
-import { applyChangesOnTranslate } from '/src/components/toolkit/zoom/zoomUtil.js'
+import { applyChangesOnTranslate } from '/src/components/toolkit/utils/common/zoomUtil.js'
 
 const zoom = {
   init(img) {

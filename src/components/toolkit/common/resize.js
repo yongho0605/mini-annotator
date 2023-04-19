@@ -1,4 +1,4 @@
-import { applyChangesOnResize } from '/src/components/toolkit/resize/resizeUtil.js'
+import { applyChangesOnResize } from '/src/components/toolkit/utils/common/resizeUtil.js'
 import {
   imgCanvas,
   imgCtx,
@@ -10,7 +10,7 @@ import {
   annotatorEl,
   mainEl,
 } from '/src/components/modules/elements.js'
-import Store from '/src/Store/Store.js'
+import Store from '/src/store/store.js'
 
 const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {
@@ -35,7 +35,7 @@ const resize = {
 
         function onMouseMove(e) {
           Store.zoom.scale.current = 1
-          Store.zoom.translate = { x: 0, y: 0 }
+          Store.zoom.willTranslate = { x: 0, y: 0 }
           Store.pan.coord.moved = { x: 0, y: 0 }
           let x = e.clientX
           const minSize = 250
