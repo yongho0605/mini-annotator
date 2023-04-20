@@ -15,15 +15,14 @@ const Store = {
   },
   zoom: {
     scale: { before: 1, current: 1 },
-    willTranslate: { x: 0, y: 0 },
-    translation: { x: 0, y: 0 },
+    translate: { x: 0, y: 0 },
   },
   pan: {
     coord: {
       init: { x: 0, y: 0 },
       moved: { x: 0, y: 0 },
     },
-    willTranslate: { x: 0, y: 0 },
+    translate: { x: 0, y: 0 },
   },
 }
 
