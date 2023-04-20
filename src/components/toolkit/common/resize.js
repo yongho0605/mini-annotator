@@ -10,7 +10,7 @@ import {
   annotatorEl,
   mainEl,
 } from '/src/components/modules/elements.js'
-import Store from '/src/store/store.js'
+import { resetCommonToolsValue } from '/src/components/toolkit/utils/common/resizeUtil.js'
 
 const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {
@@ -34,9 +34,6 @@ const resize = {
         resizeObserver.observe(imgCanvas)
 
         function onMouseMove(e) {
-          Store.zoom.scale.current = 1
-          Store.zoom.willTranslate = { x: 0, y: 0 }
-          Store.pan.coord.moved = { x: 0, y: 0 }
           let x = e.clientX
           const minSize = 250
           const maxSize = Math.floor(screen.width * 0.8)

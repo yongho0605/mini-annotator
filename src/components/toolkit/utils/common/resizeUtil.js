@@ -1,5 +1,12 @@
 import { annotatorEl } from '/src/components/modules/elements.js'
 import Store from '/src/store/store.js'
+function resetPanZoomValue() {
+  Store.zoom.scale.current = 1
+  Store.zoom.willTranslate =
+    Store.zoom.translation =
+    Store.pan.coord.moved =
+      { x: 0, y: 0 }
+}
 
 export function applyChangesOnResize(img, canvas, ctx) {
   const scaleFactor = Math.min(
@@ -41,6 +48,7 @@ export function applyChangesOnResize(img, canvas, ctx) {
     canvasImgHeight = getScaledCanvasHeight(horizontalAspect)
   }
 
+  resetPanZoomValue()
   reassignmentCoord()
   saveCoordStore(x, y, canvasImgWidth, canvasImgHeight)
   canvas.width = canvas.clientWidth
@@ -48,3 +56,5 @@ export function applyChangesOnResize(img, canvas, ctx) {
   ctx.imageSmoothingEnabled = false
   ctx.drawImage(img, x, y, canvasImgWidth, canvasImgHeight)
 }
+
+export function resetCommonToolsValue() {}
