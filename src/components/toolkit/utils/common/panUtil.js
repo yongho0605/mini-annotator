@@ -3,7 +3,7 @@ import PressedState from '/src/store/state/panState.js'
 
 export function applyChangesOnPan(originCurrentGLCoord, ctx) {
   const { pan, zoom } = Store
-  Store.pan.translate = { ...originCurrentGLCoord }
+
   const getComputedTranslation = (axis) =>
     originCurrentGLCoord[axis] - pan.coord.init[axis] + pan.coord.moved[axis]
 
