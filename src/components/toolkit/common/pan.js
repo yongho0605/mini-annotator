@@ -10,7 +10,7 @@ import {
 } from '/src/components/toolkit/utils/common/panUtil.js'
 import MouseButtons from '/src/components/modules/mouseButtons.js'
 import Store from '/src/store/store.js'
-import PressedState from '/src/store/state/panState.js'
+import State from '/src/store/state/state.js'
 
 const pan = {
   init(img) {
@@ -34,13 +34,13 @@ const pan = {
     }
 
     function checkPressed() {
-      if (PressedState.space && PressedState.mouse) {
+      if (State.pressed.space && State.pressed.mouse) {
         guideLineCanvas.addEventListener('mousemove', onMouseMove)
       }
     }
     function onMouseDown(e) {
       if (e.button === MouseButtons.LEFT) {
-        PressedState.mouse = true
+        State.pressed.mouse = true
         Store.pan.coord.init = getCanvasMousePosition(e, imgCanvas)
         checkPressed()
       }
@@ -48,21 +48,21 @@ const pan = {
     function onMouseUp(e) {
       const transform = imgCtx.getTransform()
       if (e.button === MouseButtons.LEFT) {
-        PressedState.mouse = false
+        State.pressed.mouse = false
         Store.pan.coord.moved = { x: transform.e, y: transform.f }
         removeEvent()
       }
     }
     function onKeyDown(e) {
       if (e.code === 'Space') {
-        PressedState.space = true
+        State.pressed.space = true
         cursorStyleHandler(guideLineCanvas)
         checkPressed()
       }
     }
     function onKeyUp(e) {
       if (e.code === 'Space') {
-        PressedState.space = false
+        State.pressed.space = false
         cursorStyleHandler(guideLineCanvas)
         removeEvent()
       }
