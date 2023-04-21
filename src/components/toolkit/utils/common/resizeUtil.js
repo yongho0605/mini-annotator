@@ -4,7 +4,7 @@ function resetPanZoomValue() {
   Store.zoom.scale.current = 1
   Store.zoom.willTranslate =
     Store.zoom.translation =
-    Store.pan.coord.moved =
+    Store.pan.moved =
       { x: 0, y: 0 }
 }
 

@@ -41,7 +41,7 @@ const pan = {
     function onMouseDown(e) {
       if (e.button === MouseButtons.LEFT) {
         State.pressed.mouse = true
-        Store.pan.coord.init = getCanvasMousePosition(e, imgCanvas)
+        Store.pan.initCoord = getCanvasMousePosition(e, imgCanvas)
         checkPressed()
       }
     }
@@ -49,7 +49,7 @@ const pan = {
       const transform = imgCtx.getTransform()
       if (e.button === MouseButtons.LEFT) {
         State.pressed.mouse = false
-        Store.pan.coord.moved = { x: transform.e, y: transform.f }
+        Store.canvas.moved = { x: transform.e, y: transform.f }
         removeEvent()
       }
     }
