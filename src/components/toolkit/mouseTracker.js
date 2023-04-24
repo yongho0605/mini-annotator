@@ -16,31 +16,21 @@ export default function chaseWholeCanvasCoordinate(img) {
     const transform = ctx.getTransform()
     const scale = transform.a
     const { x, y } = getCanvasMousePosition(e, canvas)
-    const fixedSecondDecimalPoint = (computedValue) =>
-      Number(computedValue.toFixed(2))
 
     store.canvas.guideLine.x = x
     store.canvas.guideLine.y = y
-    store.img.guideLine.x = fixedSecondDecimalPoint(
+    store.img.guideLine.x = Math.floor(
       store.canvas.guideLine.x - store.img.translation.x
     )
-    store.img.guideLine.y = fixedSecondDecimalPoint(
+    store.img.guideLine.y = Math.floor(
       store.canvas.guideLine.y - store.img.translation.y
     )
-    store.canvas.translation.x = fixedSecondDecimalPoint(transform.e)
-    store.canvas.translation.y = fixedSecondDecimalPoint(transform.f)
-    store.img.scale.x = fixedSecondDecimalPoint(
-      (canvas.width * scale) / imgWidth
-    )
-    store.img.scale.y = fixedSecondDecimalPoint(
-      (canvas.height * scale) / imgHeight
-    )
-    store.img.scaledSize.width = fixedSecondDecimalPoint(
-      store.img.size.width * scale
-    )
-    store.img.scaledSize.height = fixedSecondDecimalPoint(
-      store.img.size.height * scale
-    )
+    store.canvas.translation.x = Math.floor(transform.e)
+    store.canvas.translation.y = Math.floor(transform.f)
+    store.img.scale.x = Math.floor((canvas.width * scale) / imgWidth)
+    store.img.scale.y = Math.floor((canvas.height * scale) / imgHeight)
+    store.img.scaledSize.width = Math.floor(store.img.size.width * scale)
+    store.img.scaledSize.height = Math.floor(store.img.size.height * scale)
     store.img.naturalSize.width = imgWidth
     store.img.naturalSize.height = imgHeight
 
@@ -52,6 +42,7 @@ export default function chaseWholeCanvasCoordinate(img) {
     <li>imgScaledTranslation: (${store.img.scaledTranslation.x}, ${store.img.scaledTranslation.y})</li>
     <li>canvasScale: ${store.zoom.scale.current}</li>
     <li>imgScale: (${store.img.scale.x}, ${store.img.scale.y})</li>
+    <li>canvasSize width: ${canvas.width} height: ${canvas.height}</li>
     <li>imgSize width: ${store.img.size.width} height: ${store.img.size.height}</li>
     <li>imgScaledSize width: ${store.img.scaledSize.width} height: ${store.img.scaledSize.height}</li>
     <li>imgNaturalSize width: ${store.img.naturalSize.width} height: ${store.img.naturalSize.height}</li>
