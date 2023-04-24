@@ -24,7 +24,7 @@ const Store = {
   },
 }
 
-const onStoreChangeHandler = {
+const storeChangeHandler = {
   get(target, prop) {
     return target[prop]
   },
@@ -34,4 +34,4 @@ const onStoreChangeHandler = {
   },
 }
 
-export default new Proxy(Store, onStoreChangeHandler)
+export default new Proxy(Store, storeChangeHandler)
