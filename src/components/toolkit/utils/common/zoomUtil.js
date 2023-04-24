@@ -8,6 +8,7 @@ export function applyChangesOnTranslate(
   ctx
 ) {
   const { zoom, pan } = Store
+
   if (scale.factor === 0.9 && zoom.scale.current > scale.min) {
     compareCoordCondition()
   } else if (scale.factor === 1.1 && zoom.scale.current < scale.max) {
@@ -29,40 +30,51 @@ export function applyChangesOnTranslate(
     const beforeGLCoord = { x: mouseCoordArr[0].x, y: mouseCoordArr[0].y }
 
     function assignTranslation() {
-      currentGLCoord.x = zoom.willTranslate.x
-      currentGLCoord.y = zoom.willTranslate.y
+      currentGLCoord.x = zoom.translate.x
+      currentGLCoord.y = zoom.translate.y
     }
 
     function assignComputedGLCoord(targetCoord) {
       const getComputedTranslation = (axis) =>
         (currentGLCoord[axis] - beforeGLCoord[axis]) / zoom.scale.before +
         targetCoord[axis]
-      Store.zoom.willTranslate.x = getComputedTranslation('x')
-      Store.zoom.willTranslate.y = getComputedTranslation('y')
+      Store.zoom.translate.x = getComputedTranslation('x')
+      Store.zoom.translate.y = getComputedTranslation('y')
     }
-
     const compareCoordCondition = (axis) =>
       beforeGLCoord[axis] !== currentGLCoord[axis]
+    // scale 1일때의 거리
+    // const getComputedTranslation = (axis) =>
+    //   currentGLCoord[axis] + pan.translate[axis] * zoom.scale.current
+    const getComputedTranslation = (axis) =>
+      currentGLCoord[axis] + pan.translate[axis] * zoom.scale.current
+
+    const translate = {
+      x: getComputedTranslation('x'),
+      y: getComputedTranslation('y'),
+    }
 
     ctx.setTransform(
       zoom.scale.current,
       0,
       0,
       zoom.scale.current,
-      currentGLCoord.x + pan.willTranslate.x * zoom.scale.current,
-      currentGLCoord.y + pan.willTranslate.y * zoom.scale.current
+      translate.x,
+      translate.y
     )
+
     if (compareCoordCondition('x') || compareCoordCondition('y')) {
-      zoom.willTranslate.x
-        ? assignComputedGLCoord(zoom.willTranslate)
+      zoom.translate.x
+        ? assignComputedGLCoord(zoom.translate)
         : assignComputedGLCoord(beforeGLCoord)
       assignTranslation()
-    } else if (zoom.willTranslate.x) {
+    } else if (zoom.translate.x) {
       assignTranslation()
     }
-
     ctx.translate(-currentGLCoord.x, -currentGLCoord.y)
+
     const transform = ctx.getTransform()
-    Store.zoom.translation = { x: transform.e, y: transform.f }
+    Store.canvas.moved = { x: transform.e, y: transform.f }
+    console.log('Store.zoom.moved', Store.canvas.moved)
   }
 }
