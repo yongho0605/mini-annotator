@@ -1,7 +1,8 @@
+import { $ } from '/src/components/modules/elements.js'
 import ToolsState from '/src/Store/state/toolsState.js'
 
 export default function polygon() {
-  const polygonEl = document.querySelector('.polygon')
+  const polygonEl = $('.polygon')
 
   function onClick() {
     ToolsState.polygon = true

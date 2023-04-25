@@ -1,5 +1,7 @@
+import { $ } from '/src/components/modules/elements.js'
+
 export default function selector() {
-  const selectorEl = document.querySelector('.selector')
+  const selectorEl = $('.selector')
 
   function onClick() {
     alert('선택도구')

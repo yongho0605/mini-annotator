@@ -1,5 +1,7 @@
-export const resizeHandlerEl = document.querySelector('.resizeHandler')
-export const classSelectorEl = document.querySelector('#classSelector')
-export const annotatorEl = document.querySelector('.annotator')
-export const mainEl = document.querySelector('main')
-export const coordinateIndex = document.querySelector('.coordinateIndex')
+export const $ = (el) => document.querySelector(el)
+
+export const resizeHandlerEl = $('.resizeHandler')
+export const classSelectorEl = $('#classSelector')
+export const annotatorEl = $('.annotator')
+export const mainEl = $('main')
+export const coordinateIndex = $('.coordinateIndex')

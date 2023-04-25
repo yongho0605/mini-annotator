@@ -1,7 +1,8 @@
+import { $ } from '/src/components/modules/elements.js'
 import ToolsState from '/src/Store/state/toolsState.js'
 
 export default function applyBoundingBox() {
-  const boundingBoxEl = document.querySelector('.boundingBox')
+  const boundingBoxEl = $('.boundingBox')
 
   function onClick() {
     ToolsState.boundingBox = true

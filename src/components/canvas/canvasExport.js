@@ -1,5 +1,7 @@
-export const imgCanvas = document.querySelector('#imgCanvas')
-export const guideLineCanvas = document.querySelector('#guideLineCanvas')
+import { $ } from '/src/components/modules/elements.js'
+
+export const imgCanvas = $('#imgCanvas')
+export const guideLineCanvas = $('#guideLineCanvas')
 
 export const imgCtx = imgCanvas.getContext('2d')
 export const guideLineCtx = guideLineCanvas.getContext('2d')

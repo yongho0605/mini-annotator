@@ -1,7 +1,8 @@
+import { $ } from '/src/components/modules/elements.js'
 import ToolsState from '/src/Store/state/toolsState.js'
 
 export default function polyline() {
-  const polylineEl = document.querySelector('.polyline')
+  const polylineEl = $('.polyline')
 
   function onClick() {
     ToolsState.polyline = true

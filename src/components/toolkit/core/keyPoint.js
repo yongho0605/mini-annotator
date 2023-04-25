@@ -1,7 +1,8 @@
+import { $ } from '/src/components/modules/elements.js'
 import ToolsState from '/src/Store/state/toolsState.js'
 
 export default function keyPoint() {
-  const keyPointEl = document.querySelector('.keyPoint')
+  const keyPointEl = $('.keyPoint')
   function onClick() {
     ToolsState.keyPoint = true
     if (ToolsState.keyPoint) {
