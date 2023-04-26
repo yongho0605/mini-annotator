@@ -18,12 +18,10 @@ const pan = {
       guideLineCanvas.removeEventListener('mousemove', onMouseMove)
     }
 
-    function onMouseMove(e) {
+    function onMouseMove(evt) {
       imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
-      const currentGLCoord = getCanvasMousePosition(e, imgCanvas)
-
+      const currentGLCoord = getCanvasMousePosition(evt, imgCanvas)
       applyChangesOnPan(currentGLCoord, imgCtx)
-
       imgCtx.drawImage(
         img,
         Store.img.translation.x,
@@ -38,30 +36,29 @@ const pan = {
         guideLineCanvas.addEventListener('mousemove', onMouseMove)
       }
     }
-    function onMouseDown(e) {
-      if (e.button === MouseButtons.LEFT) {
+    function onMouseDown(evt) {
+      if (evt.button === MouseButtons.LEFT) {
         State.pressed.mouse = true
-        Store.pan.initCoord = getCanvasMousePosition(e, imgCanvas)
+        Store.pan.initCoord = getCanvasMousePosition(evt, imgCanvas)
+        State.pressed.space && (Store.pan.initTransform = imgCtx.getTransform())
         checkPressed()
       }
     }
-    function onMouseUp(e) {
-      const transform = imgCtx.getTransform()
-      if (e.button === MouseButtons.LEFT) {
+    function onMouseUp(evt) {
+      if (evt.button === MouseButtons.LEFT) {
         State.pressed.mouse = false
-        Store.canvas.moved = { x: transform.e, y: transform.f }
         removeEvent()
       }
     }
-    function onKeyDown(e) {
-      if (e.code === 'Space') {
+    function onKeyDown(evt) {
+      if (evt.code === 'Space') {
         State.pressed.space = true
         cursorStyleHandler(guideLineCanvas)
         checkPressed()
       }
     }
-    function onKeyUp(e) {
-      if (e.code === 'Space') {
+    function onKeyUp(evt) {
+      if (evt.code === 'Space') {
         State.pressed.space = false
         cursorStyleHandler(guideLineCanvas)
         removeEvent()

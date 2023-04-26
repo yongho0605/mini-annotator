@@ -2,15 +2,22 @@ import Store from '/src/store/store.js'
 import State from '/src/store/state/state.js'
 
 export function applyChangesOnPan(originCurrentGLCoord, ctx) {
-  const { pan, zoom, canvas } = Store
+  const { pan, zoom } = Store
 
-  const getComputedTranslation = (axis) =>
-    originCurrentGLCoord[axis] - pan.initCoord[axis] + canvas.moved[axis]
+  const getComputedTranslation = (axis) => {
+    const translate = axis === 'x' ? 'e' : 'f'
+    return (
+      originCurrentGLCoord[axis] -
+      pan.initCoord[axis] +
+      pan.initTransform[translate]
+    )
+  }
 
   Store.pan.translate.x = getComputedTranslation('x')
   Store.pan.translate.y = getComputedTranslation('y')
 
-  console.log(pan.translate)
+  console.log(pan.translate, originCurrentGLCoord.x - pan.initCoord.x)
+
   ctx.setTransform(
     zoom.scale.current,
     0,
