@@ -4,18 +4,14 @@ import { guideLineCanvas as canvas } from '/src/components/canvas/canvasExport.j
 
 const translate = { x: 0, y: 0 }
 
-const panModule = {
+const panUtils = {
   applyChangesOnPan(originCurrentGLCoord, ctx) {
     const { pan, zoom } = Store
 
-    const getComputedTranslation = (axis) => {
-      const transform = axis === 'x' ? 'e' : 'f'
-      return (
-        originCurrentGLCoord[axis] -
-        pan.initCoord[axis] +
-        pan.initTransform[transform]
-      )
-    }
+    const getComputedTranslation = (axis) =>
+      originCurrentGLCoord[axis] -
+      pan.initCoord[axis] +
+      pan.initTransform[axis === 'x' ? 'e' : 'f']
 
     translate.x = Store.pan.translate.x = getComputedTranslation('x')
     translate.y = Store.pan.translate.y = getComputedTranslation('y')
@@ -40,7 +36,7 @@ const panModule = {
     )
   },
 
-  onKeyHandler(evt, boolean, callback) {
+  innerKeyEventHandler(evt, boolean, callback) {
     if (evt.code === 'Space') {
       State.pressed.space = boolean
       cursorStyleHandler()
@@ -59,4 +55,4 @@ function cursorStyleHandler() {
   }
 }
 
-export default panModule
+export default panUtils

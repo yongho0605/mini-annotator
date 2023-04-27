@@ -1,5 +1,6 @@
-import { annotatorEl } from '/src/components/modules/elements.js'
+import { annotatorEl } from '/src/modules/elements.js'
 import Store from '/src/store/store.js'
+
 function resetPanZoomValue() {
   Store.zoom.scale.current = 1
   Store.zoom.willTranslate =

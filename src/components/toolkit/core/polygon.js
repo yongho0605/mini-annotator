@@ -1,4 +1,4 @@
-import { $ } from '/src/components/modules/elements.js'
+import { $ } from '/src/modules/elements.js'
 import ToolsState from '/src/Store/state/toolsState.js'
 
 export default function polygon() {

@@ -9,8 +9,7 @@ import {
   classSelectorEl,
   annotatorEl,
   mainEl,
-} from '/src/components/modules/elements.js'
-import { resetCommonToolsValue } from '/src/components/toolkit/utils/common/resizeUtil.js'
+} from '/src/modules/elements.js'
 
 const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {

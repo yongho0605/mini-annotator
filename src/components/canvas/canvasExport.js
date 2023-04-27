@@ -1,4 +1,4 @@
-import { $ } from '/src/components/modules/elements.js'
+import { $ } from '/src/modules/elements.js'
 
 export const imgCanvas = $('#imgCanvas')
 export const guideLineCanvas = $('#guideLineCanvas')

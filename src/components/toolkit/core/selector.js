@@ -1,4 +1,4 @@
-import { $ } from '/src/components/modules/elements.js'
+import { $ } from '/src/modules/elements.js'
 
 export default function selector() {
   const selectorEl = $('.selector')

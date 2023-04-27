@@ -4,10 +4,7 @@ import {
   imgCanvas as canvas,
   imgCtx as ctx,
 } from '/src/components/canvas/canvasExport.js'
-import {
-  annotatorEl,
-  coordinateIndex,
-} from '/src/components/modules/elements.js'
+import { annotatorEl, coordinateIndex } from '/src/modules/elements.js'
 
 export default function chaseWholeCanvasCoordinate(img) {
   annotatorEl.addEventListener('mousemove', onMouseMove)
