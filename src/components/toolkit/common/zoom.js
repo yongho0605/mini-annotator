@@ -24,6 +24,7 @@ const zoom = {
       const currentGLCoord = getCanvasMousePosition(e, imgCanvas)
       imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
 
+      Store.pan.movedArr.length = 0
       applyChangesOnTranslate(e, scale, mouseCoordArr, currentGLCoord, imgCtx)
 
       imgCtx.drawImage(

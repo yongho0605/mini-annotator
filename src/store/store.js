@@ -16,11 +16,14 @@ const Store = {
   },
   zoom: {
     scale: { before: 1, current: 1 },
+    panedTranslation: { x: 0, y: 0 },
+    panedDistance: { x: 0, y: 0 },
   },
   pan: {
     initCoord: { x: 0, y: 0 },
     initTransform: { a: 0, b: 0, c: 0, d: 0, e: 0, f: 0 },
     translate: { x: 0, y: 0 },
+    movedArr: [],
   },
 }
 
