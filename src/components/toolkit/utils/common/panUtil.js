@@ -1,7 +1,7 @@
 import Store from '/src/store/store.js'
 import State from '/src/store/state/state.js'
 import MouseButtons from '/src/modules/mouseButtons.js'
-import { guideLineCanvas as canvas } from '/src/components/canvas/canvasExport.js'
+import { canvas, ctx } from '/src/components/canvas/canvasExport.js'
 
 const translate = { x: 0, y: 0 }
 const { pan, zoom } = Store
@@ -34,18 +34,19 @@ const panUtils = {
     )
   },
 
-  innerKeyEventHandler: (evt, boolean, callback) => {
+  innerKeyEventHandler: (parameterObj, callback) => {
+    const { evt, boolean } = parameterObj
     if (evt.code === 'Space') {
       State.pressed.space = boolean
       cursorStyleHandler()
       callback
     }
   },
-
-  innerMouseEventHandler: (evt, boolean, callback) => {
+  innerMouseEventHandler: (parameterObj, callback) => {
+    const { evt, boolean } = parameterObj
     if (evt.button === MouseButtons.LEFT) {
       State.pressed.mouse = boolean
-      callback
+      callback()
     }
   },
 }
@@ -53,10 +54,10 @@ const panUtils = {
 function cursorStyleHandler() {
   if (State.pressed.space) {
     State.pressed.mouse
-      ? (canvas.style.cursor = 'grabbing')
-      : (canvas.style.cursor = 'grab')
+      ? (canvas.guideLine.style.cursor = 'grabbing')
+      : (canvas.guideLine.style.cursor = 'grab')
   } else {
-    canvas.style.cursor = 'auto'
+    canvas.guideLine.style.cursor = 'auto'
   }
 }
 

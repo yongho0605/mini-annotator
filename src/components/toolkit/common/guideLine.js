@@ -1,26 +1,23 @@
-import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
-import {
-  guideLineCanvas as canvas,
-  guideLineCtx as ctx,
-} from '/src/components/canvas/canvasExport.js'
+import { canvas, ctx } from '/src/components/canvas/canvasExport.js'
 
 const guideLine = {
-  init() {
-    canvas.addEventListener('mousemove', onMouseMove)
-    canvas.addEventListener('mouseleave', onMouseLeave)
+  init: () => {
+    const { guideLine: GLctx } = ctx
+    canvas.guideLine.addEventListener('mousemove', onMouseMove)
+    canvas.guideLine.addEventListener('mouseleave', onMouseLeave)
     function onMouseMove(e) {
-      const { x, y } = getCanvasMousePosition(e, canvas)
+      const { x, y } = canvas.getMousePos(e, canvas.guideLine)
 
       clearCanvas()
-      ctx.beginPath()
-      ctx.moveTo(x, 0)
-      ctx.lineTo(x, canvas.height)
-      ctx.stroke()
+      GLctx.beginPath()
+      GLctx.moveTo(x, 0)
+      GLctx.lineTo(x, canvas.guideLine.height)
+      GLctx.stroke()
 
-      ctx.beginPath()
-      ctx.moveTo(0, y)
-      ctx.lineTo(canvas.width, y)
-      ctx.stroke()
+      GLctx.beginPath()
+      GLctx.moveTo(0, y)
+      GLctx.lineTo(canvas.guideLine.width, y)
+      GLctx.stroke()
     }
 
     function onMouseLeave() {
@@ -28,7 +25,7 @@ const guideLine = {
     }
 
     function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      GLctx.clearRect(0, 0, canvas.guideLine.width, canvas.guideLine.height)
     }
   },
 }

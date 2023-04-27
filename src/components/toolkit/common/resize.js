@@ -1,9 +1,5 @@
 import { applyChangesOnResize } from '/src/components/toolkit/utils/common/resizeUtil.js'
-import {
-  imgCanvas,
-  imgCtx,
-  guideLineCanvas,
-} from '/src/components/canvas/canvasExport.js'
+import { canvas, ctx } from '/src/components/canvas/canvasExport.js'
 import {
   resizeHandlerEl,
   classSelectorEl,
@@ -11,12 +7,12 @@ import {
   mainEl,
 } from '/src/modules/elements.js'
 
-const guideLineCanvasWidth = guideLineCanvas.clientWidth
+const GLCanvasClientWidth = canvas.guideLine.clientWidth
 const resize = {
   init: (img) => {
-    imgCanvas.width = imgCanvas.clientWidth
-    imgCanvas.height = imgCanvas.clientHeight
-    applyChangesOnResize(img, imgCanvas, imgCtx)
+    canvas.img.width = canvas.img.clientWidth
+    canvas.img.height = canvas.img.clientHeight
+    applyChangesOnResize(img, canvas.img, ctx.img)
   },
   applyAnnotator: (img) => {
     function onResize() {
@@ -30,7 +26,7 @@ const resize = {
       if (e.button === 0) {
         mainEl.addEventListener('mousemove', onMouseMove)
         mainEl.addEventListener('mouseup', onMouseUp)
-        resizeObserver.observe(imgCanvas)
+        resizeObserver.observe(canvas.img)
 
         function onMouseMove(e) {
           let x = e.clientX
@@ -45,14 +41,14 @@ const resize = {
           } else {
             classSelectorEl.style.width = `${x}px`
             annotatorEl.style.width = `${x}px`
-            guideLineCanvas.style.width = `${guideLineCanvasWidth}px`
+            canvas.guideLine.style.width = `${GLCanvasClientWidth}px`
           }
         }
 
         function onMouseUp() {
           mainEl.removeEventListener('mousemove', onMouseMove)
           mainEl.removeEventListener('mouseup', onMouseUp)
-          resizeObserver.unobserve(imgCanvas)
+          resizeObserver.unobserve(canvas.img)
         }
       }
     }
