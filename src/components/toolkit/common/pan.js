@@ -1,13 +1,14 @@
-import { getCanvasMousePosition } from '/src/components/canvas/canvasExport.js'
 import {
   guideLineCanvas,
   imgCtx,
   imgCanvas,
+  getCanvasMousePosition,
 } from '/src/components/canvas/canvasExport.js'
-import PanModule from '/src/components/toolkit/utils/common/panUtil.js'
-import MouseButtons from '/src/components/modules/mouseButtons.js'
+import PanUtils from '/src/components/toolkit/utils/common/panUtil.js'
+import MouseButtons from '/src/modules/mouseButtons.js'
 import Store from '/src/store/store.js'
 import State from '/src/store/state/state.js'
+import Arithmetic from '/src/modules/Arithmetic.js'
 
 const { zoom } = Store
 const { pressed } = State
@@ -17,11 +18,10 @@ const pan = {
     function removeEvent() {
       guideLineCanvas.removeEventListener('mousemove', onMouseMove)
     }
-
     function onMouseMove(evt) {
       imgCtx.clearRect(-10, -10, imgCanvas.width + 20, imgCanvas.height + 20)
       const currentGLCoord = getCanvasMousePosition(evt, imgCanvas)
-      PanModule.applyChangesOnPan(currentGLCoord, imgCtx)
+      PanUtils.applyChangesOnPan(currentGLCoord, imgCtx)
       imgCtx.drawImage(
         img,
         Store.img.translation.x,
@@ -30,7 +30,6 @@ const pan = {
         Store.img.size.height
       )
     }
-
     function checkPressed() {
       if (pressed.space && pressed.mouse) {
         guideLineCanvas.addEventListener('mousemove', onMouseMove)
@@ -47,29 +46,23 @@ const pan = {
     function onMouseUp(evt) {
       if (evt.button === MouseButtons.LEFT) {
         if (pressed.space && (zoom.panedDistance.x || zoom.panedDistance.y)) {
-          // const conditionIdentifier = (axis) =>
-          //   Store.pan.movedArr[Store.pan.movedArr.length - 1][axis] ===
-          //   zoom.panedDistance[axis]
-          // if (
-          //   Store.pan.movedArr.length >= 1 &&
-          //   (conditionIdentifier('x') || conditionIdentifier('y'))
-          // ) {
-          //   console.log('실행되나?')
-          //   zoom.panedDistance = {x: 0, y: 0}
-          // }
-          Store.pan.movedArr.push({ ...zoom.panedDistance })
+          const conditionIdentifier = (axis) =>
+            Store.pan.movedArr.length >= 1 &&
+            Store.pan.movedArr.at(-1)[axis] === zoom.panedDistance[axis]
 
-          console.log(Store.pan.movedArr)
+          conditionIdentifier('x') && (zoom.panedDistance.x = 0)
+          conditionIdentifier('y') && (zoom.panedDistance.y = 0)
+          Store.pan.movedArr.push({ ...zoom.panedDistance })
         }
         State.pressed.mouse = false
         removeEvent()
       }
     }
     function onKeyDown(evt) {
-      PanModule.onKeyHandler(evt, true, checkPressed())
+      PanUtils.innerKeyEventHandler(evt, true, checkPressed())
     }
     function onKeyUp(evt) {
-      PanModule.onKeyHandler(evt, false, removeEvent())
+      PanUtils.innerKeyEventHandler(evt, false, removeEvent())
     }
     window.addEventListener('keydown', onKeyDown)
     window.addEventListener('keyup', onKeyUp)
