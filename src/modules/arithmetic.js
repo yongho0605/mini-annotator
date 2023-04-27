@@ -1,5 +1,3 @@
 export default {
-  sum(Array) {
-    return Array.reduce((acc, val) => acc + val, 0)
-  },
+  sum2DCoord: (Array, axis) => Array.reduce((acc, val) => acc + val[axis], 0),
 }

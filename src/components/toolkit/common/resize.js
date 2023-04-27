@@ -13,12 +13,12 @@ import {
 
 const guideLineCanvasWidth = guideLineCanvas.clientWidth
 const resize = {
-  init(img) {
+  init: (img) => {
     imgCanvas.width = imgCanvas.clientWidth
     imgCanvas.height = imgCanvas.clientHeight
     applyChangesOnResize(img, imgCanvas, imgCtx)
   },
-  applyAnnotator(img) {
+  applyAnnotator: (img) => {
     function onResize() {
       resize.init(img)
     }

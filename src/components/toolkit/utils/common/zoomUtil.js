@@ -45,7 +45,7 @@ export function applyChangesOnTranslate(
     const compareCoordCondition = (axis) =>
       beforeGLCoord[axis] !== currentGLCoord[axis]
 
-    const getComputedTranslation = (axis) => {
+    function getComputedTranslation(axis) {
       if (zoom.panedTranslation.x || zoom.panedTranslation.y) {
         return (
           currentGLCoord[axis] +
