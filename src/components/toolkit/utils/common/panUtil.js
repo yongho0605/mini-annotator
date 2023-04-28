@@ -1,7 +1,7 @@
 import Store from '/src/store/store.js'
 import State from '/src/store/state/state.js'
 import MouseButtons from '/src/modules/mouseButtons.js'
-import { canvas, ctx } from '/src/components/canvas/canvasExport.js'
+import { canvas } from '/src/components/canvas/canvasExport.js'
 
 const translate = { x: 0, y: 0 }
 const { pan, zoom } = Store
