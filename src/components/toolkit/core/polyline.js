@@ -1,27 +1,26 @@
+import EventUtils from '/src/components/toolkit/utils/core/eventUtil.js'
 import { $ } from '/src/modules/elements.js'
-import ToolsState from '/src/Store/state/toolsState.js'
 
+const polylineEl = $('.polyline')
 export default function polyline() {
-  const polylineEl = $('.polyline')
-
-  function onClick() {
-    ToolsState.polyline = true
-    console.log('boundingBox', ToolsState.boundingBox)
-    console.log('polygon', ToolsState.polygon)
-    console.log('polyline', ToolsState.polyline)
-    console.log('selector', ToolsState.selector)
-    if (ToolsState.polyline) {
+  const toolObj = { toolType: 'boundingBox', boolean: true }
+  function onClick(evt) {
+    const clickParameterObj = { evt, ...toolObj }
+    EventUtils.onLeftMouseClick(clickParameterObj, () => {
       alert('폴리라인')
-    }
+    })
   }
 
-  function keydown(e) {
-    if (e.key === 'l' || e.key === 'ㅣ') {
-      ToolsState.polyline = true
-      if (ToolsState.polyline) {
-        alert('폴리라인')
-      }
+  function keydown(evt) {
+    const keydownParameterObj = {
+      evt,
+      ...toolObj,
+      keyType: { en: 'l', ko: 'ㅣ' },
     }
+
+    EventUtils.shortcutHandler(keydownParameterObj, () => {
+      alert('폴리라인')
+    })
   }
 
   window.addEventListener('keydown', keydown)

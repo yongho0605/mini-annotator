@@ -1,22 +1,26 @@
+import EventUtils from '/src/components/toolkit/utils/core/eventUtil.js'
 import { $ } from '/src/modules/elements.js'
-import ToolsState from '/src/Store/state/toolsState.js'
 
+const keyPointEl = $('.keyPoint')
 export default function keyPoint() {
-  const keyPointEl = $('.keyPoint')
-  function onClick() {
-    ToolsState.keyPoint = true
-    if (ToolsState.keyPoint) {
+  const toolObj = { toolType: 'boundingBox', boolean: true }
+  function onClick(evt) {
+    const clickParameterObj = { evt, ...toolObj }
+    EventUtils.onLeftMouseClick(clickParameterObj, () => {
       alert('키포인트')
-    }
+    })
   }
 
-  function keydown(e) {
-    if (e.key === 'k' || e.key === 'ㅏ') {
-      ToolsState.keyPoint = true
-      if (ToolsState.keyPoint) {
-        alert('키포인트')
-      }
+  function keydown(evt) {
+    const keydownParameterObj = {
+      evt,
+      ...toolObj,
+      keyType: { en: 'k', ko: 'ㅏ' },
     }
+
+    EventUtils.shortcutHandler(keydownParameterObj, () => {
+      alert('키포인트')
+    })
   }
 
   keyPointEl.addEventListener('click', onClick)
