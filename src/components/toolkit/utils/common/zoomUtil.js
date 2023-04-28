@@ -1,13 +1,9 @@
 import Store from '/src/store/store.js'
 
 const ZoomTranslate = { x: null, y: null }
-export function applyChangesOnTranslate(
-  evt,
-  scale,
-  mouseCoordArr,
-  originCurrentGLCoord,
-  ctx
-) {
+export function applyChangesOnZoom(zoomParameterObj) {
+  const { evt, scale, mouseCoordArr, originCurrentGLCoord, ctx } =
+    zoomParameterObj
   const { zoom, pan } = Store
 
   if (scale.factor === 0.9 && zoom.scale.current > scale.min) {

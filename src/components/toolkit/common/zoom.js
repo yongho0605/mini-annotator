@@ -1,6 +1,6 @@
 import Store from '/src/store/store.js'
 import { canvas, ctx } from '/src/components/canvas/canvasExport.js'
-import { applyChangesOnTranslate } from '/src/components/toolkit/utils/common/zoomUtil.js'
+import { applyChangesOnZoom } from '/src/components/toolkit/utils/common/zoomUtil.js'
 
 const zoom = {
   init(img) {
@@ -14,14 +14,21 @@ const zoom = {
       max: imgSizeCondition ? 1 : maxLimitScale,
       factor: null,
     }
-    function onWheel(e) {
-      scale.factor = e.deltaY > 0 ? 0.9 : 1.1
-      const currentGLCoord = canvas.getMousePos(e, canvas.img)
+
+    function onWheel(evt) {
+      scale.factor = evt.deltaY > 0 ? 0.9 : 1.1
+      const currentGLCoord = canvas.getMousePos(evt, canvas.img)
+      const zoomParameterObj = {
+        evt,
+        scale,
+        mouseCoordArr,
+        originCurrentGLCoord: currentGLCoord,
+        ctx: ctx.img,
+      }
+
       ctx.img.clearRect(-10, -10, canvas.img.width + 20, canvas.img.height + 20)
-
       Store.pan.movedArr.length = 0
-      applyChangesOnTranslate(e, scale, mouseCoordArr, currentGLCoord, ctx.img)
-
+      applyChangesOnZoom(zoomParameterObj)
       ctx.img.drawImage(
         img,
         Store.img.translation.x,
