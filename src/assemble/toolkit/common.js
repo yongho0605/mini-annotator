@@ -3,6 +3,7 @@ import Resize from '/src/components/toolkit/common/resize.js'
 import Zoom from '/src/components/toolkit/common/zoom.js'
 import Pan from '/src/components/toolkit/common/pan.js'
 import mouseTracker from '/src/components/toolkit/mouseTracker.js'
+import applySmoothing from '/src/components/toolkit/common/smoothing.js'
 
 export default function applyAssembledCommonTools(img) {
   guideLine.init()
@@ -11,4 +12,5 @@ export default function applyAssembledCommonTools(img) {
   Pan.init(img)
   mouseTracker(img)
   Resize.applyAnnotator(img)
+  applySmoothing()
 }
