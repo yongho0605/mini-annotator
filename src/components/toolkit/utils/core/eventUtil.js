@@ -30,9 +30,8 @@ const distinguishSwitch = (toolParameterObj, callback) => {
 
 const eventUtil = {
   onLeftMouseClick: (toolParameterObj, callback) => {
-    if (toolParameterObj.evt.button === MouseButtons.LEFT) {
+    toolParameterObj.evt.button === MouseButtons.LEFT &&
       distinguishSwitch(toolParameterObj, callback)
-    }
   },
 
   shortcutHandler: (toolParameterObj, callback) => {

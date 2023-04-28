@@ -17,7 +17,6 @@ export default function applyBoundingBox() {
       ...toolObj,
       keyType: { en: 'b', ko: 'ㅠ' },
     }
-
     EventUtils.shortcutHandler(keydownParameterObj, () => {
       alert('바운딩박스')
     })
