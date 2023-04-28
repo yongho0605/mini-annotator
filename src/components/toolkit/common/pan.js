@@ -47,6 +47,7 @@ const pan = {
           conditionIdentifier('x') && (zoom.panedDistance.x = 0)
           conditionIdentifier('y') && (zoom.panedDistance.y = 0)
           Store.pan.movedArr.push({ ...zoom.panedDistance })
+          // scale 할때 pan의 translation을 고려해서 계산한 값을 보내는 부분
           const panedTranslation = {
             x: Arithmetic.sum2DCoord(Store.pan.movedArr, 'x'),
             y: Arithmetic.sum2DCoord(Store.pan.movedArr, 'y'),
