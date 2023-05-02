@@ -12,5 +12,5 @@ export default function applyAssembledCommonTools(img) {
   Pan.init(img)
   mouseTracker(img)
   Resize.applyAnnotator(img)
-  applySmoothing()
+  applySmoothing(img)
 }
