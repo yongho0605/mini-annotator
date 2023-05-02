@@ -57,5 +57,3 @@ export function applyChangesOnResize(img, canvas, ctx) {
   ctx.imageSmoothingEnabled = false
   ctx.drawImage(img, x, y, canvasImgWidth, canvasImgHeight)
 }
-
-export function resetCommonToolsValue() {}
